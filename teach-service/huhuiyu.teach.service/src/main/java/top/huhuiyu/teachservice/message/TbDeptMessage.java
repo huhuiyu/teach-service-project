@@ -16,9 +16,9 @@ import top.huhuiyu.teachservice.entity.TbDept;
 @ApiModel(value = "TbDeptMessage", description = "TbDeptMessage")
 public class TbDeptMessage extends BaseEntity {
 
-  private static final long serialVersionUID = -3734072613246480959L;
+  private static final long serialVersionUID = -3513308394134438291L;
 
-  @ApiModelProperty(value = "TbDept")
+  @ApiModelProperty(value = "部门信息")
   private TbDept tbDept;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;

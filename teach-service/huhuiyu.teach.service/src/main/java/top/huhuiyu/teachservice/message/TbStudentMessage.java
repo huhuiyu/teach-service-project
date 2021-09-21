@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import top.huhuiyu.api.spring.base.BaseEntity;
 import top.huhuiyu.api.spring.base.PageBean;
+import top.huhuiyu.teachservice.entity.TbClass;
 import top.huhuiyu.teachservice.entity.TbStudent;
 
 /**
@@ -16,16 +17,26 @@ import top.huhuiyu.teachservice.entity.TbStudent;
 @ApiModel(value = "TbStudentMessage", description = "TbStudentMessage")
 public class TbStudentMessage extends BaseEntity {
 
-  private static final long serialVersionUID = 6325412324634327295L;
+  private static final long serialVersionUID = -478027338689427759L;
 
-  @ApiModelProperty(value = "TbStudent")
+  @ApiModelProperty(value = "学生信息")
   private TbStudent tbStudent;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
   @ApiModelProperty(value = "查询结果")
   private List<TbStudent> list;
+  @ApiModelProperty(value = "班级列表")
+  private List<TbClass> classList;
 
   public TbStudentMessage() {
+  }
+
+  public List<TbClass> getClassList() {
+    return classList;
+  }
+
+  public void setClassList(List<TbClass> classList) {
+    this.classList = classList;
   }
 
   public TbStudent getTbStudent() {

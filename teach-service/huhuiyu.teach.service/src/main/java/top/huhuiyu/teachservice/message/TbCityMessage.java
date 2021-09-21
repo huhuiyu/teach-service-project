@@ -7,33 +7,26 @@ import io.swagger.annotations.ApiModelProperty;
 import top.huhuiyu.api.spring.base.BaseEntity;
 import top.huhuiyu.api.spring.base.PageBean;
 import top.huhuiyu.teachservice.entity.TbCity;
+import top.huhuiyu.teachservice.entity.TbProvince;
 
 /**
  * TbCity应答对象
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbCityMessage", description = "TbCityMessage")
+@ApiModel(value = "TbCityMessage", description = "城市应答信息")
 public class TbCityMessage extends BaseEntity {
 
-  private static final long serialVersionUID = -3553609969540692756L;
+  private static final long serialVersionUID = 6856735549049883150L;
 
-  @ApiModelProperty(value = "TbCity")
-  private TbCity tbCity;
-  @ApiModelProperty(value = "分页信息")
-  private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "城市列表")
   private List<TbCity> list;
+  @ApiModelProperty(value = "省份列表")
+  private List<TbProvince> provinceList;
+  @ApiModelProperty(value = "分页信息")
+  private PageBean page = new PageBean();
 
   public TbCityMessage() {
-  }
-
-  public TbCity getTbCity() {
-    return tbCity;
-  }
-
-  public void setTbCity(TbCity tbCity) {
-    this.tbCity = tbCity;
   }
 
   public PageBean getPage() {
@@ -51,4 +44,13 @@ public class TbCityMessage extends BaseEntity {
   public void setList(List<TbCity> list) {
     this.list = list;
   }
+
+  public List<TbProvince> getProvinceList() {
+    return provinceList;
+  }
+
+  public void setProvinceList(List<TbProvince> provinceList) {
+    this.provinceList = provinceList;
+  }
+
 }

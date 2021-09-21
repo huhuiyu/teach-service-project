@@ -11,7 +11,9 @@ import com.github.pagehelper.PageInfo;
 
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.base.PageBean;
+import top.huhuiyu.api.utils.StringUtils;
 import top.huhuiyu.teachservice.dao.TbClassDAO;
+import top.huhuiyu.teachservice.dao.TbStudentDAO;
 import top.huhuiyu.teachservice.entity.TbClass;
 import top.huhuiyu.teachservice.message.TbClassMessage;
 import top.huhuiyu.teachservice.model.TbClassModel;
@@ -27,6 +29,8 @@ import top.huhuiyu.teachservice.service.TbClassService;
 public class TbClassServiceImpl implements TbClassService {
   @Autowired
   private TbClassDAO tbClassDAO;
+  @Autowired
+  private TbStudentDAO tbStudentDAO;
 
   @Override
   public BaseResult<TbClassMessage> queryAll(TbClassModel model) throws Exception {
@@ -53,7 +57,19 @@ public class TbClassServiceImpl implements TbClassService {
   @Override
   public BaseResult<TbClassMessage> add(TbClassModel model) throws Exception {
     BaseResult<TbClassMessage> message = new BaseResult<TbClassMessage>(new TbClassMessage());
-    int result = tbClassDAO.add(model.getTbClass());
+    TbClass tbClass = model.getTbClass();
+    // 名称校验
+    if (StringUtils.isEmpty(tbClass.getCname())) {
+      message.setFailInfo("班级名称必须填写");
+      return message;
+    }
+    TbClass check = tbClassDAO.queryByName(tbClass);
+    if (check != null) {
+      message.setFailInfo("班级已经存在");
+      return message;
+    }
+    tbClass.setCinfo(StringUtils.trim(tbClass.getCinfo()));
+    int result = tbClassDAO.add(tbClass);
     if (result == 1) {
       message.setSuccessInfo("添加数据成功");
     } else {
@@ -65,19 +81,35 @@ public class TbClassServiceImpl implements TbClassService {
   @Override
   public BaseResult<TbClassMessage> delete(TbClassModel model) throws Exception {
     BaseResult<TbClassMessage> message = new BaseResult<TbClassMessage>(new TbClassMessage());
-    int result = tbClassDAO.delete(model.getTbClass());
-    if (result == 1) {
-      message.setSuccessInfo("删除数据成功");
-    } else {
-      message.setFailInfo("删除数据失败");
-    }
+    tbClassDAO.delete(model.getTbClass());
+    tbStudentDAO.deleteByClass(model.getTbClass());
+    message.setSuccessInfo("删除数据成功");
     return message;
   }
 
   @Override
   public BaseResult<TbClassMessage> update(TbClassModel model) throws Exception {
     BaseResult<TbClassMessage> message = new BaseResult<TbClassMessage>(new TbClassMessage());
-    int result = tbClassDAO.update(model.getTbClass());
+    TbClass tbClass = model.getTbClass();
+    TbClass check = tbClassDAO.queryByKey(tbClass);
+    // id校验
+    if (check == null) {
+      message.setFailInfo("班级不存在");
+      return message;
+    }
+    // 名称校验
+    if (StringUtils.isEmpty(tbClass.getCname())) {
+      message.setFailInfo("班级名称必须填写");
+      return message;
+    }
+    check = tbClassDAO.queryByName(tbClass);
+    // 重名校验
+    if (check != null && check.getCid() != tbClass.getCid() && check.getCname().equals(tbClass.getCname())) {
+      message.setFailInfo("班级已经存在");
+      return message;
+    }
+    tbClass.setCinfo(StringUtils.trim(tbClass.getCinfo()));
+    int result = tbClassDAO.update(tbClass);
     if (result == 1) {
       message.setSuccessInfo("修改数据成功");
     } else {

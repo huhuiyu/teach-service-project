@@ -13,21 +13,21 @@ import top.huhuiyu.api.spring.base.BaseEntity;
 @ApiModel(value = "TbEmployee", description = "TbEmployee")
 public class TbEmployee extends BaseEntity {
 
-  private static final long serialVersionUID = 5052915776041931410L;
+  private static final long serialVersionUID = -5822799898852237481L;
 
-  @ApiModelProperty(value = "employeeId")
+  @ApiModelProperty(value = "员工编号")
   @ApiParam(hidden = true)
   private java.lang.Integer employeeId;
-  @ApiModelProperty(value = "deptId")
+  @ApiModelProperty(value = "所属部门编号")
   @ApiParam(hidden = true)
   private java.lang.Integer deptId;
-  @ApiModelProperty(value = "employeeName")
+  @ApiModelProperty(value = "员工姓名")
   @ApiParam(hidden = true)
   private java.lang.String employeeName;
-  @ApiModelProperty(value = "phone")
+  @ApiModelProperty(value = "电话")
   @ApiParam(hidden = true)
   private java.lang.String phone;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "员工信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

@@ -12,7 +12,7 @@ import top.huhuiyu.teachservice.entity.TbEmployee;
  */
 public class TbEmployeeModel extends MyBaseModel {
 
-  private static final long serialVersionUID = 9124165739318081219L;
+  private static final long serialVersionUID = -7099501815602925320L;
 
   @ApiParam(hidden = true)
   private TbEmployee tbEmployee = new TbEmployee();

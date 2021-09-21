@@ -1,9 +1,6 @@
 package top.huhuiyu.teachservice.model;
 
-import io.swagger.annotations.ApiParam;
-import top.huhuiyu.api.spring.base.PageBean;
 import top.huhuiyu.teachservice.base.MyBaseModel;
-import top.huhuiyu.teachservice.entity.TbProvince;
 
 /**
  * TbProvince的Model
@@ -12,30 +9,9 @@ import top.huhuiyu.teachservice.entity.TbProvince;
  */
 public class TbProvinceModel extends MyBaseModel {
 
-  private static final long serialVersionUID = -5056952989726659859L;
-
-  @ApiParam(hidden = true)
-  private TbProvince tbProvince = new TbProvince();
-  @ApiParam(hidden = true)
-  private PageBean page = new PageBean();
+  private static final long serialVersionUID = -470520207829257005L;
 
   public TbProvinceModel() {
-  }
-
-  public TbProvince getTbProvince() {
-    return tbProvince;
-  }
-
-  public void setTbProvince(TbProvince tbProvince) {
-    this.tbProvince = tbProvince;
-  }
-
-  public PageBean getPage() {
-    return page;
-  }
-
-  public void setPage(PageBean page) {
-    this.page = page;
   }
 
   /*

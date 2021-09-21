@@ -13,30 +13,30 @@ import top.huhuiyu.api.spring.base.BaseEntity;
 @ApiModel(value = "TbStudent", description = "TbStudent")
 public class TbStudent extends BaseEntity {
 
-  private static final long serialVersionUID = 6014276036600382142L;
+  private static final long serialVersionUID = 2416111093882395960L;
 
-  @ApiModelProperty(value = "sid")
+  @ApiModelProperty(value = "学生编号")
   @ApiParam(hidden = true)
   private java.lang.Integer sid;
-  @ApiModelProperty(value = "cid")
+  @ApiModelProperty(value = "所属班级")
   @ApiParam(hidden = true)
   private java.lang.Integer cid;
-  @ApiModelProperty(value = "sname")
+  @ApiModelProperty(value = "学生姓名")
   @ApiParam(hidden = true)
   private java.lang.String sname;
-  @ApiModelProperty(value = "phone")
+  @ApiModelProperty(value = "联系电话")
   @ApiParam(hidden = true)
   private java.lang.String phone;
-  @ApiModelProperty(value = "address")
+  @ApiModelProperty(value = "家庭住址")
   @ApiParam(hidden = true)
   private java.lang.String address;
-  @ApiModelProperty(value = "wechat")
+  @ApiModelProperty(value = "微信号")
   @ApiParam(hidden = true)
   private java.lang.String wechat;
-  @ApiModelProperty(value = "qq")
+  @ApiModelProperty(value = "QQ号")
   @ApiParam(hidden = true)
   private java.lang.String qq;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "学生信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

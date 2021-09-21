@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import top.huhuiyu.api.spring.base.BaseEntity;
 import top.huhuiyu.api.spring.base.PageBean;
+import top.huhuiyu.teachservice.entity.TbDept;
 import top.huhuiyu.teachservice.entity.TbEmployee;
 
 /**
@@ -16,16 +17,26 @@ import top.huhuiyu.teachservice.entity.TbEmployee;
 @ApiModel(value = "TbEmployeeMessage", description = "TbEmployeeMessage")
 public class TbEmployeeMessage extends BaseEntity {
 
-  private static final long serialVersionUID = 5452655851603583860L;
+  private static final long serialVersionUID = -6003328734796487087L;
 
-  @ApiModelProperty(value = "TbEmployee")
+  @ApiModelProperty(value = "员工信息")
   private TbEmployee tbEmployee;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
   @ApiModelProperty(value = "查询结果")
   private List<TbEmployee> list;
+  @ApiModelProperty(value = "部门列表")
+  private List<TbDept> deptList;
 
   public TbEmployeeMessage() {
+  }
+
+  public List<TbDept> getDeptList() {
+    return deptList;
+  }
+
+  public void setDeptList(List<TbDept> deptList) {
+    this.deptList = deptList;
   }
 
   public TbEmployee getTbEmployee() {

@@ -16,9 +16,9 @@ import top.huhuiyu.teachservice.entity.TbClass;
 @ApiModel(value = "TbClassMessage", description = "TbClassMessage")
 public class TbClassMessage extends BaseEntity {
 
-  private static final long serialVersionUID = 910345269768100202L;
+  private static final long serialVersionUID = -7145833754465266914L;
 
-  @ApiModelProperty(value = "TbClass")
+  @ApiModelProperty(value = "班级信息")
   private TbClass tbClass;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;

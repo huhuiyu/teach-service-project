@@ -10,24 +10,24 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbCity", description = "TbCity")
+@ApiModel(value = "TbCity", description = "城市信息")
 public class TbCity extends BaseEntity {
 
-  private static final long serialVersionUID = -4038805990211175261L;
+  private static final long serialVersionUID = 7884932516887292027L;
 
-  @ApiModelProperty(value = "cid")
+  @ApiModelProperty(value = "城市编号")
   @ApiParam(hidden = true)
   private java.lang.Integer cid;
-  @ApiModelProperty(value = "pid")
+  @ApiModelProperty(value = "所属省份编号")
   @ApiParam(hidden = true)
   private java.lang.Integer pid;
-  @ApiModelProperty(value = "city")
+  @ApiModelProperty(value = "城市名称")
   @ApiParam(hidden = true)
   private java.lang.String city;
-  @ApiModelProperty(value = "info")
+  @ApiModelProperty(value = "城市信息")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "最后更新时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

@@ -4,35 +4,41 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.huhuiyu.teachservice.dao.TbEmployeeDAO">
-    
-  <select id="queryAll" resultType="TbEmployee">
+
+  <select id="queryAll" parameterType="TbEmployee" resultType="TbEmployee">
     select employee_id,dept_id,employee_name,phone,lastupdate from tb_employee
+    <trim prefix="where" prefixOverrides="and">
+      <if test="employeeName!=null and employeeName!=''"> and employee_name like #{employeeName}</if>
+      <if test="phone!=null and phone!=''"> and phone like #{phone}</if>
+      <if test="deptId!=null and deptId>0"> and dept_id = #{deptId}</if>
+    </trim>
   </select>
 
-  <!--
-  <select id="queryAll_COUNT" resultType="int">
-    select count(*) from tb_employee
-  </select>
-  -->
+  <!-- <select id="queryAll_COUNT" resultType="int"> select count(*) from tb_employee </select> -->
 
   <select id="queryByKey" parameterType="TbEmployee" resultType="TbEmployee">
-    select employee_id,dept_id,employee_name,phone,lastupdate from tb_employee 
+    select employee_id,dept_id,employee_name,phone,lastupdate from tb_employee
     where employee_id=#{employeeId}
   </select>
-  
+
   <insert id="add" parameterType="TbEmployee">
-    insert into tb_employee(dept_id,employee_name,phone,lastupdate)
-    values(#{deptId},#{employeeName},#{phone},#{lastupdate})
+    insert into tb_employee(dept_id,employee_name,phone)
+    values(#{deptId},#{employeeName},#{phone})
   </insert>
-  
+
   <update id="update" parameterType="TbEmployee">
-    update tb_employee set dept_id=#{deptId},employee_name=#{employeeName},phone=#{phone},lastupdate=#{lastupdate}
+    update tb_employee set dept_id=#{deptId},employee_name=#{employeeName},phone=#{phone}
     where employee_id=#{employeeId}
   </update>
-  
-  <delete id="delete" parameterType="TbEmployee" >
+
+  <delete id="delete" parameterType="TbEmployee">
     delete from tb_employee
     where employee_id=#{employeeId}
   </delete>
-  
+
+  <delete id="deleteByDept" parameterType="TbDept">
+    delete from tb_employee
+    where dept_id=#{deptId}
+  </delete>
+
 </mapper>

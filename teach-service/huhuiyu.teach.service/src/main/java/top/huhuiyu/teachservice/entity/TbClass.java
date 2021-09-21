@@ -6,25 +6,25 @@ import io.swagger.annotations.ApiParam;
 import top.huhuiyu.api.spring.base.BaseEntity;
 
 /**
- * tb_class表
+ * 班级表
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbClass", description = "TbClass")
+@ApiModel(value = "TbClass", description = "班级信息")
 public class TbClass extends BaseEntity {
 
-  private static final long serialVersionUID = -6720613476226926686L;
+  private static final long serialVersionUID = -8872085574817304500L;
 
-  @ApiModelProperty(value = "cid")
+  @ApiModelProperty(value = "班级编号")
   @ApiParam(hidden = true)
   private java.lang.Integer cid;
-  @ApiModelProperty(value = "cname")
+  @ApiModelProperty(value = "班级名称")
   @ApiParam(hidden = true)
   private java.lang.String cname;
-  @ApiModelProperty(value = "cinfo")
+  @ApiModelProperty(value = "班级描述信息")
   @ApiParam(hidden = true)
   private java.lang.String cinfo;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "班级信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

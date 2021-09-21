@@ -10,21 +10,21 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbProvince", description = "TbProvince")
+@ApiModel(value = "TbProvince", description = "省份信息")
 public class TbProvince extends BaseEntity {
 
-  private static final long serialVersionUID = 8873301440535682596L;
+  private static final long serialVersionUID = -4162610564975213888L;
 
-  @ApiModelProperty(value = "pid")
+  @ApiModelProperty(value = "省份编号")
   @ApiParam(hidden = true)
   private java.lang.Integer pid;
-  @ApiModelProperty(value = "province")
+  @ApiModelProperty(value = "省份名称")
   @ApiParam(hidden = true)
   private java.lang.String province;
-  @ApiModelProperty(value = "info")
+  @ApiModelProperty(value = "描述信息")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "最后更新时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

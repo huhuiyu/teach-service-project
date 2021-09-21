@@ -1,7 +1,9 @@
 package top.huhuiyu.teachservice.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
 import top.huhuiyu.teachservice.entity.TbCity;
 
 /**
@@ -19,6 +21,28 @@ public interface TbCityDAO {
    * @throws Exception 处理发生异常
    */
   List<TbCity> queryAll() throws Exception;
+
+  /**
+   * 查询全部tb_city
+   *
+   * @param tbCity 查询条件
+   * 
+   * @return tb_city的信息
+   * 
+   * @throws Exception 处理发生异常
+   */
+  List<TbCity> queryAllInfo(TbCity tbCity) throws Exception;
+
+  /**
+   * 查询指定省份的全部tb_city
+   *
+   * @param tbCity 省份信息参数
+   * 
+   * @return 指定省份的全部tb_city信息
+   * 
+   * @throws Exception 处理发生异常
+   */
+  List<TbCity> queryAllByPid(TbCity tbCity) throws Exception;
 
   /**
    * 按照主键查询tb_city

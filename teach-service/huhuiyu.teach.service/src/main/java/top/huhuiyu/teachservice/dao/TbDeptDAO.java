@@ -1,7 +1,9 @@
 package top.huhuiyu.teachservice.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
 import top.huhuiyu.teachservice.entity.TbDept;
 
 /**
@@ -30,6 +32,17 @@ public interface TbDeptDAO {
    * @throws Exception 处理发生异常
    */
   TbDept queryByKey(TbDept tbDept) throws Exception;
+
+  /**
+   * 按照部门名称查询tb_dept
+   *
+   * @param tbDept 部门名称信息
+   * 
+   * @return 部门名称查询tb_dept的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  TbDept queryByName(TbDept tbDept) throws Exception;
 
   /**
    * 添加tb_dept信息

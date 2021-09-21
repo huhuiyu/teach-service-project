@@ -12,7 +12,7 @@ import top.huhuiyu.teachservice.entity.TbDept;
  */
 public class TbDeptModel extends MyBaseModel {
 
-  private static final long serialVersionUID = 2323734223085940791L;
+  private static final long serialVersionUID = 3116596924773565686L;
 
   @ApiParam(hidden = true)
   private TbDept tbDept = new TbDept();

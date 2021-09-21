@@ -13,18 +13,18 @@ import top.huhuiyu.api.spring.base.BaseEntity;
 @ApiModel(value = "TbDept", description = "TbDept")
 public class TbDept extends BaseEntity {
 
-  private static final long serialVersionUID = 5765211816044848853L;
+  private static final long serialVersionUID = -5899968253701910070L;
 
-  @ApiModelProperty(value = "deptId")
+  @ApiModelProperty(value = "部门编号")
   @ApiParam(hidden = true)
   private java.lang.Integer deptId;
-  @ApiModelProperty(value = "deptName")
+  @ApiModelProperty(value = "部门名称")
   @ApiParam(hidden = true)
   private java.lang.String deptName;
-  @ApiModelProperty(value = "deptInfo")
+  @ApiModelProperty(value = "部门描述")
   @ApiParam(hidden = true)
   private java.lang.String deptInfo;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "部门信息最后更新时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

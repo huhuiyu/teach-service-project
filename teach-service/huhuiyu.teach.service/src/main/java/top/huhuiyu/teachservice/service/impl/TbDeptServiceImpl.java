@@ -11,7 +11,9 @@ import com.github.pagehelper.PageInfo;
 
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.base.PageBean;
+import top.huhuiyu.api.utils.StringUtils;
 import top.huhuiyu.teachservice.dao.TbDeptDAO;
+import top.huhuiyu.teachservice.dao.TbEmployeeDAO;
 import top.huhuiyu.teachservice.entity.TbDept;
 import top.huhuiyu.teachservice.message.TbDeptMessage;
 import top.huhuiyu.teachservice.model.TbDeptModel;
@@ -27,6 +29,8 @@ import top.huhuiyu.teachservice.service.TbDeptService;
 public class TbDeptServiceImpl implements TbDeptService {
   @Autowired
   private TbDeptDAO tbDeptDAO;
+  @Autowired
+  private TbEmployeeDAO tbEmployeeDAO;
 
   @Override
   public BaseResult<TbDeptMessage> queryAll(TbDeptModel model) throws Exception {
@@ -53,6 +57,16 @@ public class TbDeptServiceImpl implements TbDeptService {
   @Override
   public BaseResult<TbDeptMessage> add(TbDeptModel model) throws Exception {
     BaseResult<TbDeptMessage> message = new BaseResult<TbDeptMessage>(new TbDeptMessage());
+    if (StringUtils.isEmpty(model.getTbDept().getDeptName())) {
+      message.setFailInfo("部门名称必须填写");
+      return message;
+    }
+    model.getTbDept().setDeptInfo(StringUtils.trim(model.getTbDept().getDeptInfo()));
+    TbDept check = tbDeptDAO.queryByName(model.getTbDept());
+    if (check != null) {
+      message.setFailInfo("部门已经存在");
+      return message;
+    }
     int result = tbDeptDAO.add(model.getTbDept());
     if (result == 1) {
       message.setSuccessInfo("添加数据成功");
@@ -65,19 +79,34 @@ public class TbDeptServiceImpl implements TbDeptService {
   @Override
   public BaseResult<TbDeptMessage> delete(TbDeptModel model) throws Exception {
     BaseResult<TbDeptMessage> message = new BaseResult<TbDeptMessage>(new TbDeptMessage());
-    int result = tbDeptDAO.delete(model.getTbDept());
-    if (result == 1) {
-      message.setSuccessInfo("删除数据成功");
-    } else {
-      message.setFailInfo("删除数据失败");
-    }
+    // 删除部门
+    tbDeptDAO.delete(model.getTbDept());
+    // 联动删除部门下面的所有员工
+    tbEmployeeDAO.deleteByDept(model.getTbDept());
+    message.setSuccessInfo("删除数据成功");
     return message;
   }
 
   @Override
   public BaseResult<TbDeptMessage> update(TbDeptModel model) throws Exception {
     BaseResult<TbDeptMessage> message = new BaseResult<TbDeptMessage>(new TbDeptMessage());
-    int result = tbDeptDAO.update(model.getTbDept());
+    TbDept dept = model.getTbDept();
+    if (StringUtils.isEmpty(dept.getDeptName())) {
+      message.setFailInfo("部门名称必须填写");
+      return message;
+    }
+    dept.setDeptInfo(StringUtils.trim(dept.getDeptInfo()));
+    TbDept check = tbDeptDAO.queryByKey(dept);
+    if (check == null) {
+      message.setFailInfo("部门不存在");
+      return message;
+    }
+    check = tbDeptDAO.queryByName(dept);
+    if (check != null && !check.getDeptId().equals(dept.getDeptId()) && check.getDeptName().equals(dept.getDeptName())) {
+      message.setFailInfo("部门名称冲突");
+      return message;
+    }
+    int result = tbDeptDAO.update(dept);
     if (result == 1) {
       message.setSuccessInfo("修改数据成功");
     } else {

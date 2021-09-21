@@ -1,7 +1,9 @@
 package top.huhuiyu.teachservice.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
 import top.huhuiyu.teachservice.entity.TbClass;
 
 /**
@@ -30,6 +32,17 @@ public interface TbClassDAO {
    * @throws Exception 处理发生异常
    */
   TbClass queryByKey(TbClass tbClass) throws Exception;
+
+  /**
+   * 按照姓名查询tb_class
+   *
+   * @param tbClass 姓名信息
+   * 
+   * @return 姓名查询tb_class的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  TbClass queryByName(TbClass tbClass) throws Exception;
 
   /**
    * 添加tb_class信息

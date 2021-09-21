@@ -12,7 +12,7 @@ import top.huhuiyu.teachservice.entity.TbCity;
  */
 public class TbCityModel extends MyBaseModel {
 
-  private static final long serialVersionUID = -302539273203998867L;
+  private static final long serialVersionUID = 1641881329245842863L;
 
   @ApiParam(hidden = true)
   private TbCity tbCity = new TbCity();

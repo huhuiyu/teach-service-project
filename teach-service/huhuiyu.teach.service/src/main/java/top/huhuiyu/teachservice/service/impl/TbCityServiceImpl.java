@@ -11,8 +11,11 @@ import com.github.pagehelper.PageInfo;
 
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.base.PageBean;
+import top.huhuiyu.api.utils.StringUtils;
 import top.huhuiyu.teachservice.dao.TbCityDAO;
+import top.huhuiyu.teachservice.dao.TbProvinceDAO;
 import top.huhuiyu.teachservice.entity.TbCity;
+import top.huhuiyu.teachservice.entity.TbProvince;
 import top.huhuiyu.teachservice.message.TbCityMessage;
 import top.huhuiyu.teachservice.model.TbCityModel;
 import top.huhuiyu.teachservice.service.TbCityService;
@@ -27,62 +30,36 @@ import top.huhuiyu.teachservice.service.TbCityService;
 public class TbCityServiceImpl implements TbCityService {
   @Autowired
   private TbCityDAO tbCityDAO;
+  @Autowired
+  private TbProvinceDAO tbProvinceDAO;
 
   @Override
-  public BaseResult<TbCityMessage> queryAll(TbCityModel model) throws Exception {
-    PageBean page = model.getPage();
-    PageHelper.startPage(page.getPageNumber(), page.getPageSize());
-    List<TbCity> list = tbCityDAO.queryAll();
-    PageInfo<?> pageInfo = new PageInfo<>(list);
-    page.setPageInfo(pageInfo);
+  public BaseResult<TbCityMessage> queryAllByPid(TbCityModel model) throws Exception {
+    List<TbCity> list = tbCityDAO.queryAllByPid(model.getTbCity());
     BaseResult<TbCityMessage> message = new BaseResult<TbCityMessage>(new TbCityMessage());
     message.setSuccessInfo("");
-    message.getResultData().setPage(page);
     message.getResultData().setList(list);
     return message;
   }
 
   @Override
-  public BaseResult<TbCityMessage> queryByKey(TbCityModel model) throws Exception {
+  public BaseResult<TbCityMessage> queryCity(TbCityModel model) throws Exception {
+    List<TbProvince> provinceList = tbProvinceDAO.queryAll();
+    PageBean page = model.getPage();
+    PageHelper.startPage(page.getPageNumber(), page.getPageSize());
+    TbCity tbCity = model.getTbCity();
+    if (!StringUtils.isEmpty(tbCity.getCity())) {
+      tbCity.setCity(StringUtils.getLikeStr(tbCity.getCity()));
+    }
+    List<TbCity> list = tbCityDAO.queryAllInfo(model.getTbCity());
+    PageInfo<?> pageInfo = new PageInfo<>(list);
+    page.setPageInfo(pageInfo);
     BaseResult<TbCityMessage> message = new BaseResult<TbCityMessage>(new TbCityMessage());
     message.setSuccessInfo("");
-    message.getResultData().setTbCity(tbCityDAO.queryByKey(model.getTbCity()));
+    message.getResultData().setList(list);
+    message.getResultData().setPage(page);
+    message.getResultData().setProvinceList(provinceList);
     return message;
   }
 
-  @Override
-  public BaseResult<TbCityMessage> add(TbCityModel model) throws Exception {
-    BaseResult<TbCityMessage> message = new BaseResult<TbCityMessage>(new TbCityMessage());
-    int result = tbCityDAO.add(model.getTbCity());
-    if (result == 1) {
-      message.setSuccessInfo("添加数据成功");
-    } else {
-      message.setFailInfo("添加数据失败");
-    }
-    return message;
-  }
-
-  @Override
-  public BaseResult<TbCityMessage> delete(TbCityModel model) throws Exception {
-    BaseResult<TbCityMessage> message = new BaseResult<TbCityMessage>(new TbCityMessage());
-    int result = tbCityDAO.delete(model.getTbCity());
-    if (result == 1) {
-      message.setSuccessInfo("删除数据成功");
-    } else {
-      message.setFailInfo("删除数据失败");
-    }
-    return message;
-  }
-
-  @Override
-  public BaseResult<TbCityMessage> update(TbCityModel model) throws Exception {
-    BaseResult<TbCityMessage> message = new BaseResult<TbCityMessage>(new TbCityMessage());
-    int result = tbCityDAO.update(model.getTbCity());
-    if (result == 1) {
-      message.setSuccessInfo("修改数据成功");
-    } else {
-      message.setFailInfo("修改数据失败");
-    }
-    return message;
-  }
 }

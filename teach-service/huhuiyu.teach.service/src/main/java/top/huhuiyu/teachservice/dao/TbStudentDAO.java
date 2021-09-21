@@ -1,7 +1,10 @@
 package top.huhuiyu.teachservice.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import top.huhuiyu.teachservice.entity.TbClass;
 import top.huhuiyu.teachservice.entity.TbStudent;
 
 /**
@@ -13,12 +16,14 @@ import top.huhuiyu.teachservice.entity.TbStudent;
 public interface TbStudentDAO {
   /**
    * 查询全部tb_student
+   * 
+   * @param tbStudent 查询信息
    *
    * @return tb_student的信息
    * 
    * @throws Exception 处理发生异常
    */
-  List<TbStudent> queryAll() throws Exception;
+  List<TbStudent> queryAll(TbStudent tbStudent) throws Exception;
 
   /**
    * 按照主键查询tb_student
@@ -63,5 +68,16 @@ public interface TbStudentDAO {
    * @throws Exception 处理发生异常
    */
   int delete(TbStudent tbStudent) throws Exception;
+
+  /**
+   * 删除班级的tb_student信息
+   *
+   * @param tbClass 班级信息
+   * 
+   * @return 删除班级的tbStudent信息的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int deleteByClass(TbClass tbClass) throws Exception;
 
 }

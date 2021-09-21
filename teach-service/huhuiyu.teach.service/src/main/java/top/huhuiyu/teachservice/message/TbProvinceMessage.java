@@ -5,7 +5,6 @@ import java.util.List;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import top.huhuiyu.api.spring.base.BaseEntity;
-import top.huhuiyu.api.spring.base.PageBean;
 import top.huhuiyu.teachservice.entity.TbProvince;
 
 /**
@@ -13,35 +12,15 @@ import top.huhuiyu.teachservice.entity.TbProvince;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbProvinceMessage", description = "TbProvinceMessage")
+@ApiModel(value = "TbProvinceMessage", description = "省份应答信息")
 public class TbProvinceMessage extends BaseEntity {
 
-  private static final long serialVersionUID = -6623408900579463173L;
+  private static final long serialVersionUID = 5225319123665816880L;
 
-  @ApiModelProperty(value = "TbProvince")
-  private TbProvince tbProvince;
-  @ApiModelProperty(value = "分页信息")
-  private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "省份集合")
   private List<TbProvince> list;
 
   public TbProvinceMessage() {
-  }
-
-  public TbProvince getTbProvince() {
-    return tbProvince;
-  }
-
-  public void setTbProvince(TbProvince tbProvince) {
-    this.tbProvince = tbProvince;
-  }
-
-  public PageBean getPage() {
-    return page;
-  }
-
-  public void setPage(PageBean page) {
-    this.page = page;
   }
 
   public List<TbProvince> getList() {
