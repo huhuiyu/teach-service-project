@@ -58,4 +58,14 @@ public interface WebSocketService {
    * @throws Exception 处理发生错误
    */
   void sendTimestamp(Session session) throws Exception;
+
+  /**
+   * 发送信息
+   * 
+   * @param session 会话
+   * @param message 信息
+   * 
+   * @throws Exception 处理发生错误
+   */
+  void sendMessage(Session session, String message) throws Exception;
 }

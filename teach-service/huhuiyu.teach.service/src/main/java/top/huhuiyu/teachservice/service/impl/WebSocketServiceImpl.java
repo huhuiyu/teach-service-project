@@ -41,6 +41,11 @@ public class WebSocketServiceImpl implements WebSocketService {
   @Override
   public void removeSession(Session session) {
     sessions.remove(session);
+    // 删除订阅消息session
+    for (String key : publishes.keySet()) {
+      Set<Session> sessionSet = publishes.get(key);
+      sessionSet.remove(session);
+    }
   }
 
   @Override
@@ -57,14 +62,14 @@ public class WebSocketServiceImpl implements WebSocketService {
       publishes.put(channel, new HashSet<Session>());
     }
     publishes.get(channel).add(session);
-    log.debug("publishes:{}", publishes.toString());
+    log.debug("publishes:" + publishes.toString());
   }
 
   @Override
   public void publish(String channel, Object message) throws Exception {
     String json = JsonUtils.stringify(message);
     Set<Session> set = publishes.get(channel);
-    log.debug("set:{}", set);
+    log.debug(String.format("set:%s", set));
     if (set == null) {
       return;
     }
@@ -76,6 +81,11 @@ public class WebSocketServiceImpl implements WebSocketService {
   @Override
   public void sendTimestamp(Session session) throws Exception {
     session.getBasicRemote().sendText("" + utilsDAO.queryTimestamp());
+  }
+
+  @Override
+  public void sendMessage(Session session, String message) throws Exception {
+    session.getBasicRemote().sendText(message);
   }
 
 }

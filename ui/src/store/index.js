@@ -34,7 +34,16 @@ export default new Vuex.Store({
   },
   actions: {
     increment(context) {
-      context.commit('increment');
+      return new Promise(function (resolve, reject) {
+        try {
+          setTimeout(function () {
+            context.commit('increment');
+            resolve();
+          }, 2000);
+        } catch (error) {
+          reject(error);
+        }
+      });
     },
   },
   modules: {},

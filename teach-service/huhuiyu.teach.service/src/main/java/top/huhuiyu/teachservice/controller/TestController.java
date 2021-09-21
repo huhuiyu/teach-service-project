@@ -45,14 +45,14 @@ public class TestController {
     return BaseResult.getSuccess(String.format("data:image/jpg;base64,%s", base64));
   }
 
-//  @ApiOperation(value = "管理员登陆测试，需要管理员登陆")
-//  @PostMapping("/adminLogin")
-//  public BaseResult<UtilMessage> adminLogin(MyBaseModel model) throws Exception {
-//    BaseResult<UtilMessage> result = new BaseResult<>(new UtilMessage());
-//    result.setSuccessInfo("");
-//    result.getResultData().setLoginInfo(model.getLoginAdmin());
-//    return result;
-//  }
+  // @ApiOperation(value = "管理员登陆测试，需要管理员登陆")
+  // @PostMapping("/adminLogin")
+  // public BaseResult<UtilMessage> adminLogin(MyBaseModel model) throws Exception {
+  // BaseResult<UtilMessage> result = new BaseResult<>(new UtilMessage());
+  // result.setSuccessInfo("");
+  // result.getResultData().setLoginInfo(model.getLoginAdmin());
+  // return result;
+  // }
 
   @ApiOperation(value = "图片校验码测试")
   @ApiImplicitParams({ @ApiImplicitParam(name = "imageCode", value = "图片校验码", paramType = "query", required = true) })

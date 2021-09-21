@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import top.huhuiyu.api.spring.base.BaseResult;
+import top.huhuiyu.teachservice.base.BaseWsInfo;
 import top.huhuiyu.teachservice.dao.UtilsDAO;
 import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.service.WebSocketService;
@@ -42,12 +42,12 @@ public class ScheduleTask {
   @Scheduled(initialDelay = 5 * 1000, fixedDelay = 60 * 1000)
   public void timestamp() {
     try {
-      log.debug("广播时间戳");
-      BaseResult<Object> result = BaseResult.getBaseResult(true, 200, "时间戳广播信息");
-      result.setResultData(utilsDAO.queryTimestamp());
-      webSocketService.broadcast(result);
+      log.debug("正在广播时间戳");
+      BaseWsInfo baseWsInfo = BaseWsInfo.getSuccessInfo(utilsDAO.queryTimestamp());
+      baseWsInfo.setType(BaseWsInfo.TYPE_TIME);
+      webSocketService.broadcast(baseWsInfo);
     } catch (Exception ex) {
-      log.error("广播时间戳发生错误", ex);
+      log.error("广播时间戳", ex);
     }
   }
 

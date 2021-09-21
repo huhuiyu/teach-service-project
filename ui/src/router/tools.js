@@ -11,6 +11,16 @@ routers = routers.concat([
     name: 'ToolsAjax',
     component: () => import('../views/tools/Ajax.vue'),
   },
+  {
+    path: '/tools/wschat',
+    name: 'WebSocketChat',
+    component: () => import('../views/tools/WsChat.vue'),
+  },
+  {
+    path: '/tools/store',
+    name: 'ToolsStore',
+    component: () => import('../views/tools/Store.vue'),
+  },
 ]);
 
 export default routers;

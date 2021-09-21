@@ -32,9 +32,11 @@ public class IndexController {
   public BaseResult<IndexMessage> index(IndexModel model) throws Exception {
     return indexService.index(model);
   }
-  
-  @ApiOperation(value = "WebSocket说明", notes = "本接口为WebSocket说明，不要调用<br/>" + "服务器基本地址和接口地址一致，例如wss://huhuiyu.top/teach-demo-service或者ws://127.0.0.1:20000")
-  @PostMapping("/websocket")
+
+  @ApiOperation(value = "WebSocket说明", notes = "本接口为WebSocket说明，不要调用<br/>" + "服务器基本地址和接口地址一致，例如wss://huhuiyu.top/teach-service，不同服务地址看下方说明.<br/>" + "WebSoket回声服务：/ws/echo<br/>" + "聊天室：/ws/chat<br/>"
+      + "服务器应答统一格式为:{success:是否是成功应答,code:应答代码,type:应答类型,message:应答数据}<br/>" + "应答类型:timestamp为时间戳广播，echo为回声应答结果，chat为聊天信息，聊天信息格式为{name:消息发送人,info:聊天内容}")
+  @ApiImplicitParams(@ApiImplicitParam(name = "echo", value = "回声参数，内容会通过应答的message返回", paramType = "query"))
+  @PostMapping("/info")
   public BaseResult<IndexMessage> info(IndexModel model) throws Exception {
     return indexService.index(model);
   }
