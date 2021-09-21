@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbStudentDAO">
+    
+  <select id="queryAll" resultType="TbStudent">
+    select sid,cid,sname,phone,address,wechat,qq,lastupdate from tb_student
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_student
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbStudent" resultType="TbStudent">
+    select sid,cid,sname,phone,address,wechat,qq,lastupdate from tb_student 
+    where sid=#{sid}
+  </select>
+  
+  <insert id="add" parameterType="TbStudent">
+    insert into tb_student(cid,sname,phone,address,wechat,qq,lastupdate)
+    values(#{cid},#{sname},#{phone},#{address},#{wechat},#{qq},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbStudent">
+    update tb_student set cid=#{cid},sname=#{sname},phone=#{phone},address=#{address},wechat=#{wechat},qq=#{qq},lastupdate=#{lastupdate}
+    where sid=#{sid}
+  </update>
+  
+  <delete id="delete" parameterType="TbStudent" >
+    delete from tb_student
+    where sid=#{sid}
+  </delete>
+  
+</mapper>

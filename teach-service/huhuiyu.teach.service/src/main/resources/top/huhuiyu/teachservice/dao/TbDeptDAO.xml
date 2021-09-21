@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbDeptDAO">
+    
+  <select id="queryAll" resultType="TbDept">
+    select dept_id,dept_name,dept_info,lastupdate from tb_dept
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_dept
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbDept" resultType="TbDept">
+    select dept_id,dept_name,dept_info,lastupdate from tb_dept 
+    where dept_id=#{deptId}
+  </select>
+  
+  <insert id="add" parameterType="TbDept">
+    insert into tb_dept(dept_name,dept_info,lastupdate)
+    values(#{deptName},#{deptInfo},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbDept">
+    update tb_dept set dept_name=#{deptName},dept_info=#{deptInfo},lastupdate=#{lastupdate}
+    where dept_id=#{deptId}
+  </update>
+  
+  <delete id="delete" parameterType="TbDept" >
+    delete from tb_dept
+    where dept_id=#{deptId}
+  </delete>
+  
+</mapper>

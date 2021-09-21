@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbGoodsDAO">
+    
+  <select id="queryAll" resultType="TbGoods">
+    select goods_id,type_id,goods_name,price,lastupdate from tb_goods
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_goods
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbGoods" resultType="TbGoods">
+    select goods_id,type_id,goods_name,price,lastupdate from tb_goods 
+    where goods_id=#{goodsId}
+  </select>
+  
+  <insert id="add" parameterType="TbGoods">
+    insert into tb_goods(type_id,goods_name,price,lastupdate)
+    values(#{typeId},#{goodsName},#{price},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbGoods">
+    update tb_goods set type_id=#{typeId},goods_name=#{goodsName},price=#{price},lastupdate=#{lastupdate}
+    where goods_id=#{goodsId}
+  </update>
+  
+  <delete id="delete" parameterType="TbGoods" >
+    delete from tb_goods
+    where goods_id=#{goodsId}
+  </delete>
+  
+</mapper>

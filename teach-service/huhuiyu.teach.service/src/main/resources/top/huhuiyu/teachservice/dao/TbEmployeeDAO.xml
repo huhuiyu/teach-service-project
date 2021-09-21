@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbEmployeeDAO">
+    
+  <select id="queryAll" resultType="TbEmployee">
+    select employee_id,dept_id,employee_name,phone,lastupdate from tb_employee
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_employee
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbEmployee" resultType="TbEmployee">
+    select employee_id,dept_id,employee_name,phone,lastupdate from tb_employee 
+    where employee_id=#{employeeId}
+  </select>
+  
+  <insert id="add" parameterType="TbEmployee">
+    insert into tb_employee(dept_id,employee_name,phone,lastupdate)
+    values(#{deptId},#{employeeName},#{phone},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbEmployee">
+    update tb_employee set dept_id=#{deptId},employee_name=#{employeeName},phone=#{phone},lastupdate=#{lastupdate}
+    where employee_id=#{employeeId}
+  </update>
+  
+  <delete id="delete" parameterType="TbEmployee" >
+    delete from tb_employee
+    where employee_id=#{employeeId}
+  </delete>
+  
+</mapper>

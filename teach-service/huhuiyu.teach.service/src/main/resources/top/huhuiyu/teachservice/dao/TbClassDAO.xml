@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbClassDAO">
+    
+  <select id="queryAll" resultType="TbClass">
+    select cid,cname,cinfo,lastupdate from tb_class
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_class
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbClass" resultType="TbClass">
+    select cid,cname,cinfo,lastupdate from tb_class 
+    where cid=#{cid}
+  </select>
+  
+  <insert id="add" parameterType="TbClass">
+    insert into tb_class(cname,cinfo,lastupdate)
+    values(#{cname},#{cinfo},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbClass">
+    update tb_class set cname=#{cname},cinfo=#{cinfo},lastupdate=#{lastupdate}
+    where cid=#{cid}
+  </update>
+  
+  <delete id="delete" parameterType="TbClass" >
+    delete from tb_class
+    where cid=#{cid}
+  </delete>
+  
+</mapper>
