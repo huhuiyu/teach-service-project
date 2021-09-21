@@ -6,6 +6,7 @@ Set-Location $serverProjectPath\teach-service-ui
 git pull
 git add *
 git commit -m "teach service ui update==>$(Get-Date)"
+Set-Location $serverProjectPath\
 .\push.ps1
 Start-Process $serverProjectPath\teach-service-ui
 Set-Location $currentyDir
