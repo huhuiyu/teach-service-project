@@ -11,6 +11,9 @@
         <el-rate v-model="rate" disabled></el-rate>
       </div>
     </div>
+    <div class="links">
+      <el-link type="primary" v-for="p in pages" :key="p.path" @click="toPage(p.path)">{{ p.text }}</el-link>
+    </div>
   </div>
 </template>
 <script>
@@ -20,7 +23,20 @@ export default {
     return {
       title: ' 黑暗骑士的教学演示网站',
       rate: 5,
+      pages: [
+        { path: '/basic/link', text: '联动和图片校验码' },
+        { path: '/basic/dept', text: '部门信息管理' },
+      ],
     };
+  },
+  methods: {
+    toPage(path) {
+      let routeData = this.$router.resolve({
+        path: path,
+      });
+      window.open(routeData.href, '_blank');
+      // this.$router.push(path);
+    },
   },
 };
 </script>
@@ -60,5 +76,15 @@ export default {
 .bg div {
   width: 100vw;
   height: 100vh;
+}
+
+.links {
+  width: 80vw;
+  margin: 1rem auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
+.links .el-link {
+  margin-right: 0.5rem;
 }
 </style>

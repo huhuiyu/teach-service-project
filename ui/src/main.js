@@ -4,6 +4,8 @@ import router from './router';
 import store from './store';
 import VueParticles from 'vue-particles';
 import myplugins from './plugins/myplugins';
+import './filters/myfilters';
+import './directives/mydirectives';
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';

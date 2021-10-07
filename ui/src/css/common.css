@@ -2,3 +2,18 @@ body {
   margin: 0px;
   min-height: 100vh;
 }
+
+.tc {
+  text-align: center;
+}
+
+.pd10 {
+  padding: 1rem;
+}
+
+.fs15 {
+  font-size: 1.5rem;
+}
+.fs20 {
+  font-size: 2rem;
+}

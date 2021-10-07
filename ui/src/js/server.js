@@ -6,7 +6,7 @@ import logger from './logger';
 //服务器相关信息
 let serverInfo = {};
 // 本地存储token的key
-serverInfo.serverTokenKey = 'server.info.token';
+serverInfo.serverTokenKey = 'teach-service-server.info.token';
 
 // 保存token信息
 serverInfo.saveToken = function(data) {

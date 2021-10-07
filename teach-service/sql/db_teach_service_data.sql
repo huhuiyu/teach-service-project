@@ -69,3 +69,13 @@ create table tb_city
 
 select cid,pid,city,info,lastupdate from tb_city;
 
+/* 用户详细信息 */
+create table tb_admin_info
+(
+  aiid int auto_increment primary key comment '主键',
+  aid int not null comment '外键，所属用户id',
+  info varchar(500) not null default '' comment '简介',
+  weixin varchar(255) not null default '' comment '微信信息（二维码地址）',
+  img varchar(255) not null default '' comment '头像信息（图片地址）',
+  tel varchar(50) not null default '' comment '电话号码'
+)comment '用户详细信息表';

@@ -11,14 +11,28 @@
   <meta name="description" content="胡辉煜-程序猿学习">
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
   <link rel="shortcut icon" href="https://klcxy.top/oss-manage-service/ossinfo/queryOssUrl?tbOssInfo.oiid=95" type="image/jpeg">
-  <link rel="stylesheet" href="css/common.css">
+
+
 </head>
 
 <body>
-  <h1 class="tc">静态页面效果</h1>
+  省份：
+  <select id="selProvince"></select>
+  城市
+  <select id="selCity"></select>
+  <button id="btnOk">确定</button>
+  <div id="divInfo"></div>
+  <hr>
+  <img id="imgCode" src="" alt="">
+  <a href="javascript:void(0)" id="acode">点击更换一张</a>
+  <input type="text" id="txtCode" placeholder="输入验证码">
+  <button id="btnCode">验证</button>
+  <div id="divCode"></div>
 
-
-  <script src="js/index.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/qs/6.10.1/qs.min.js"></script>
+  <script src="js/server.js"></script>
+  <script src="js/links.js"></script>
 </body>
 
 </html>

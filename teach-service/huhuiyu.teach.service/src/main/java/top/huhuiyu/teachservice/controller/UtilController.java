@@ -33,7 +33,7 @@ public class UtilController {
     return BaseResult.getSuccess("获取token信息成功");
   }
 
-  @ApiOperation(value = "管理员登陆")
+  @ApiOperation(value = "用户登陆")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbAdmin.password", value = "密码", paramType = "query", required = true) })
   @PostMapping("/adminLogin")
@@ -41,13 +41,13 @@ public class UtilController {
     return utilService.adminLogin(model);
   }
 
-  @ApiOperation(value = "管理员登出")
+  @ApiOperation(value = "用户登出")
   @PostMapping("/adminLogout")
   public BaseResult<UtilMessage> adminLogout(UtilModel model) throws Exception {
     return utilService.adminLogout(model);
   }
 
-  @ApiOperation(value = "获取管理员信息")
+  @ApiOperation(value = "获取登录用户信息")
   @PostMapping("/getAdminLoginInfo")
   public BaseResult<UtilMessage> getAdminLoginInfo(UtilModel model) throws Exception {
     return utilService.getAdminLoginInfo(model);

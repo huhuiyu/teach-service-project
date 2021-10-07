@@ -45,7 +45,7 @@ public class UtilServiceImpl implements UtilService {
     admin.setEnable(null);
     admin.setPassword(null);
     admin.setSalt(null);
-    admin.setRole(null);
+    // admin.setRole(null);
   }
 
   @Override
