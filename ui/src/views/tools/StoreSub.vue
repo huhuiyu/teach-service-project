@@ -35,7 +35,7 @@ export default {
     },
   },
   created() {
-    this.user = this.$store.state.userinfo;
+    this.user = JSON.parse(JSON.stringify(this.$store.state.userinfo));
   },
 };
 </script>
