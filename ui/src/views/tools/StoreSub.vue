@@ -14,7 +14,12 @@
 export default {
   name: 'TestOneSub',
   data() {
-    return { user: { name: '', nickname: '' } };
+    return {
+      user: {
+        name: '',
+        nickname: '',
+      },
+    };
   },
   computed: {
     count() {

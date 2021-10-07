@@ -2,10 +2,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
-const userSaveKey = 'huhuiyu.top.user';
+
+const userSaveKey = 'teach-service-userinfo';
 const emptyUser = function () {
   return { name: '', nickname: '' };
 };
+
 function loadUser() {
   try {
     let user = localStorage.getItem(userSaveKey);
