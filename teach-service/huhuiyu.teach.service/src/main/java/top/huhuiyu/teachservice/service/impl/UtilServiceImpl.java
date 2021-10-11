@@ -11,7 +11,6 @@ import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.exception.AppException;
 import top.huhuiyu.api.utils.ImageCode;
 import top.huhuiyu.api.utils.StringUtils;
-import top.huhuiyu.teachservice.aop.ControllerToken;
 import top.huhuiyu.teachservice.dao.UtilsDAO;
 import top.huhuiyu.teachservice.entity.TbAdmin;
 import top.huhuiyu.teachservice.entity.TbConfig;
@@ -20,6 +19,7 @@ import top.huhuiyu.teachservice.message.UtilMessage;
 import top.huhuiyu.teachservice.model.UtilModel;
 import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.utils.IpUtils;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * 工具服务实现
@@ -109,7 +109,7 @@ public class UtilServiceImpl implements UtilService {
     }
     // 超过次数就ban掉
     if (amount < Integer.parseInt(tbConfig.getConfigValue())) {
-      throw new AppException(ControllerToken.IP_BAN, ControllerToken.IP_BAN_ERROR);
+      throw new AppException(SystemConstants.IP_BAN, SystemConstants.IP_BAN_ERROR);
     }
     // 正常生成新token
     TbTokenInfo token = new TbTokenInfo();
@@ -210,8 +210,12 @@ public class UtilServiceImpl implements UtilService {
     TbAdmin user = utilsDAO.queryAdminByToken(tokenInfo);
     processAdminInfo(user);
     BaseResult<UtilMessage> result = new BaseResult<>(new UtilMessage());
-    result.setSuccessInfo("");
-    result.getResultData().setLoginInfo(user);
+    if (user == null) {
+      result.setFailInfo(SystemConstants.NEED_LOGIN, SystemConstants.NEED_ROLE_LOGIN);
+    } else {
+      result.setSuccessInfo("");
+      result.getResultData().setLoginInfo(user);
+    }
     return result;
   }
 

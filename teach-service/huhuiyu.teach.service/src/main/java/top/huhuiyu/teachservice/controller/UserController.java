@@ -16,42 +16,36 @@ import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
- * 工具类控制器
+ * 用户登录控制器
  * 
  * @author 胡辉煜
  */
-@Api(tags = { "工具" })
+@Api(tags = { "用户登录相关" })
 @RestController
-@RequestMapping("/util")
-public class UtilController {
+@RequestMapping("/user")
+public class UserController {
 
   @Autowired
   private UtilService utilService;
 
-  @ApiOperation(value = "获取token信息，如果输入了合法的token会原值返回，否则会返回一个新的合法token值")
-  @PostMapping("/getToken")
-  public BaseResult<Object> getToken(UtilModel model) throws Exception {
-    return BaseResult.getSuccess("获取token信息成功");
-  }
-
-  @ApiOperation(value = "管理员用户登陆")
+  @ApiOperation(value = "用户登陆")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbAdmin.password", value = "密码", paramType = "query", required = true) })
-  @PostMapping("/adminLogin")
-  public BaseResult<UtilMessage> adminLogin(UtilModel model) throws Exception {
-    model.getTbAdmin().setRole(SystemConstants.ROLE_ADMIN);
+  @PostMapping("/login")
+  public BaseResult<UtilMessage> login(UtilModel model) throws Exception {
+    model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
     return utilService.adminLogin(model);
   }
 
-  @ApiOperation(value = "管理员用户登出")
-  @PostMapping("/adminLogout")
-  public BaseResult<UtilMessage> adminLogout(UtilModel model) throws Exception {
+  @ApiOperation(value = "用户登出")
+  @PostMapping("/logout")
+  public BaseResult<UtilMessage> logout(UtilModel model) throws Exception {
     return utilService.adminLogout(model);
   }
 
-  @ApiOperation(value = "获取登录管理员用户信息")
-  @PostMapping("/getAdminLoginInfo")
-  public BaseResult<UtilMessage> getAdminLoginInfo(UtilModel model) throws Exception {
+  @ApiOperation(value = "获取登录用户信息")
+  @PostMapping("/getUserLoginInfo")
+  public BaseResult<UtilMessage> getUserLoginInfo(UtilModel model) throws Exception {
     return utilService.getAdminLoginInfo(model);
   }
 }

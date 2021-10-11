@@ -86,7 +86,7 @@
   <!-- 管理员登陆 -->
   <select id="queryAdminByName" parameterType="TbAdmin" resultType="TbAdmin">
     select aid,username,password,salt,nickname,role,enable,lastupdate from tb_admin
-    where username=#{username}
+    where username=#{username} and role=#{role}
   </select>
 
   <!-- 查询token对应的管理员信息 -->

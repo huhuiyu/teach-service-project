@@ -26,6 +26,7 @@ export default {
       pages: [
         { path: '/basic/link', text: '联动和图片校验码' },
         { path: '/basic/dept', text: '部门信息管理' },
+        { path: '/tools/wschat', text: 'WebSocket简易聊天室' },
       ],
     };
   },

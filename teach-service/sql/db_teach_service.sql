@@ -47,8 +47,9 @@ create table tb_role
   enable enum('y','n') default 'y' not null comment '是否启用'
 )comment '角色信息表';
 
-/* 管理员角色信息 */
+/* 管理员角色和标准用户信息 */
 insert into tb_role(role_name,role_group,role_info) values('admin','admin','可以管理全部信息的管理员');
+insert into tb_role(role_name,role_group,role_info) values('user','user','标准用户');
 
 select role_name,role_group,role_info,enable from tb_role;
 
@@ -66,6 +67,9 @@ create table tb_admin
 
 /* 默认管理员数据,密码是admin_pwd */
 insert into tb_admin(username,password,salt,nickname,role) values('admin','d48dc3be25a60dafc4db503fbc36d397','JX1XRO','内置管理员','admin');
+/* 默认用户数据，密码是user-pwd */
+insert into tb_admin(username,password,salt,nickname,role) values('user','ffd3935816d6bb5b4a64a3d0f8c61cf1','C3CJXR','内置用户','user');
+
 
 select aid,username,password,salt,nickname,role,enable,lastupdate from tb_admin;
 

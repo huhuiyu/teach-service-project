@@ -27,6 +27,7 @@ import top.huhuiyu.teachservice.entity.TbAdmin;
 import top.huhuiyu.teachservice.entity.TbConfig;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
 import top.huhuiyu.teachservice.service.UtilService;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * 控制器token切面
@@ -36,34 +37,6 @@ import top.huhuiyu.teachservice.service.UtilService;
 @Aspect
 @Component
 public class ControllerToken extends BaseControllerAop {
-  /**
-   * token表单请求参数名称
-   */
-  public static final String REQUEST_TOKEN_KEY = "request_token_info";
-  /**
-   * 需要登陆的错误提示信息
-   */
-  public static final String NEED_ROLE_LOGIN = "需要相关角色用户登陆！";
-  /**
-   * 请求头中的token信息key
-   */
-  public static final String TOKEN_KEY = "token";
-  /**
-   * 需要登陆
-   */
-  public static final int NEED_LOGIN = 1000;
-  /**
-   * 封ip
-   */
-  public static final int IP_BAN = 1001;
-  /**
-   * 封ip错误提示
-   */
-  public static final String IP_BAN_ERROR = "需要正确的token信息！";
-  /**
-   * tomcat发布路径配置
-   */
-  public static final String TOMCAT_CONTEXT_PATH_KEY = "tomcat_context_path";
 
   private static final Logger log = LoggerFactory.getLogger(ControllerToken.class);
 
@@ -101,7 +74,7 @@ public class ControllerToken extends BaseControllerAop {
     TbActions actions = new TbActions();
     // 获取tomcat路径配置信息
     TbConfig config = new TbConfig();
-    config.setConfigKey(TOMCAT_CONTEXT_PATH_KEY);
+    config.setConfigKey(SystemConstants.TOMCAT_CONTEXT_PATH_KEY);
     config = utilsDAO.queryConfig(config);
     log.debug("tomcat上下文信息{}", config);
     // 移除tomcat路径信息
@@ -128,7 +101,7 @@ public class ControllerToken extends BaseControllerAop {
     if (!check.isEmpty()) {
       return null;
     }
-    return BaseResult.getFail(NEED_LOGIN, NEED_ROLE_LOGIN);
+    return BaseResult.getFail(SystemConstants.NEED_LOGIN, SystemConstants.NEED_ROLE_LOGIN);
   }
 
   private List<String> getRoles(String role) {
@@ -186,9 +159,9 @@ public class ControllerToken extends BaseControllerAop {
       ServletRequestAttributes sra = (ServletRequestAttributes) ra;
       HttpServletRequest request = sra.getRequest();
       // 头信息中的token
-      model.setToken(request.getHeader(TOKEN_KEY));
+      model.setToken(request.getHeader(SystemConstants.TOKEN_KEY));
       // 请求参数中的token
-      String requestToken = request.getParameter(REQUEST_TOKEN_KEY);
+      String requestToken = request.getParameter(SystemConstants.REQUEST_TOKEN_KEY);
       if (!StringUtils.isEmpty(requestToken)) {
         model.setToken(requestToken);
       }

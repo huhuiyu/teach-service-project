@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tc pd10">
+    <div class="tc pd10" v-loading="loading">
       <el-select v-model="province" value-key="pid" @change="queryCity">
         <el-option v-for="p in plist" :key="p.pid" :value="p" :label="p.province"></el-option>
       </el-select>
@@ -10,7 +10,7 @@
       选择的省份城市：{{ province.province }}{{ city.city }}
     </div>
     <hr />
-    <div class="tc">
+    <div class="tc" v-loading="imgLoading">
       <el-form :inline="true">
         <el-form-item>
           <img v-if="imgSrc" :src="imgSrc" alt="" @click="queryImgCode" />
@@ -40,11 +40,15 @@ export default {
       city: {},
       imgSrc: '',
       imageCode: '',
+      loading: false,
+      imgLoading: false,
     };
   },
   methods: {
     queryProvince() {
+      this.loading = true;
       this.$ajax('/linkinfo/queryAllProvince', {}, function (data) {
+        this.loading = false;
         if (!data.success) {
           this.$message.error(data.message);
           return;
@@ -55,7 +59,9 @@ export default {
       });
     },
     queryCity() {
-      this.$ajax('	/linkinfo/queryCityByProvince', { 'tbCity.pid': this.province.pid }, function (data) {
+      this.loading = true;
+      this.$ajax('/linkinfo/queryCityByProvince', { 'tbCity.pid': this.province.pid }, function (data) {
+        this.loading = false;
         if (!data.success) {
           this.$message.error(data.message);
           return;
@@ -65,11 +71,13 @@ export default {
       });
     },
     queryImgCode() {
+      this.imgLoading = true;
       this.imgSrc = '';
       this.$ajax(
         '/test/imageCode',
         {},
         function (data) {
+          this.imgLoading = false;
           if (data.success) {
             this.imgSrc = data.message;
           } else {
@@ -80,9 +88,17 @@ export default {
       );
     },
     checkImgCode() {
-      this.$ajax('/test/checkImageCode', { imageCode: this.imageCode }, function (data) {
-        data.success ? this.$message(data.message) : this.$message.error(data.message);
-      });
+      this.imgLoading = true;
+      this.$ajax(
+        '/test/checkImageCode',
+        {
+          imageCode: this.imageCode,
+        },
+        function (data) {
+          this.imgLoading = false;
+          data.success ? this.$message(data.message) : this.$message.error(data.message);
+        }
+      );
     },
   },
   created() {
