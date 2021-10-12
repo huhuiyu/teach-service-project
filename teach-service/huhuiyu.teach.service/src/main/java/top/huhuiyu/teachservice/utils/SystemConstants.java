@@ -1,5 +1,7 @@
 package top.huhuiyu.teachservice.utils;
 
+import java.util.regex.Pattern;
+
 /**
  * 系统常量定义
  * 
@@ -7,7 +9,34 @@ package top.huhuiyu.teachservice.utils;
  *
  */
 public interface SystemConstants {
-
+  /**
+   * token存放的key
+   */
+  String TOKEN = "ip";
+  /**
+   * 图片校验码存放的key
+   */
+  String IMAGE_CODE = "imageCode";
+  /**
+   * 管理员登陆存放的key
+   */
+  String LOGIN_ADMIN = "admin";
+  /**
+   * 图片校验码干扰线数量配置key
+   */
+  String CONFIG_IMAGE_CODE_AMOUNT = "image_code_amount";
+  /**
+   * 图片校验码长度配置key
+   */
+  String CONFIG_IMAGE_CODE_LENGTH = "image_code_length";
+  /**
+   * 单个ip最大刷新token的次数
+   */
+  String IP_MAX_NEW_TOKEN_COUNT = "ip_max_new_token_count";
+  /**
+   * ip刷新token的记录前缀
+   */
+  String IP_BAN_RECODE = "ip_ban_recode";
   /**
    * token表单请求参数名称
    */
@@ -44,4 +73,34 @@ public interface SystemConstants {
    * 标准用户
    */
   String ROLE_USER = "user";
+  /**
+   * 手机号码正则
+   */
+  String PHONE_CHECK = "^1[3-9]\\d{9}$";
+  /**
+   * 32位md5正则
+   */
+  String MD5_CHECK = "^[a-zA-Z0-9]{32}$";
+
+  /**
+   * 手机号码校验
+   * 
+   * @param phone 手机号码
+   * 
+   * @return 手机号码校验的结果
+   */
+  static boolean isPhone(String phone) {
+    return Pattern.matches(PHONE_CHECK, phone);
+  }
+
+  /**
+   * md5校验
+   * 
+   * @param md5 md5字符串
+   * 
+   * @return md5校验的结果
+   */
+  static boolean isMd5(String md5) {
+    return Pattern.matches(MD5_CHECK, md5);
+  }
 }

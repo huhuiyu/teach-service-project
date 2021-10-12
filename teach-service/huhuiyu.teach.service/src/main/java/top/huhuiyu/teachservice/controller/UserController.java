@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.message.UtilMessage;
 import top.huhuiyu.teachservice.model.UtilModel;
+import top.huhuiyu.teachservice.service.UserService;
 import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.utils.SystemConstants;
 
@@ -27,10 +28,12 @@ public class UserController {
 
   @Autowired
   private UtilService utilService;
+  @Autowired
+  private UserService userService;
 
   @ApiOperation(value = "用户登陆")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
-      @ApiImplicitParam(name = "tbAdmin.password", value = "密码", paramType = "query", required = true) })
+      @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
   @PostMapping("/login")
   public BaseResult<UtilMessage> login(UtilModel model) throws Exception {
     model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
@@ -47,5 +50,14 @@ public class UserController {
   @PostMapping("/getUserLoginInfo")
   public BaseResult<UtilMessage> getUserLoginInfo(UtilModel model) throws Exception {
     return utilService.getAdminLoginInfo(model);
+  }
+
+  @ApiOperation(value = "用户登陆")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true), @ApiImplicitParam(name = "tbAdmin.nickname", value = "用户昵称", paramType = "query") })
+  @PostMapping("/reg")
+  public BaseResult<UtilMessage> reg(UtilModel model) throws Exception {
+    model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
+    return userService.reg(model);
   }
 }

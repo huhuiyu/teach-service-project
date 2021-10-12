@@ -36,7 +36,7 @@ public class UtilController {
 
   @ApiOperation(value = "管理员用户登陆")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
-      @ApiImplicitParam(name = "tbAdmin.password", value = "密码", paramType = "query", required = true) })
+      @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
   @PostMapping("/adminLogin")
   public BaseResult<UtilMessage> adminLogin(UtilModel model) throws Exception {
     model.getTbAdmin().setRole(SystemConstants.ROLE_ADMIN);

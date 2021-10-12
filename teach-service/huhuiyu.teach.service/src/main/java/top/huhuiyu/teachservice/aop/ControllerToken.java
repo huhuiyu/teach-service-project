@@ -60,7 +60,7 @@ public class ControllerToken extends BaseControllerAop {
     // 登陆信息处理
     TbTokenInfo tbTokenInfo = model.makeTbTokenInfo();
     // 管理员登陆信息
-    tbTokenInfo.setInfoKey(UtilService.LOGIN_ADMIN);
+    tbTokenInfo.setInfoKey(SystemConstants.LOGIN_ADMIN);
     TbAdmin admin = utilsDAO.queryAdminByToken(tbTokenInfo);
     log.debug("admin=====>{}", admin);
     model.setLoginAdmin(admin);

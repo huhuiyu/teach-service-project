@@ -59,7 +59,7 @@ public class UtilServiceImpl implements UtilService {
     if (token == null || StringUtils.isEmpty(token.getToken())) {
       return newToken();
     }
-    token.setInfoKey(TOKEN);
+    token.setInfoKey(SystemConstants.TOKEN);
     token.setInfo(IpUtils.getIpAddress());
     // 数据库校验
     TbTokenInfo stoken = utilsDAO.queryTokenInfo(token);
@@ -78,7 +78,7 @@ public class UtilServiceImpl implements UtilService {
   }
 
   private String getIpBanKey(String ip) throws Exception {
-    return String.format("%s-%s", IP_BAN_RECODE, ip);
+    return String.format("%s-%s", SystemConstants.IP_BAN_RECODE, ip);
   }
 
   /**
@@ -90,7 +90,7 @@ public class UtilServiceImpl implements UtilService {
    */
   private TbTokenInfo newToken() throws Exception {
     TbConfig check = new TbConfig();
-    check.setConfigKey(IP_MAX_NEW_TOKEN_COUNT);
+    check.setConfigKey(SystemConstants.IP_MAX_NEW_TOKEN_COUNT);
     int amount = Integer.parseInt(utilsDAO.queryConfig(check).getConfigValue());
     String ip = IpUtils.getIpAddress();
     TbConfig tbConfig = new TbConfig();
@@ -114,7 +114,7 @@ public class UtilServiceImpl implements UtilService {
     // 正常生成新token
     TbTokenInfo token = new TbTokenInfo();
     token.setToken(UUID.randomUUID().toString());
-    token.setInfoKey(TOKEN);
+    token.setInfoKey(SystemConstants.TOKEN);
     token.setInfo(IpUtils.getIpAddress());
     utilsDAO.addTokenInfo(token);
     return token;
@@ -123,10 +123,10 @@ public class UtilServiceImpl implements UtilService {
   @Override
   public String makeImageCode(String token) throws Exception {
     TbConfig tbConfig = new TbConfig();
-    tbConfig.setConfigKey(CONFIG_IMAGE_CODE_AMOUNT);
+    tbConfig.setConfigKey(SystemConstants.CONFIG_IMAGE_CODE_AMOUNT);
     int amount = Integer.parseInt(utilsDAO.queryConfig(tbConfig).getConfigValue());
     tbConfig = new TbConfig();
-    tbConfig.setConfigKey(CONFIG_IMAGE_CODE_LENGTH);
+    tbConfig.setConfigKey(SystemConstants.CONFIG_IMAGE_CODE_LENGTH);
     int length = Integer.parseInt(utilsDAO.queryConfig(tbConfig).getConfigValue());
     // 产生图片校验码
     ImageCode.setLength(length);
@@ -135,7 +135,7 @@ public class UtilServiceImpl implements UtilService {
     TbTokenInfo tokenInfo = new TbTokenInfo();
     tokenInfo.setToken(token);
     // 获取token信息
-    tokenInfo.setInfoKey(IMAGE_CODE);
+    tokenInfo.setInfoKey(SystemConstants.IMAGE_CODE);
     // 判断图片校验码是否存在
     TbTokenInfo sinfo = utilsDAO.queryTokenInfo(tokenInfo);
     if (sinfo == null) {
@@ -156,7 +156,7 @@ public class UtilServiceImpl implements UtilService {
     if (StringUtils.isEmpty(tokenInfo.getInfo())) {
       return false;
     }
-    tokenInfo.setInfoKey(IMAGE_CODE);
+    tokenInfo.setInfoKey(SystemConstants.IMAGE_CODE);
     // 获取数据库中code
     TbTokenInfo sinfo = utilsDAO.queryTokenInfo(tokenInfo);
     if (sinfo == null) {
@@ -177,8 +177,8 @@ public class UtilServiceImpl implements UtilService {
       result.setFailInfo("用户名必须填写");
       return result;
     }
-    if (StringUtils.isEmpty(user.getPassword())) {
-      result.setFailInfo("密码必须填写");
+    if (!SystemConstants.isMd5(user.getPassword())) {
+      result.setFailInfo("密码必须填写且是md5加密格式");
       return result;
     }
     TbAdmin check = utilsDAO.queryAdminByName(user);
@@ -192,7 +192,7 @@ public class UtilServiceImpl implements UtilService {
     }
     // 处理tokeninfo
     TbTokenInfo tokenInfo = model.makeTbTokenInfo();
-    tokenInfo.setInfoKey(LOGIN_ADMIN);
+    tokenInfo.setInfoKey(SystemConstants.LOGIN_ADMIN);
     utilsDAO.deleteTokenInfo(tokenInfo);
     tokenInfo.setInfo(check.getAid() + "");
     utilsDAO.addTokenInfo(tokenInfo);
@@ -206,7 +206,7 @@ public class UtilServiceImpl implements UtilService {
   @Override
   public BaseResult<UtilMessage> getAdminLoginInfo(UtilModel model) throws Exception {
     TbTokenInfo tokenInfo = model.makeTbTokenInfo();
-    tokenInfo.setInfoKey(LOGIN_ADMIN);
+    tokenInfo.setInfoKey(SystemConstants.LOGIN_ADMIN);
     TbAdmin user = utilsDAO.queryAdminByToken(tokenInfo);
     processAdminInfo(user);
     BaseResult<UtilMessage> result = new BaseResult<>(new UtilMessage());
@@ -222,7 +222,7 @@ public class UtilServiceImpl implements UtilService {
   @Override
   public BaseResult<UtilMessage> adminLogout(UtilModel model) throws Exception {
     TbTokenInfo tokenInfo = model.makeTbTokenInfo();
-    tokenInfo.setInfoKey(LOGIN_ADMIN);
+    tokenInfo.setInfoKey(SystemConstants.LOGIN_ADMIN);
     utilsDAO.deleteTokenInfo(tokenInfo);
     BaseResult<UtilMessage> result = new BaseResult<>();
     result.setSuccessInfo("登出成功");

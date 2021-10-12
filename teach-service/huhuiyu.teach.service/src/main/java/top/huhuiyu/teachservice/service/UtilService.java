@@ -12,34 +12,7 @@ import top.huhuiyu.teachservice.model.UtilModel;
  */
 public interface UtilService {
 
-  /**
-   * token存放的key
-   */
-  String TOKEN = "ip";
-  /**
-   * 图片校验码存放的key
-   */
-  String IMAGE_CODE = "imageCode";
-  /**
-   * 管理员登陆存放的key
-   */
-  String LOGIN_ADMIN = "admin";
-  /**
-   * 图片校验码干扰线数量配置key
-   */
-  String CONFIG_IMAGE_CODE_AMOUNT = "image_code_amount";
-  /**
-   * 图片校验码长度配置key
-   */
-  String CONFIG_IMAGE_CODE_LENGTH = "image_code_length";
-  /**
-   * 单个ip最大刷新token的次数
-   */
-  String IP_MAX_NEW_TOKEN_COUNT = "ip_max_new_token_count";
-  /**
-   * ip刷新token的记录前缀
-   */
-  String IP_BAN_RECODE = "ip_ban_recode";
+  
 
   /**
    * 删除所有过期token
