@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO">
+    
+  <select id="queryAll" resultType="TbUserMessageReply">
+    select umrid,umid,aid,info,lastupdate from tb_user_message_reply
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_user_message_reply
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbUserMessageReply" resultType="TbUserMessageReply">
+    select umrid,umid,aid,info,lastupdate from tb_user_message_reply 
+    where umrid=#{umrid}
+  </select>
+  
+  <insert id="add" parameterType="TbUserMessageReply">
+    insert into tb_user_message_reply(umid,aid,info,lastupdate)
+    values(#{umid},#{aid},#{info},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbUserMessageReply">
+    update tb_user_message_reply set umid=#{umid},aid=#{aid},info=#{info},lastupdate=#{lastupdate}
+    where umrid=#{umrid}
+  </update>
+  
+  <delete id="delete" parameterType="TbUserMessageReply" >
+    delete from tb_user_message_reply
+    where umrid=#{umrid}
+  </delete>
+  
+</mapper>

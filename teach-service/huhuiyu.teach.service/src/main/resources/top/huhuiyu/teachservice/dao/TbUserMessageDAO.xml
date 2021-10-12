@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageDAO">
+    
+  <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage">
+    select a.umid,a.title,a.info,a.lastupdate
+    ,b.username 'user.username',b.nickname 'user.nickname'
+     from tb_user_message a
+    inner join tb_admin b on a.aid=b.aid
+    <trim prefix="where" prefixOverrides="and">
+      <if test="title!=null and title!=''.toString()"> and a.title like #{title}</if>
+      <if test="info!=null and info!=''"> and a.info like #{info}</if>
+      <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
+    </trim>
+    order by a.umid desc
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_user_message
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
+    select umid,aid,title,info,lastupdate from tb_user_message 
+    where umid=#{umid}
+  </select>
+  
+  <insert id="add" parameterType="TbUserMessage">
+    insert into tb_user_message(aid,title,info)
+    values(#{aid},#{title},#{info})
+  </insert>
+  
+  <update id="update" parameterType="TbUserMessage">
+    update tb_user_message set title=#{title},info=#{info}
+    where umid=#{umid} and aid=#{aid}
+  </update>
+  
+  <delete id="delete" parameterType="TbUserMessage" >
+    delete from tb_user_message
+    where umid=#{umid} and aid=#{aid}
+  </delete>
+  
+</mapper>

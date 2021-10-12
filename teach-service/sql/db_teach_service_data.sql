@@ -79,3 +79,23 @@ create table tb_admin_info
   img varchar(255) not null default '' comment '头像信息（图片地址）',
   tel varchar(50) not null default '' comment '电话号码'
 )comment '用户详细信息表';
+
+/* 简易用户留言板 */
+create table tb_user_message
+(
+  umid int auto_increment primary key comment '主键',
+  aid int not null comment '外键，所属用户id',
+  title varchar(50) not null comment '留言标题', 
+  info varchar(2000) not null default '' comment '留言',
+  lastupdate timestamp on update now() default now() not null comment '最后更新时间'
+)comment '用户留言信息表';
+
+/* 简易用户留言板回帖 */
+create table tb_user_message_reply
+(
+  umrid int auto_increment primary key comment '主键',
+  umid int not null comment '外键，所属留言id',
+  aid int not null comment '外键，回帖用户id',
+  info varchar(2000) not null default '' comment '留言回帖信息',
+  lastupdate timestamp on update now() default now() not null comment '最后更新时间'
+)comment '用户留言回帖信息表';

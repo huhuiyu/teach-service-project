@@ -15,28 +15,28 @@ public class TbAdmin extends BaseEntity {
 
   private static final long serialVersionUID = 3250142504095437911L;
 
-  @ApiModelProperty(value = "aid")
+  @ApiModelProperty(value = "用户编号")
   @ApiParam(hidden = true)
   private java.lang.Integer aid;
-  @ApiModelProperty(value = "username")
+  @ApiModelProperty(value = "登录名")
   @ApiParam(hidden = true)
   private java.lang.String username;
-  @ApiModelProperty(value = "password")
+  @ApiModelProperty(value = "密码")
   @ApiParam(hidden = true)
   private java.lang.String password;
-  @ApiModelProperty(value = "salt")
+  @ApiModelProperty(value = "salt", hidden = true)
   @ApiParam(hidden = true)
   private java.lang.String salt;
-  @ApiModelProperty(value = "nickname")
+  @ApiModelProperty(value = "用户昵称")
   @ApiParam(hidden = true)
   private java.lang.String nickname;
-  @ApiModelProperty(value = "role")
+  @ApiModelProperty(value = "用户角色")
   @ApiParam(hidden = true)
   private java.lang.String role;
-  @ApiModelProperty(value = "enable")
+  @ApiModelProperty(value = "是否启用")
   @ApiParam(hidden = true)
   private java.lang.String enable;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

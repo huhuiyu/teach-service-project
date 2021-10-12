@@ -83,5 +83,10 @@ create table tb_actions
 
 /* 管理员登陆功能测试权限数据 */
 insert into tb_actions(url,info,role) values('/test/adminLogin','测试管理员登陆功能','admin');
+/* 用户留言板功能权限 */
+insert into tb_actions(url,info,role) values('/userMessage/queryAllUserMessage','查询用户留言功能','user');
+insert into tb_actions(url,info,role) values('/userMessage/add','发布留言功能','user');
+insert into tb_actions(url,info,role) values('/userMessage/update','修改用户留言功能','user');
+insert into tb_actions(url,info,role) values('/userMessage/delete','删除用户留言功能','user');
 
 select aid,url,info,role from tb_actions;

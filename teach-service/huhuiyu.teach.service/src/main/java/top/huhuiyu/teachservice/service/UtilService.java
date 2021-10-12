@@ -12,8 +12,6 @@ import top.huhuiyu.teachservice.model.UtilModel;
  */
 public interface UtilService {
 
-  
-
   /**
    * 删除所有过期token
    * 
