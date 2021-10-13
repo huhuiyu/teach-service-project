@@ -25,8 +25,11 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
-    select umid,aid,title,info,lastupdate from tb_user_message 
-    where umid=#{umid}
+    select a.umid,a.title,a.info,a.lastupdate
+    ,b.username 'user.username',b.nickname 'user.nickname'
+     from tb_user_message a
+    inner join tb_admin b on a.aid=b.aid 
+    where a.umid=#{umid}
   </select>
   
   <insert id="add" parameterType="TbUserMessage">

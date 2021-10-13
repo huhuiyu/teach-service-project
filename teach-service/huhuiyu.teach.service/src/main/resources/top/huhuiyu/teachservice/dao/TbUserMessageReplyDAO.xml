@@ -5,8 +5,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO">
     
-  <select id="queryAll" resultType="TbUserMessageReply">
-    select umrid,umid,aid,info,lastupdate from tb_user_message_reply
+  <select id="queryAll" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
+    select a.umrid,a.umid,a.info,a.lastupdate,
+    b.title 'message.title',c.username 'message.user.username',c.nickname 'message.user.nickname'
+    from tb_user_message_reply a
+    inner join tb_user_message b on a.umid=b.umid
+    inner join tb_admin c on b.aid=c.aid
+    <trim prefix="where" prefixOverrides="and">
+      <if test="info!=null and info!=''"> and a.info like #{info}</if>
+      <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
+    </trim>
+    order by a.umrid desc
+  </select>
+  
+  <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
+    select a.umrid,a.umid,a.aid,a.info,a.lastupdate
+    ,b.username 'user.username',b.nickname 'user.nickname'
+    from tb_user_message_reply a
+    inner join tb_admin b on a.aid=b.aid
+    order by a.umrid desc
   </select>
 
   <!--
@@ -21,18 +38,18 @@
   </select>
   
   <insert id="add" parameterType="TbUserMessageReply">
-    insert into tb_user_message_reply(umid,aid,info,lastupdate)
-    values(#{umid},#{aid},#{info},#{lastupdate})
+    insert into tb_user_message_reply(umid,aid,info)
+    values(#{umid},#{aid},#{info})
   </insert>
   
   <update id="update" parameterType="TbUserMessageReply">
-    update tb_user_message_reply set umid=#{umid},aid=#{aid},info=#{info},lastupdate=#{lastupdate}
-    where umrid=#{umrid}
+    update tb_user_message_reply set info=#{info}
+    where umrid=#{umrid} and aid=#{aid}
   </update>
   
   <delete id="delete" parameterType="TbUserMessageReply" >
     delete from tb_user_message_reply
-    where umrid=#{umrid}
+    where umrid=#{umrid} and aid=#{aid}
   </delete>
   
 </mapper>

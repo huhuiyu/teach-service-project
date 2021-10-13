@@ -10,7 +10,7 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbUserMessage", description = "TbUserMessage")
+@ApiModel(value = "TbUserMessage", description = "用户留言")
 public class TbUserMessage extends BaseEntity {
 
   private static final long serialVersionUID = -5387803665218809583L;

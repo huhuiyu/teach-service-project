@@ -66,4 +66,15 @@ public interface TbUserMessageReplyService {
    */
   BaseResult<TbUserMessageReplyMessage> queryAll(TbUserMessageReplyModel model) throws Exception;
 
+  /**
+   * 查询留言详细信息（包括评论）
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 查询留言详细信息（包括评论）的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageReplyMessage> queryUserMessageDetail(TbUserMessageReplyModel model) throws Exception;
+
 }

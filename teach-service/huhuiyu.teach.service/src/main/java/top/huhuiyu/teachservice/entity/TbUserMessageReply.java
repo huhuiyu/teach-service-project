@@ -10,26 +10,32 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbUserMessageReply", description = "TbUserMessageReply")
+@ApiModel(value = "TbUserMessageReply", description = "留言评论")
 public class TbUserMessageReply extends BaseEntity {
 
   private static final long serialVersionUID = -2717060478309272503L;
 
-  @ApiModelProperty(value = "umrid")
+  @ApiModelProperty(value = "评论编号")
   @ApiParam(hidden = true)
   private java.lang.Integer umrid;
-  @ApiModelProperty(value = "umid")
+  @ApiModelProperty(value = "留言编号")
   @ApiParam(hidden = true)
   private java.lang.Integer umid;
-  @ApiModelProperty(value = "aid")
+  @ApiModelProperty(value = "评论用户编号")
   @ApiParam(hidden = true)
   private java.lang.Integer aid;
-  @ApiModelProperty(value = "info")
+  @ApiModelProperty(value = "评论信息")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "评论最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
+  @ApiModelProperty(value = "评论用户信息")
+  @ApiParam(hidden = true)
+  private TbAdmin user;
+  @ApiModelProperty(value = "评论的留言信息")
+  @ApiParam(hidden = true)
+  private TbUserMessage message;
 
   public TbUserMessageReply() {
   }
@@ -72,6 +78,22 @@ public class TbUserMessageReply extends BaseEntity {
 
   public void setLastupdate(java.util.Date lastupdate) {
     this.lastupdate = lastupdate;
+  }
+
+  public TbAdmin getUser() {
+    return user;
+  }
+
+  public void setUser(TbAdmin user) {
+    this.user = user;
+  }
+
+  public TbUserMessage getMessage() {
+    return message;
+  }
+
+  public void setMessage(TbUserMessage message) {
+    this.message = message;
   }
 
 }

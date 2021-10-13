@@ -10,7 +10,7 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbAdmin", description = "TbAdmin")
+@ApiModel(value = "TbAdmin", description = "用户基本信息")
 public class TbAdmin extends BaseEntity {
 
   private static final long serialVersionUID = 3250142504095437911L;

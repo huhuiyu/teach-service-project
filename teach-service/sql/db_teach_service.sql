@@ -89,4 +89,9 @@ insert into tb_actions(url,info,role) values('/userMessage/add','发布留言功
 insert into tb_actions(url,info,role) values('/userMessage/update','修改用户留言功能','user');
 insert into tb_actions(url,info,role) values('/userMessage/delete','删除用户留言功能','user');
 
+insert into tb_actions(url,info,role) values('/userMessage/queryAllUserReply','查询用户评论功能','user');
+insert into tb_actions(url,info,role) values('/userMessage/addReply','发布评论功能','user');
+insert into tb_actions(url,info,role) values('/userMessage/updateReply','修改评论功能','user');
+insert into tb_actions(url,info,role) values('/userMessage/deleteReply','删除评论功能','user');
+
 select aid,url,info,role from tb_actions;

@@ -13,12 +13,25 @@ import top.huhuiyu.teachservice.entity.TbUserMessageReply;
 public interface TbUserMessageReplyDAO {
   /**
    * 查询全部tb_user_message_reply
-   *
+   * 
+   * @param 查询参数
+   * 
    * @return tb_user_message_reply的信息
    * 
    * @throws Exception 处理发生异常
    */
-  List<TbUserMessageReply> queryAll() throws Exception;
+  List<TbUserMessageReply> queryAll(TbUserMessageReply tbUserMessageReply) throws Exception;
+
+  /**
+   * 查询指定留言的评论信息
+   * 
+   * @param tbUserMessageReply 留言信息
+   * 
+   * @return 指定留言的评论信息
+   * 
+   * @throws Exception 处理发生异常
+   */
+  List<TbUserMessageReply> queryAllByUmid(TbUserMessageReply tbUserMessageReply) throws Exception;
 
   /**
    * 按照主键查询tb_user_message_reply
