@@ -55,6 +55,8 @@ dependencies {
   implementation('org.springframework.boot:spring-boot-starter-web')
   //springboot开发工具，可以热部署代码（不要用于生成环境）
   implementation('org.springframework.boot:spring-boot-devtools')
+  // email
+  implementation('org.springframework.boot:spring-boot-starter-mail')
   //springboot整合mybatis
   implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0')
   // mysql jdbc驱动

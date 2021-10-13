@@ -3,6 +3,7 @@ package top.huhuiyu.teachservice.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import io.swagger.annotations.ApiParam;
 import top.huhuiyu.teachservice.base.MyBaseModel;
 
 /**
@@ -13,13 +14,51 @@ import top.huhuiyu.teachservice.base.MyBaseModel;
 public class TestModel extends MyBaseModel {
 
   private static final long serialVersionUID = -6785013186661414112L;
-
+  @ApiParam(hidden = true)
   private Date dateOne;
+  @ApiParam(hidden = true)
   private Date dateTwo;
+  @ApiParam(hidden = true)
   private BigDecimal decValue;
+  @ApiParam(hidden = true)
   private Double dblValue;
+  @ApiParam(hidden = true)
   private Integer intValue;
+  @ApiParam(hidden = true)
   private String strValue;
+  @ApiParam(hidden = true)
+  private String mail;
+  @ApiParam(hidden = true)
+  private String mailTitle;
+  @ApiParam(hidden = true)
+  private String mailContent;
+
+  public TestModel() {
+  }
+
+  public String getMail() {
+    return mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  public String getMailTitle() {
+    return mailTitle;
+  }
+
+  public void setMailTitle(String mailTitle) {
+    this.mailTitle = mailTitle;
+  }
+
+  public String getMailContent() {
+    return mailContent;
+  }
+
+  public void setMailContent(String mailContent) {
+    this.mailContent = mailContent;
+  }
 
   public Date getDateOne() {
     return dateOne;

@@ -18,7 +18,10 @@ import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.utils.ImageCode;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
+import top.huhuiyu.teachservice.message.UtilMessage;
+import top.huhuiyu.teachservice.model.TestModel;
 import top.huhuiyu.teachservice.model.UtilModel;
+import top.huhuiyu.teachservice.service.MailService;
 import top.huhuiyu.teachservice.service.UtilService;
 
 /**
@@ -33,6 +36,8 @@ import top.huhuiyu.teachservice.service.UtilService;
 public class TestController {
   @Autowired
   private UtilService utilService;
+  @Autowired
+  private MailService mailService;
 
   @ApiOperation(value = "图片验证码")
   @GetMapping("/imageCode")
@@ -62,6 +67,17 @@ public class TestController {
     tbTokenInfo.setInfo(model.getImageCode());
     boolean result = utilService.checkImageCode(tbTokenInfo);
     return result ? BaseResult.getSuccess("校验码正确") : BaseResult.getFail("校验码错误");
+  }
+
+  @ApiOperation(value = "邮件发送测试")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "mail", value = "邮箱地址", paramType = "query", required = true),
+      @ApiImplicitParam(name = "mailTitle", value = "邮件标题", paramType = "query", required = true), @ApiImplicitParam(name = "mailContent", value = "邮件内容", paramType = "query", required = true) })
+  @PostMapping("/mail")
+  public BaseResult<UtilMessage> mail(TestModel model) throws Exception {
+    BaseResult<UtilMessage> result = new BaseResult<>(new UtilMessage());
+    result.setSuccessInfo("邮件已经发送");
+    mailService.sendHtmlMail(model.getMail(), model.getMailTitle(), model.getMailContent());
+    return result;
   }
 
   // @ApiOperation(value = "转换器测试")
