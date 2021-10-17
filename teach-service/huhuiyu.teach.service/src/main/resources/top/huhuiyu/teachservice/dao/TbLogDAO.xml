@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbLogDAO">
+    
+  <select id="queryAll" resultType="TbLog" parameterType="TbLog">
+    select lid,log_type,log_info,lastupdate from tb_log
+    <trim prefix="where" prefixOverrides="and">
+      <if test="logType!=null and logType!=''.toString()"> and log_type like #{logType}</if>
+      <if test="logInfo!=null and logInfo!=''.toString()"> and log_info like #{logInfo}</if>
+    </trim>
+    order by lastupdate desc
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_log
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbLog" resultType="TbLog">
+    select lid,log_type,log_info,lastupdate from tb_log 
+    where lid=#{lid}
+  </select>
+  
+  <insert id="add" parameterType="TbLog">
+    insert into tb_log(log_type,log_info)
+    values(#{logType},#{logInfo})
+  </insert>
+  
+  <update id="update" parameterType="TbLog">
+    update tb_log set log_type=#{logType},log_info=#{logInfo},lastupdate=#{lastupdate}
+    where lid=#{lid}
+  </update>
+  
+  <delete id="delete" parameterType="TbLog" >
+    delete from tb_log
+    where lid=#{lid}
+  </delete>
+  
+</mapper>

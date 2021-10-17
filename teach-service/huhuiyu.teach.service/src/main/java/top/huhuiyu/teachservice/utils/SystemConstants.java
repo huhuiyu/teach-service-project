@@ -2,6 +2,9 @@ package top.huhuiyu.teachservice.utils;
 
 import java.util.regex.Pattern;
 
+import top.huhuiyu.teachservice.entity.TbAdmin;
+import top.huhuiyu.teachservice.entity.TbLog;
+
 /**
  * 系统常量定义
  * 
@@ -102,5 +105,44 @@ public interface SystemConstants {
    */
   static boolean isMd5(String md5) {
     return Pattern.matches(MD5_CHECK, md5);
+  }
+
+  /**
+   * 登录日志类型
+   */
+  String LOG_LOGIN_TYPE = "用户登入";
+  /**
+   * 登出日志类型
+   */
+  String LOG_LOGOUT_TYPE = "用户登出";
+
+  /**
+   * 获取用户登录日志信息
+   * 
+   * @param tbAdmin 登录用户
+   * @param ip      用户登录ip
+   * 
+   * @return 用户登录日志信息
+   */
+  static TbLog getLoginLog(TbAdmin tbAdmin, String ip) {
+    TbLog tbLog = new TbLog();
+    tbLog.setLogType(LOG_LOGIN_TYPE);
+    tbLog.setLogInfo(String.format("编号为[%s]的用户[%s]在[%s]登录成功", tbAdmin.getAid(), tbAdmin.getUsername(), ip));
+    return tbLog;
+  }
+
+  /**
+   * 获取用户登出日志信息
+   * 
+   * @param tbAdmin 登出用户
+   * @param ip      用户登出ip
+   * 
+   * @return 用户登出日志信息
+   */
+  static TbLog getLogoutLog(TbAdmin tbAdmin, String ip) {
+    TbLog tbLog = new TbLog();
+    tbLog.setLogType(LOG_LOGOUT_TYPE);
+    tbLog.setLogInfo(String.format("编号为[%s]的用户[%s]在[%s]登出成功", tbAdmin.getAid(), tbAdmin.getUsername(), ip));
+    return tbLog;
   }
 }

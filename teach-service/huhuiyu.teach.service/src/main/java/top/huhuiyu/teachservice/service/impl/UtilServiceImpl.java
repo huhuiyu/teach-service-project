@@ -11,9 +11,11 @@ import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.exception.AppException;
 import top.huhuiyu.api.utils.ImageCode;
 import top.huhuiyu.api.utils.StringUtils;
+import top.huhuiyu.teachservice.dao.TbLogDAO;
 import top.huhuiyu.teachservice.dao.UtilsDAO;
 import top.huhuiyu.teachservice.entity.TbAdmin;
 import top.huhuiyu.teachservice.entity.TbConfig;
+import top.huhuiyu.teachservice.entity.TbLog;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
 import top.huhuiyu.teachservice.message.UtilMessage;
 import top.huhuiyu.teachservice.model.UtilModel;
@@ -31,6 +33,8 @@ import top.huhuiyu.teachservice.utils.SystemConstants;
 public class UtilServiceImpl implements UtilService {
   @Autowired
   private UtilsDAO utilsDAO;
+  @Autowired
+  private TbLogDAO tbLogDAO;
 
   /**
    * 处理admin的敏感信息
@@ -196,6 +200,9 @@ public class UtilServiceImpl implements UtilService {
     utilsDAO.deleteTokenInfo(tokenInfo);
     tokenInfo.setInfo(check.getAid() + "");
     utilsDAO.addTokenInfo(tokenInfo);
+    // 日志记录
+    TbLog tbLog = SystemConstants.getLoginLog(check, IpUtils.getIpAddress());
+    tbLogDAO.add(tbLog);
     // 处理敏感信息
     processAdminInfo(check);
     result.setSuccessInfo("");
@@ -224,6 +231,11 @@ public class UtilServiceImpl implements UtilService {
     TbTokenInfo tokenInfo = model.makeTbTokenInfo();
     tokenInfo.setInfoKey(SystemConstants.LOGIN_ADMIN);
     utilsDAO.deleteTokenInfo(tokenInfo);
+    if (model.getLoginAdmin() != null) {
+      // 日志记录
+      TbLog tbLog = SystemConstants.getLogoutLog(model.getLoginAdmin(), IpUtils.getIpAddress());
+      tbLogDAO.add(tbLog);
+    }
     BaseResult<UtilMessage> result = new BaseResult<>();
     result.setSuccessInfo("登出成功");
     return result;

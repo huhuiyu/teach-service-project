@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbErrorInfoDAO">
+    
+  <select id="queryAll" resultType="TbErrorInfo">
+    select eiid,error_type,link_info,error_info,lastupdate from tb_error_info
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_error_info
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbErrorInfo" resultType="TbErrorInfo">
+    select eiid,error_type,link_info,error_info,lastupdate from tb_error_info 
+    where eiid=#{eiid}
+  </select>
+  
+  <insert id="add" parameterType="TbErrorInfo">
+    insert into tb_error_info(error_type,link_info,error_info,lastupdate)
+    values(#{errorType},#{linkInfo},#{errorInfo},#{lastupdate})
+  </insert>
+  
+  <update id="update" parameterType="TbErrorInfo">
+    update tb_error_info set error_type=#{errorType},link_info=#{linkInfo},error_info=#{errorInfo},lastupdate=#{lastupdate}
+    where eiid=#{eiid}
+  </update>
+  
+  <delete id="delete" parameterType="TbErrorInfo" >
+    delete from tb_error_info
+    where eiid=#{eiid}
+  </delete>
+  
+</mapper>

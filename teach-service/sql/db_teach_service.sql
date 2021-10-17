@@ -94,4 +94,7 @@ insert into tb_actions(url,info,role) values('/userMessage/addReply','发布评�
 insert into tb_actions(url,info,role) values('/userMessage/updateReply','修改评论功能','user');
 insert into tb_actions(url,info,role) values('/userMessage/deleteReply','删除评论功能','user');
 
+/* 后台管理功能*/
+insert into tb_actions(url,info,role) values('/admin/querySystemLog','日志查询功能','admin');
+
 select aid,url,info,role from tb_actions;

@@ -99,3 +99,26 @@ create table tb_user_message_reply
   info varchar(2000) not null default '' comment '留言回帖信息',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户留言回帖信息表';
+
+/* 系统日志信息 */
+create table tb_log
+(
+  lid integer auto_increment primary key not null comment '主键',
+  log_type varchar(50) not null comment '日志分类',
+  log_info varchar(2000) not null comment '日志信息',
+  lastupdate timestamp on update now() default now() not null comment '日志时间'
+)comment '系统日志信息表';
+
+select * from tb_log;
+
+/* 系统错误信息 */
+create table tb_error_info
+(
+  eiid integer auto_increment primary key not null comment '主键',
+  error_type varchar(50) not null comment '错误分类',
+  link_info varchar(50) not null comment '错误关联信息（可以是用户，token之类的）',
+  error_info varchar(2000) not null comment '错误信息',
+  lastupdate timestamp on update now() default now() not null comment '日志时间'
+)comment '系统错误信息表';
+
+select * from tb_error_info;
