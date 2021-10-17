@@ -11,10 +11,12 @@ import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.exception.AppException;
 import top.huhuiyu.api.utils.ImageCode;
 import top.huhuiyu.api.utils.StringUtils;
+import top.huhuiyu.teachservice.dao.TbErrorInfoDAO;
 import top.huhuiyu.teachservice.dao.TbLogDAO;
 import top.huhuiyu.teachservice.dao.UtilsDAO;
 import top.huhuiyu.teachservice.entity.TbAdmin;
 import top.huhuiyu.teachservice.entity.TbConfig;
+import top.huhuiyu.teachservice.entity.TbErrorInfo;
 import top.huhuiyu.teachservice.entity.TbLog;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
 import top.huhuiyu.teachservice.message.UtilMessage;
@@ -35,6 +37,8 @@ public class UtilServiceImpl implements UtilService {
   private UtilsDAO utilsDAO;
   @Autowired
   private TbLogDAO tbLogDAO;
+  @Autowired
+  private TbErrorInfoDAO tbErrorInfoDAO;
 
   /**
    * 处理admin的敏感信息
@@ -190,9 +194,32 @@ public class UtilServiceImpl implements UtilService {
       result.setFailInfo("用户不存在");
       return result;
     }
+    // 查询记录密码错误次数和剩余次数
+    TbErrorInfo tbErrorInfo = SystemConstants.getLoginPasswordError(check.getUsername());
+    Integer errorCount = tbErrorInfoDAO.queryUserLoginErrorCount(tbErrorInfo);
+    TbErrorInfo errorInfo = tbErrorInfoDAO.queryByTypeAndLink(tbErrorInfo);
+    // 校验是否超出错误次数
+    if (errorInfo != null && errorCount <= 0) {
+      result.setFailInfo("密码错误次数超过限制，账号将被限制一段时间登录，请等待");
+      return result;
+    }
+    // 校验密码
     if (!Md5.checkSaltMd5(user.getPassword(), check.getSalt(), check.getPassword())) {
+      if (errorInfo == null) {
+        // 没有记录就添加一次
+        tbErrorInfo.setErrorInfo(1 + "");
+        tbErrorInfoDAO.add(tbErrorInfo);
+      } else {
+        // 否则就更新次数
+        errorInfo.setErrorInfo(Integer.parseInt(errorInfo.getErrorInfo()) + 1 + "");
+        tbErrorInfoDAO.update(errorInfo);
+      }
       result.setFailInfo("密码错误，登陆失败");
       return result;
+    }
+    // 删除错误次数限制
+    if (errorInfo != null) {
+      tbErrorInfoDAO.delete(errorInfo);
     }
     // 处理tokeninfo
     TbTokenInfo tokenInfo = model.makeTbTokenInfo();

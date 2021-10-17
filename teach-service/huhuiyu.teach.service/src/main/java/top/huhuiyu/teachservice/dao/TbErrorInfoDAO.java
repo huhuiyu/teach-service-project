@@ -32,6 +32,28 @@ public interface TbErrorInfoDAO {
   TbErrorInfo queryByKey(TbErrorInfo tbErrorInfo) throws Exception;
 
   /**
+   * 按照类型和链接信息查询tb_error_info
+   *
+   * @param tbErrorInfo 类型和链接信息
+   * 
+   * @return 类型和链接查询tb_error_info的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  TbErrorInfo queryByTypeAndLink(TbErrorInfo tbErrorInfo) throws Exception;
+
+  /**
+   * 查询用户密码错误剩余次数
+   *
+   * @param tbErrorInfo 类型和链接信息
+   * 
+   * @return 查询用户密码错误剩余次数的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  Integer queryUserLoginErrorCount(TbErrorInfo tbErrorInfo) throws Exception;
+
+  /**
    * 添加tb_error_info信息
    *
    * @param tbErrorInfo tbErrorInfo信息
@@ -63,5 +85,16 @@ public interface TbErrorInfoDAO {
    * @throws Exception 处理发生异常
    */
   int delete(TbErrorInfo tbErrorInfo) throws Exception;
+
+  /**
+   * 删除登录超时限制信息
+   *
+   * @param tbErrorInfo 登录错误信息
+   * 
+   * @return 删除登录超时限制信息的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int deleteLoginPasswordTimeout(TbErrorInfo tbErrorInfo) throws Exception;
 
 }

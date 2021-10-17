@@ -24,6 +24,11 @@ insert into tb_config(config_key,config_value) values('ip_max_new_token_count',1
 insert into tb_config(config_key,config_value) values('ip_ban_timeount',600);
 /* 发布到tomcat的上下文路径路径 */
 insert into tb_config(config_key,config_value) values('tomcat_context_path','/huhuiyu.teach.service-1.0.0');
+/* 密码错误次数限制 */
+insert into tb_config(config_key,config_value) values('login_password_error_limit',10);
+/* 密码错误次数超时 */
+insert into tb_config(config_key,config_value) values('login_password_error_timeout',600);
+
 
 select cid,config_key,config_value,lastupdate from tb_config;
 

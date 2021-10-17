@@ -21,12 +21,12 @@
   </select>
   
   <insert id="add" parameterType="TbErrorInfo">
-    insert into tb_error_info(error_type,link_info,error_info,lastupdate)
-    values(#{errorType},#{linkInfo},#{errorInfo},#{lastupdate})
+    insert into tb_error_info(error_type,link_info,error_info)
+    values(#{errorType},#{linkInfo},#{errorInfo})
   </insert>
   
   <update id="update" parameterType="TbErrorInfo">
-    update tb_error_info set error_type=#{errorType},link_info=#{linkInfo},error_info=#{errorInfo},lastupdate=#{lastupdate}
+    update tb_error_info set error_type=#{errorType},link_info=#{linkInfo},error_info=#{errorInfo}
     where eiid=#{eiid}
   </update>
   
@@ -34,5 +34,24 @@
     delete from tb_error_info
     where eiid=#{eiid}
   </delete>
+  
+  <select id="queryByTypeAndLink" parameterType="TbErrorInfo" resultType="TbErrorInfo">
+    select eiid,error_type,link_info,error_info,lastupdate from tb_error_info 
+    where error_type=#{errorType} and link_info=#{linkInfo}
+  </select>
+  
+  <select id="queryUserLoginErrorCount" parameterType="TbErrorInfo" resultType="java.lang.Integer">
+    select (select config_value from tb_config where config_key='login_password_error_limit') - error_info from tb_error_info
+	where error_type=#{errorType} and link_info=#{linkInfo}
+  </select>
+  
+  <delete id="deleteLoginPasswordTimeout" parameterType="TbErrorInfo" >
+    delete from tb_error_info
+    where error_type=#{errorType} 
+    and timestampdiff(second,lastupdate,now()) > (select config_value from tb_config where config_key='login_password_error_timeout' )
+  </delete>
+  
+
+  
   
 </mapper>

@@ -7,9 +7,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import top.huhuiyu.teachservice.base.BaseWsInfo;
+import top.huhuiyu.teachservice.dao.TbErrorInfoDAO;
 import top.huhuiyu.teachservice.dao.UtilsDAO;
 import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.service.WebSocketService;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * 定时任务
@@ -27,6 +29,8 @@ public class ScheduleTask {
   private WebSocketService webSocketService;
   @Autowired
   private UtilsDAO utilsDAO;
+  @Autowired
+  private TbErrorInfoDAO tbErrorInfoDAO;
 
   @Scheduled(initialDelay = 3 * 1000, fixedDelay = 5 * 60 * 1000)
   public void deleteTokens() {
@@ -36,6 +40,17 @@ public class ScheduleTask {
       log.debug("删除过期的token完成，数量为：{}", result);
     } catch (Exception ex) {
       log.error("删除过期的token发生错误", ex);
+    }
+  }
+
+  @Scheduled(initialDelay = 4 * 1000, fixedDelay = 5 * 60 * 1000)
+  public void deleteLoginPasswordTimeout() {
+    try {
+      log.debug("正在删除过期的登录密码错误信息");
+      int result = tbErrorInfoDAO.deleteLoginPasswordTimeout(SystemConstants.getLoginPasswordError(""));
+      log.debug("删除过期的登录密码错误信息完成，数量为：{}", result);
+    } catch (Exception ex) {
+      log.error("删除过期的登录密码错误信息发生错误", ex);
     }
   }
 
@@ -51,7 +66,7 @@ public class ScheduleTask {
     }
   }
 
-  @Scheduled(initialDelay = 8 * 1000, fixedDelay = 60 * 1000)
+  @Scheduled(initialDelay = 8 * 1000, fixedDelay = 5 * 60 * 1000)
   public void deleteIpBans() {
     try {
       log.debug("正在删除过期的ip被ban记录");

@@ -3,6 +3,7 @@ package top.huhuiyu.teachservice.utils;
 import java.util.regex.Pattern;
 
 import top.huhuiyu.teachservice.entity.TbAdmin;
+import top.huhuiyu.teachservice.entity.TbErrorInfo;
 import top.huhuiyu.teachservice.entity.TbLog;
 
 /**
@@ -32,6 +33,14 @@ public interface SystemConstants {
    * 图片校验码长度配置key
    */
   String CONFIG_IMAGE_CODE_LENGTH = "image_code_length";
+  /**
+   * 密码错误次数限制超时配置
+   */
+  String CONFIG_LOGIN_PASSWORD_ERROR_TIMEOUT = "login_password_error_timeout";
+  /**
+   * 密码错误次数限制配置
+   */
+  String CONFIG_LOGIN_PASSWORD_ERROR_LIMIT = "login_password_error_limit";
   /**
    * 单个ip最大刷新token的次数
    */
@@ -140,9 +149,30 @@ public interface SystemConstants {
    * @return 用户登出日志信息
    */
   static TbLog getLogoutLog(TbAdmin tbAdmin, String ip) {
+    final String template = "编号为[%s]的用户[%s]在[%s]登出成功";
     TbLog tbLog = new TbLog();
     tbLog.setLogType(LOG_LOGOUT_TYPE);
-    tbLog.setLogInfo(String.format("编号为[%s]的用户[%s]在[%s]登出成功", tbAdmin.getAid(), tbAdmin.getUsername(), ip));
+    tbLog.setLogInfo(String.format(template, tbAdmin.getAid(), tbAdmin.getUsername(), ip));
     return tbLog;
   }
+
+  /**
+   * 错误信息类型
+   */
+  String ERROR_LOGIN_PASSWORD_TYPE = "登录密码错误";
+
+  /**
+   * 获取用户登录密码错误基本信息
+   * 
+   * @param username 用户名
+   * 
+   * @return 用户登录密码错误基本信息
+   */
+  static TbErrorInfo getLoginPasswordError(String username) {
+    TbErrorInfo tbErrorInfo = new TbErrorInfo();
+    tbErrorInfo.setErrorType(ERROR_LOGIN_PASSWORD_TYPE);
+    tbErrorInfo.setLinkInfo(username);
+    return tbErrorInfo;
+  }
+
 }
