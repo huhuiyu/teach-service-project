@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import test from '../router/test';
 import tools from '../router/tools';
 import basic from '../router/basic';
+import user from '../router/user';
+import admin from '../router/admin';
 
 Vue.use(VueRouter);
 
@@ -15,7 +17,9 @@ const routes = [
 ]
   .concat(test)
   .concat(tools)
-  .concat(basic);
+  .concat(basic)
+  .concat(user)
+  .concat(admin);
 
 const router = new VueRouter({
   mode: 'history',

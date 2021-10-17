@@ -7,6 +7,10 @@ body {
   text-align: center;
 }
 
+.tr {
+  text-align: right;
+}
+
 .pd10 {
   padding: 1rem;
 }
