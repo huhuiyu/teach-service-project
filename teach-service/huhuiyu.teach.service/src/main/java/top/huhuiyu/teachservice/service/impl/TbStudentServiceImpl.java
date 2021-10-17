@@ -42,6 +42,15 @@ public class TbStudentServiceImpl implements TbStudentService {
     if (!StringUtils.isEmpty(student.getPhone())) {
       student.setPhone(StringUtils.getLikeStr(student.getPhone()));
     }
+    if (!StringUtils.isEmpty(student.getWechat())) {
+      student.setWechat(StringUtils.getLikeStr(student.getWechat()));
+    }
+    if (!StringUtils.isEmpty(student.getQq())) {
+      student.setQq(StringUtils.getLikeStr(student.getQq()));
+    }
+    if (!StringUtils.isEmpty(student.getAddress())) {
+      student.setAddress(StringUtils.getLikeStr(student.getAddress()));
+    }
 
     // 学生查询部分
     PageBean page = model.getPage();

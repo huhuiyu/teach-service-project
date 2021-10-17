@@ -7,6 +7,7 @@
 
   <select id="queryAll" resultType="TbDept">
     select dept_id,dept_name,dept_info,lastupdate from tb_dept
+    order by dept_id desc
   </select>
 
   <!-- <select id="queryAll_COUNT" resultType="int"> select count(*) from tb_dept </select> -->

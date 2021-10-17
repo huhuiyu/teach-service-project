@@ -12,6 +12,7 @@
       <if test="phone!=null and phone!=''"> and phone like #{phone}</if>
       <if test="deptId!=null and deptId>0"> and dept_id = #{deptId}</if>
     </trim>
+    order by employee_id desc
   </select>
 
   <!-- <select id="queryAll_COUNT" resultType="int"> select count(*) from tb_employee </select> -->

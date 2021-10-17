@@ -31,8 +31,9 @@ public class StudentController {
   @AnnoNoToken
   @ApiOperation(value = "查询学生信息，不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbStudent.cid", value = "所属班级编号", paramType = "query"), @ApiImplicitParam(name = "tbStudent.sname", value = "学生姓名", paramType = "query"),
-      @ApiImplicitParam(name = "tbStudent.phone", value = "联系电话", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
-      @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
+      @ApiImplicitParam(name = "tbStudent.phone", value = "联系电话", paramType = "query"), @ApiImplicitParam(name = "tbStudent.address", value = "家庭地址", paramType = "query"),
+      @ApiImplicitParam(name = "tbStudent.wechat", value = "微信号", paramType = "query"), @ApiImplicitParam(name = "tbStudent.qq", value = "QQ号", paramType = "query"),
+      @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAll")
   public BaseResult<TbStudentMessage> queryAll(TbStudentModel model) throws Exception {
     return tbStudentService.queryAll(model);

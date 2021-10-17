@@ -84,7 +84,7 @@ export default {
     del(info) {
       let app = this;
       app
-        .$confirm('删除', '是否删除部门：' + info.deptName)
+        .$confirm('是否删除部门：' + info.deptName, '删除部门')
         .then(function () {
           app.loading = true;
           app.$ajax('/manange/dept/delete', { 'tbDept.deptId': info.deptId }, function (data) {

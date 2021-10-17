@@ -22,7 +22,7 @@ import top.huhuiyu.teachservice.service.TbUserMessageService;
  * 
  * @author 胡辉煜
  */
-@Api(tags = { "用户留言" })
+@Api(tags = { "用户留言和评论" })
 @RestController
 @RequestMapping("/userMessage")
 public class TbUserMessageController {

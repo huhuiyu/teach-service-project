@@ -19,6 +19,7 @@ import top.huhuiyu.teachservice.entity.TbEmployee;
 import top.huhuiyu.teachservice.message.TbEmployeeMessage;
 import top.huhuiyu.teachservice.model.TbEmployeeModel;
 import top.huhuiyu.teachservice.service.TbEmployeeService;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * TbEmployee的实现层
@@ -84,7 +85,11 @@ public class TbEmployeeServiceImpl implements TbEmployeeService {
       message.setFailInfo("姓名必须填写");
       return message;
     }
-    employee.setPhone(StringUtils.trim(employee.getPhone()));
+    // 手机号码格式
+    if (!SystemConstants.isPhone(employee.getPhone())) {
+      message.setFailInfo("手机号码必须正确填写");
+      return message;
+    }
     int result = tbEmployeeDAO.add(employee);
     if (result == 1) {
       message.setSuccessInfo("添加数据成功");
@@ -123,6 +128,11 @@ public class TbEmployeeServiceImpl implements TbEmployeeService {
     // 名称必须填写
     if (StringUtils.isEmpty(employee.getEmployeeName())) {
       message.setFailInfo("姓名必须填写");
+      return message;
+    }
+    // 手机号码格式
+    if (!SystemConstants.isPhone(employee.getPhone())) {
+      message.setFailInfo("手机号码必须正确填写");
       return message;
     }
     employee.setPhone(StringUtils.trim(employee.getPhone()));

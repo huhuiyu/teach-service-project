@@ -11,6 +11,11 @@ routers = routers.concat([
     name: 'BasicDept',
     component: () => import('../views/basic/Dept.vue'),
   },
+  {
+    path: '/basic/emp',
+    name: 'BasicEmployee',
+    component: () => import('../views/basic/Employee.vue'),
+  },
 ]);
 
 export default routers;

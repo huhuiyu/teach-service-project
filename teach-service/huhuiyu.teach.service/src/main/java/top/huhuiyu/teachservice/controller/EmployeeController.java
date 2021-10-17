@@ -22,7 +22,7 @@ import top.huhuiyu.teachservice.service.TbEmployeeService;
  */
 @Api(tags = { "部门和员工信息管理" })
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/manange/employee")
 public class EmployeeController {
 
   @Autowired
@@ -33,7 +33,7 @@ public class EmployeeController {
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbEmployee.deptId", value = "所属部门编号", paramType = "query"), @ApiImplicitParam(name = "tbEmployee.employeeName", value = "姓名模糊查询", paramType = "query"),
       @ApiImplicitParam(name = "tbEmployee.phone", value = "电话模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
       @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
-  @PostMapping("/queryAll")
+  @PostMapping("/query")
   public BaseResult<TbEmployeeMessage> queryAll(TbEmployeeModel model) throws Exception {
     return tbEmployeeService.queryAll(model);
   }

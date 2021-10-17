@@ -7,6 +7,7 @@
 
   <select id="queryAll" resultType="TbClass">
     select cid,cname,cinfo,lastupdate from tb_class
+    order by cid desc
   </select>
 
   <!-- <select id="queryAll_COUNT" resultType="int"> select count(*) from tb_class </select> -->

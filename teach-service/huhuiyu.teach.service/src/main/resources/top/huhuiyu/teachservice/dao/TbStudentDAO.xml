@@ -8,10 +8,14 @@
   <select id="queryAll" resultType="TbStudent" parameterType="TbStudent">
     select sid,cid,sname,phone,address,wechat,qq,lastupdate from tb_student
     <trim prefix="where" prefixOverrides="and">
+      <if test="address!=null and address!=''"> and address like #{address}</if>
+      <if test="qq!=null and qq!=''"> and qq like #{qq}</if>
+      <if test="wechat!=null and wechat!=''"> and wechat like #{wechat}</if>
       <if test="sname!=null and sname!=''"> and sname like #{sname}</if>
       <if test="phone!=null and phone!=''"> and phone like #{phone}</if>
       <if test="cid!=null and cid>0"> and cid = #{cid}</if>
     </trim>
+    order by sid desc
   </select>
 
   <!-- <select id="queryAll_COUNT" resultType="int"> select count(*) from tb_student </select> -->
