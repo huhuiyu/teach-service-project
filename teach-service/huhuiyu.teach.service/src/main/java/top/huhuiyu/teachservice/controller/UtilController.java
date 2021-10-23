@@ -34,7 +34,7 @@ public class UtilController {
     return BaseResult.getSuccess("获取token信息成功");
   }
 
-  @ApiOperation(value = "管理员用户登陆")
+  @ApiOperation(value = "管理员用户登陆", notes = "密码超过一定次数账号将会被冻结一段时间")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
   @PostMapping("/adminLogin")

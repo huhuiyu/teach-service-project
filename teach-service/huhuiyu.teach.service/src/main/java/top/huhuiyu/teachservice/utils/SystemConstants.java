@@ -2,6 +2,8 @@ package top.huhuiyu.teachservice.utils;
 
 import java.util.regex.Pattern;
 
+import org.springframework.util.StringUtils;
+
 import top.huhuiyu.teachservice.entity.TbAdmin;
 import top.huhuiyu.teachservice.entity.TbErrorInfo;
 import top.huhuiyu.teachservice.entity.TbLog;
@@ -95,6 +97,39 @@ public interface SystemConstants {
   String MD5_CHECK = "^[a-zA-Z0-9]{32}$";
 
   /**
+   * 邮箱正则
+   */
+  String EMAIL_CHECK = "^\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}$";
+
+  /**
+   * 邮箱留言自动回复模板标题
+   */
+  String EMAIL_MESSAGE_TITLE = "邮件已经收到";
+  /**
+   * 邮箱留言自动回复模板内容
+   */
+  String EMAIL_MESSAGE_CONTENT = "%s你好,感谢你的留言,客服稍后会联系你,请勿回复本邮件";
+
+  /**
+   * 邮箱留言回复信息标题
+   */
+  String EMAIL_MESSAGE_REPLY_TITLE = "%s的留言回复";
+
+  /**
+   * 邮箱校验
+   * 
+   * @param email 邮箱
+   * 
+   * @return 邮箱校验的结果
+   */
+  static boolean isEmail(String email) {
+    if (StringUtils.hasText(email)) {
+      return Pattern.matches(EMAIL_CHECK, email);
+    }
+    return false;
+  }
+
+  /**
    * 手机号码校验
    * 
    * @param phone 手机号码
@@ -102,7 +137,10 @@ public interface SystemConstants {
    * @return 手机号码校验的结果
    */
   static boolean isPhone(String phone) {
-    return Pattern.matches(PHONE_CHECK, phone);
+    if (StringUtils.hasText(phone)) {
+      return Pattern.matches(PHONE_CHECK, phone);
+    }
+    return false;
   }
 
   /**
@@ -113,7 +151,11 @@ public interface SystemConstants {
    * @return md5校验的结果
    */
   static boolean isMd5(String md5) {
-    return Pattern.matches(MD5_CHECK, md5);
+    if (StringUtils.hasText(md5)) {
+      return Pattern.matches(MD5_CHECK, md5);
+    }
+    return false;
+
   }
 
   /**

@@ -50,7 +50,7 @@ select * from tb_student;
 /* 省份城市联动 */
 create table tb_province
 (
-  pid int auto_increment primary key comment '主键',
+  pid integer auto_increment primary key comment '主键',
   province varchar(100) unique not null comment '省份名称',
   info varchar(2000) default '' not null comment '省份描述',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
@@ -60,8 +60,8 @@ select pid,province,info,lastupdate from tb_province;
 
 create table tb_city
 (
-  cid int auto_increment primary key comment '主键',
-  pid int not null comment '所属省份',
+  cid integer auto_increment primary key comment '主键',
+  pid integer not null comment '所属省份',
   city varchar(500) not null comment '城市名',
   info varchar(2000) default '' not null comment '城市描述',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
@@ -72,8 +72,8 @@ select cid,pid,city,info,lastupdate from tb_city;
 /* 用户详细信息 */
 create table tb_admin_info
 (
-  aiid int auto_increment primary key comment '主键',
-  aid int not null comment '外键，所属用户id',
+  aiid integer auto_increment primary key comment '主键',
+  aid integer not null comment '外键，所属用户id',
   info varchar(500) not null default '' comment '简介',
   weixin varchar(255) not null default '' comment '微信信息（二维码地址）',
   img varchar(255) not null default '' comment '头像信息（图片地址）',
@@ -83,8 +83,8 @@ create table tb_admin_info
 /* 简易用户留言板 */
 create table tb_user_message
 (
-  umid int auto_increment primary key comment '主键',
-  aid int not null comment '外键，所属用户id',
+  umid integer auto_increment primary key comment '主键',
+  aid integer not null comment '外键，所属用户id',
   title varchar(50) not null comment '留言标题', 
   info varchar(2000) not null default '' comment '留言',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
@@ -93,9 +93,9 @@ create table tb_user_message
 /* 简易用户留言板回帖 */
 create table tb_user_message_reply
 (
-  umrid int auto_increment primary key comment '主键',
-  umid int not null comment '外键，所属留言id',
-  aid int not null comment '外键，回帖用户id',
+  umrid integer auto_increment primary key comment '主键',
+  umid integer not null comment '外键，所属留言id',
+  aid integer not null comment '外键，回帖用户id',
   info varchar(2000) not null default '' comment '留言回帖信息',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户留言回帖信息表';
@@ -122,3 +122,38 @@ create table tb_error_info
 )comment '系统错误信息表';
 
 select * from tb_error_info;
+
+/* 留言邮箱信息 */
+create table tb_email
+(
+  eid integer auto_increment primary key not null comment '主键',
+  aid integer not null comment '外键，邮箱留言所属用户id',
+  email varchar(200) not null comment '邮箱地址',
+  username varchar(200) not null comment '留言用户',
+  lastupdate timestamp on update now() default now() not null comment '信息最后修改时间'
+)comment '用户留言信息表';
+
+select * from tb_email;
+
+/* 邮箱留言信息 */
+create table tb_email_message
+(
+  emid integer auto_increment primary key not null comment '主键',
+  eid integer not null comment '外键，邮箱id',
+  info varchar(2000) not null comment '留言信息',
+  reply varchar(2000) null commnet '留言回复',
+  lastupdate timestamp default now() not null comment '信息最后修改时间'
+)comment '用户留言信息表';
+
+select * from tb_email_message;
+
+/* 邮箱留言回复信息 */
+create table tb_email_message_reply
+(
+  emrid integer auto_increment primary key not null comment '主键',
+  emid integer not null comment '外键，所属邮件留言',
+  info varchar(2000) not null comment '留言回复信息',
+  lastupdate timestamp default now() not null comment '信息最后修改时间'
+)comment '用户留言回复信息表';
+
+select * from tb_email_message_reply;

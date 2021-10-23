@@ -53,6 +53,7 @@ public class UtilServiceImpl implements UtilService {
     admin.setEnable(null);
     admin.setPassword(null);
     admin.setSalt(null);
+    admin.setAccessKey(null);
     // admin.setRole(null);
   }
 

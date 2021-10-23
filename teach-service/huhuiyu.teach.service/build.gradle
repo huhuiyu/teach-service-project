@@ -21,7 +21,7 @@ plugins {
   // java开发插件
   id 'java'
   id 'java-library'
-   // war打包依赖
+  // war打包依赖
   id 'war'
   // eclipse开发插件（会自动配置eclipse）
   id 'eclipse'
@@ -51,13 +51,13 @@ repositories {
 
 //项目依赖的第三方库配置
 dependencies {
-  //springboot依赖
+  // springboot依赖
   implementation('org.springframework.boot:spring-boot-starter-web')
-  //springboot开发工具，可以热部署代码（不要用于生成环境）
+  // springboot开发工具，可以热部署代码（不要用于生成环境）
   implementation('org.springframework.boot:spring-boot-devtools')
   // email
   implementation('org.springframework.boot:spring-boot-starter-mail')
-  //springboot整合mybatis
+  // springboot整合mybatis
   implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0')
   // mysql jdbc驱动
   implementation('mysql:mysql-connector-java:8.0.12')

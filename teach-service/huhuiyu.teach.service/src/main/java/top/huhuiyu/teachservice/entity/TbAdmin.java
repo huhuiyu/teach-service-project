@@ -30,6 +30,9 @@ public class TbAdmin extends BaseEntity {
   @ApiModelProperty(value = "用户昵称")
   @ApiParam(hidden = true)
   private java.lang.String nickname;
+  @ApiModelProperty(value = "开发者key")
+  @ApiParam(hidden = true)
+  private java.lang.String accessKey;
   @ApiModelProperty(value = "用户角色")
   @ApiParam(hidden = true)
   private java.lang.String role;
@@ -81,6 +84,14 @@ public class TbAdmin extends BaseEntity {
 
   public void setNickname(java.lang.String nickname) {
     this.nickname = nickname;
+  }
+
+  public java.lang.String getAccessKey() {
+    return accessKey;
+  }
+
+  public void setAccessKey(java.lang.String accessKey) {
+    this.accessKey = accessKey;
   }
 
   public java.lang.String getRole() {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbEmailMessageDAO">
+    
+  <select id="queryAll" resultType="TbEmailMessage">
+    select emid,info,reply,lastupdate from tb_email_message
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_email_message
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbEmailMessage" resultType="TbEmailMessage">
+    select emid,eid,info,reply,lastupdate from tb_email_message 
+    where emid=#{emid}
+  </select>
+  
+  <insert id="add" parameterType="TbEmailMessage">
+    insert into tb_email_message(eid,info)
+    values(#{eid},#{info})
+  </insert>
+  
+  <update id="update" parameterType="TbEmailMessage">
+    update tb_email_message set info=#{info},lastupdate=#{lastupdate}
+    where emid=#{emid}
+  </update>
+  
+  <delete id="delete" parameterType="TbEmailMessage" >
+    delete from tb_email_message
+    where emid=#{emid}
+  </delete>
+  
+  <update id="reply" parameterType="TbEmailMessage">
+    update tb_email_message set reply=#{reply}
+    where emid=#{emid}
+  </update>
+  
+</mapper>

@@ -1,6 +1,7 @@
 package top.huhuiyu.teachservice.test;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 import top.huhuiyu.api.fileutil.Md5;
 import top.huhuiyu.teachservice.utils.SystemConstants;
@@ -45,6 +46,17 @@ public class Temp {
     // Temp.one();
     // Temp.two();
     // Temp.three();
-    Temp.four();
+    // Temp.four();
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+    System.out.println(UUID.randomUUID().toString());
+
   }
 }

@@ -44,7 +44,7 @@ public class SwaggerConfig {
   }
 
   private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().title("huhuiyu.teach.service").description("huhuiyu.teach.service").version("1.0.0").build();
+    return new ApiInfoBuilder().title("胡辉煜-教学用后端接口").description("胡辉煜-教学用后端接口").version("v0.1.0").build();
   }
 
 }

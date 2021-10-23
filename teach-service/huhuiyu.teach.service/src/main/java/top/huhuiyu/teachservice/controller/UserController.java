@@ -31,7 +31,7 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @ApiOperation(value = "用户登陆")
+  @ApiOperation(value = "用户登陆", notes = "密码超过一定次数账号将会被冻结一段时间")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
   @PostMapping("/login")

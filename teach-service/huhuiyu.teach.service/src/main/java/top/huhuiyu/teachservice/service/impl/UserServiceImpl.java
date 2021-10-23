@@ -1,5 +1,7 @@
 package top.huhuiyu.teachservice.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +48,8 @@ public class UserServiceImpl implements UserService {
       result.setFailInfo("用户已经存在");
       return result;
     }
+    // 随机access_key
+    tbAdmin.setAccessKey(UUID.randomUUID().toString());
     tbAdmin.setSalt(Md5.makeSalt());
     tbAdmin.setPassword(Md5.saltMd5(tbAdmin.getPassword(), tbAdmin.getSalt()));
     tbAdmin.setNickname(StringUtils.trim(tbAdmin.getNickname()));

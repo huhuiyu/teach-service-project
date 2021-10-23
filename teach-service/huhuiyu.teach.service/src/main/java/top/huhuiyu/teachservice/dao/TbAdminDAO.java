@@ -34,6 +34,17 @@ public interface TbAdminDAO {
   TbAdmin queryByKey(TbAdmin tbAdmin) throws Exception;
 
   /**
+   * 按照access_key查询tb_admin
+   *
+   * @param tbAdmin access_key信息
+   * 
+   * @return access_key查询tb_admin的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  TbAdmin queryByAccessKey(TbAdmin tbAdmin) throws Exception;
+
+  /**
    * 添加tb_admin信息
    *
    * @param tbAdmin tbAdmin信息

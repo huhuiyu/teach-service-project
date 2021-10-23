@@ -11,7 +11,7 @@ create table tb_config
   config_value varchar(2000) comment '配置值',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '系统配置表';
-truncate table tb_config;
+
 /* token过期时间配置，值是分钟数 */
 insert into tb_config(config_key,config_value) values('token_timeout','14400');
 /* 图片校验码干扰线数量 */
@@ -65,7 +65,8 @@ create table tb_admin
   password varchar(50) not null comment '登录密码',
   salt varchar(20) not null comment '密码盐',
   nickname varchar(50) not null comment '昵称',
-  role varchar(200) default '' not null comment '用户角色列表', 
+  access_key varchar(50) not null default '' comment '用户鉴权key',
+  role varchar(200) default '' not null comment '用户角色列表',
   enable enum('y','n') default 'y' not null comment '是否启用',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '管理员信息表';
@@ -74,7 +75,6 @@ create table tb_admin
 insert into tb_admin(username,password,salt,nickname,role) values('admin','d48dc3be25a60dafc4db503fbc36d397','JX1XRO','内置管理员','admin');
 /* 默认用户数据，密码是user-pwd */
 insert into tb_admin(username,password,salt,nickname,role) values('user','ffd3935816d6bb5b4a64a3d0f8c61cf1','C3CJXR','内置用户','user');
-
 
 select aid,username,password,salt,nickname,role,enable,lastupdate from tb_admin;
 
@@ -98,6 +98,9 @@ insert into tb_actions(url,info,role) values('/userMessage/queryAllUserReply','�
 insert into tb_actions(url,info,role) values('/userMessage/addReply','发布评论功能','user');
 insert into tb_actions(url,info,role) values('/userMessage/updateReply','修改评论功能','user');
 insert into tb_actions(url,info,role) values('/userMessage/deleteReply','删除评论功能','user');
+
+/* 邮件留言功能权限 */
+insert into tb_actions(url,info,role) values('/email/message/reply','邮件留言回复功能','user');
 
 /* 后台管理功能*/
 insert into tb_actions(url,info,role) values('/admin/querySystemLog','日志查询功能','admin');

@@ -20,9 +20,15 @@
     where aid=#{aid}
   </select>
   
+  <select id="queryByAccessKey" parameterType="TbAdmin" resultType="TbAdmin">
+    select aid,username,password,salt,nickname,role,access_key,enable,lastupdate from tb_admin 
+    where access_key=#{accessKey}
+  </select>
+  
+  
   <insert id="add" parameterType="TbAdmin">
-    insert into tb_admin(username,password,salt,nickname,role)
-    values(#{username},#{password},#{salt},#{nickname},#{role})
+    insert into tb_admin(username,password,salt,nickname,role,access_key)
+    values(#{username},#{password},#{salt},#{nickname},#{role},#{accessKey})
   </insert>
   
   <update id="update" parameterType="TbAdmin">
