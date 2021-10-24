@@ -91,7 +91,7 @@
 
   <!-- 查询token对应的管理员信息 -->
   <select id="queryAdminByToken" parameterType="TbTokenInfo" resultType="TbAdmin">
-    select aid,username,password,salt,nickname,role,enable,lastupdate from tb_admin
+    select aid,username,password,salt,nickname,role,access_key,enable,lastupdate from tb_admin
     where aid=(select info from tb_token_info where token=#{token} and info_Key=#{infoKey})
   </select>
 

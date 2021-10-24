@@ -2,9 +2,15 @@
   <div>
     {{ title }}
     <hr />
+    <div style="font-size: 2rem">
+      <i class="iconfont">&#xe632;</i>
+      <i class="codefont">微软程序猿专用字体：abcdefghijklmnopqrstuvwxyz0123456789</i>
+    </div>
+
+    <hr />
     用户信息：{{ userinfo }}
     <hr />
-    管理信息：{{ admininfo }}
+    管理员信息：{{ admininfo }}
   </div>
 </template>
 

@@ -1,14 +1,27 @@
 <template>
   <div>
     <div v-loading="loading" class="pd10 tr">
-      <el-tag>
-        <span>欢迎用户：</span>
-        <span v-text="userinfo.username"></span>
-        <span v-if="userinfo.nickname">({{ userinfo.nickname }})</span>
-      </el-tag>
-      &nbsp;
-      <el-button type="danger" @click="logout">安全退出</el-button>
+      <el-dropdown trigger="click" @command="handleCommand">
+        <span class="el-dropdown-link">
+          欢迎： <i class="iconfont">&#xe6a4;</i>{{ userinfo.username }}
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="userinfo">用户信息</el-dropdown-item>
+          <el-dropdown-item command="logout" divided>安全退出</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
+    <el-dialog :visible.sync="visable">
+      <div slot="title">用户信息</div>
+      <div>
+        用户名：{{ userinfo.username }} <br /><br />
+        用户昵称：{{ userinfo.nickname }} <br /><br />
+        用户角色：{{ userinfo.role }} <br /><br />
+        开发者key：{{ userinfo.accessKey }} <br /><br />
+      </div>
+    </el-dialog>
+    <hr />
   </div>
 </template>
 
@@ -20,9 +33,17 @@ export default {
       title: '用户首页',
       loading: false,
       userinfo: {},
+      visable: false,
     };
   },
   methods: {
+    handleCommand(command) {
+      if ('logout' == command) {
+        this.logout();
+      } else if ('userinfo' == command) {
+        this.visable = true;
+      }
+    },
     queryUserInfo() {
       this.loading = true;
       this.$ajax('/user/getUserLoginInfo', {}, function (data) {

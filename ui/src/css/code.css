@@ -1,0 +1,11 @@
+.codefont {
+  font-family: 'codefont' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'codefont';
+  src: url('codefont/CascadiaCode.woff2') format('woff2'), url('codefont/CascadiaCode.ttf') format('truetype');
+}

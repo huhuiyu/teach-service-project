@@ -21,4 +21,6 @@ export default {
 </script>
 <style scoped>
 @import 'css/common.css';
+@import 'css/code.css';
+@import 'css/iconfont/iconfont.css';
 </style>
