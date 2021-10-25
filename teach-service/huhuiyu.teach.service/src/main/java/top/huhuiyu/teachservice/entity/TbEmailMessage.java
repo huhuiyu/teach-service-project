@@ -10,27 +10,27 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbEmailMessage", description = "TbEmailMessage")
+@ApiModel(value = "TbEmailMessage", description = "邮箱留言信息")
 public class TbEmailMessage extends BaseEntity {
 
   private static final long serialVersionUID = -8081082481641110886L;
 
-  @ApiModelProperty(value = "emid")
+  @ApiModelProperty(value = "主键")
   @ApiParam(hidden = true)
   private java.lang.Integer emid;
-  @ApiModelProperty(value = "emid")
+  @ApiModelProperty(value = "外键,邮箱编号")
   @ApiParam(hidden = true)
   private java.lang.Integer eid;
-  @ApiModelProperty(value = "info")
+  @ApiModelProperty(value = "留言信息")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "reply")
+  @ApiModelProperty(value = "回复信息")
   @ApiParam(hidden = true)
   private java.lang.String reply;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
-  @ApiModelProperty(value = "tbEmail")
+  @ApiModelProperty(value = "所属邮箱信息")
   @ApiParam(hidden = true)
   private TbEmail tbEmail;
 

@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbLog;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbLogMessage", description = "TbLogMessage")
+@ApiModel(value = "TbLogMessage", description = "系统日志应答信息")
 public class TbLogMessage extends BaseEntity {
 
   private static final long serialVersionUID = -421583498197490179L;
 
-  @ApiModelProperty(value = "日志信息")
+  @ApiModelProperty(value = "系统日志信息")
   private TbLog tbLog;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "系统日志信息列表")
   private List<TbLog> list;
 
   public TbLogMessage() {

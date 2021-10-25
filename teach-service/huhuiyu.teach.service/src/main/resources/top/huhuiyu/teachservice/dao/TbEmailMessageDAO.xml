@@ -8,6 +8,15 @@
   <select id="queryAll" resultType="TbEmailMessage">
     select emid,info,reply,lastupdate from tb_email_message
   </select>
+  
+  <select id="queryAllByUser" resultType="TbEmailMessage" parameterType="TbEmail">
+   select a.emid,a.info,a.reply,a.lastupdate,
+   b.email 'tbEmail.email',b.username 'tbEmail.username'
+   from tb_email_message a
+   inner join tb_email b on a.eid=b.eid
+   where b.aid = #{aid}
+   <if test="email!=null and email!=''"> and email = #{email}</if>
+  </select>
 
   <!--
   <select id="queryAll_COUNT" resultType="int">

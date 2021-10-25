@@ -14,7 +14,7 @@ import top.huhuiyu.teachservice.entity.TbEmployee;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbEmployeeMessage", description = "TbEmployeeMessage")
+@ApiModel(value = "TbEmployeeMessage", description = "员工应答信息")
 public class TbEmployeeMessage extends BaseEntity {
 
   private static final long serialVersionUID = -6003328734796487087L;
@@ -23,7 +23,7 @@ public class TbEmployeeMessage extends BaseEntity {
   private TbEmployee tbEmployee;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "员工列表")
   private List<TbEmployee> list;
   @ApiModelProperty(value = "部门列表")
   private List<TbDept> deptList;

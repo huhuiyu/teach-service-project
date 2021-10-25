@@ -10,24 +10,24 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbErrorInfo", description = "TbErrorInfo")
+@ApiModel(value = "TbErrorInfo", description = "系统错误信息")
 public class TbErrorInfo extends BaseEntity {
 
   private static final long serialVersionUID = -2235173191970405224L;
 
-  @ApiModelProperty(value = "eiid")
+  @ApiModelProperty(value = "主键")
   @ApiParam(hidden = true)
   private java.lang.Integer eiid;
-  @ApiModelProperty(value = "errorType")
+  @ApiModelProperty(value = "错误类型")
   @ApiParam(hidden = true)
   private java.lang.String errorType;
-  @ApiModelProperty(value = "linkInfo")
+  @ApiModelProperty(value = "关联信息")
   @ApiParam(hidden = true)
   private java.lang.String linkInfo;
-  @ApiModelProperty(value = "errorInfo")
+  @ApiModelProperty(value = "错误信息")
   @ApiParam(hidden = true)
   private java.lang.String errorInfo;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

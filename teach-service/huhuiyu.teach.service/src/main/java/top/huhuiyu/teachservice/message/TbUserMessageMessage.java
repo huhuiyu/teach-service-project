@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbUserMessage;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbUserMessageMessage", description = "TbUserMessageMessage")
+@ApiModel(value = "TbUserMessageMessage", description = "用户留言应答信息")
 public class TbUserMessageMessage extends BaseEntity {
 
   private static final long serialVersionUID = -5402865410590736656L;
 
-  @ApiModelProperty(value = "留言信息")
+  @ApiModelProperty(value = "用户留言信息")
   private TbUserMessage tbUserMessage;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "用户留言信息列表")
   private List<TbUserMessage> list;
 
   public TbUserMessageMessage() {

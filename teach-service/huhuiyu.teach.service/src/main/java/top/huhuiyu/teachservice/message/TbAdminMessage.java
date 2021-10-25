@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbAdmin;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbAdminMessage", description = "TbAdminMessage")
+@ApiModel(value = "TbAdminMessage", description = "用户基本信息应答信息")
 public class TbAdminMessage extends BaseEntity {
 
   private static final long serialVersionUID = 4831908477871946563L;
 
-  @ApiModelProperty(value = "TbAdmin")
+  @ApiModelProperty(value = "用户基本信息")
   private TbAdmin tbAdmin;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "用户基本信息列表")
   private List<TbAdmin> list;
 
   public TbAdminMessage() {

@@ -10,21 +10,21 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbRole", description = "TbRole")
+@ApiModel(value = "TbRole", description = "角色信息")
 public class TbRole extends BaseEntity {
 
   private static final long serialVersionUID = -5197190510068252239L;
 
-  @ApiModelProperty(value = "roleName")
+  @ApiModelProperty(value = "角色名称")
   @ApiParam(hidden = true)
   private java.lang.String roleName;
-  @ApiModelProperty(value = "roleGroup")
+  @ApiModelProperty(value = "角色组")
   @ApiParam(hidden = true)
   private java.lang.String roleGroup;
-  @ApiModelProperty(value = "roleInfo")
+  @ApiModelProperty(value = "角色描述")
   @ApiParam(hidden = true)
   private java.lang.String roleInfo;
-  @ApiModelProperty(value = "enable")
+  @ApiModelProperty(value = "是否启用")
   @ApiParam(hidden = true)
   private java.lang.String enable;
 

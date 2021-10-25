@@ -10,24 +10,24 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbTokenInfo", description = "TbTokenInfo")
+@ApiModel(value = "TbTokenInfo", description = "令牌信息")
 public class TbTokenInfo extends BaseEntity {
 
   private static final long serialVersionUID = 2581257086726412770L;
 
-  @ApiModelProperty(value = "tiid")
+  @ApiModelProperty(value = "主键")
   @ApiParam(hidden = true)
   private java.lang.Integer tiid;
-  @ApiModelProperty(value = "token")
+  @ApiModelProperty(value = "token令牌")
   @ApiParam(hidden = true)
   private java.lang.String token;
-  @ApiModelProperty(value = "infoKey")
+  @ApiModelProperty(value = "信息键")
   @ApiParam(hidden = true)
   private java.lang.String infoKey;
-  @ApiModelProperty(value = "info")
+  @ApiModelProperty(value = "信息值")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

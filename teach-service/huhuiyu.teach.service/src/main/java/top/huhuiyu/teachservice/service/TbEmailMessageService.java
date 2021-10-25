@@ -3,6 +3,7 @@ package top.huhuiyu.teachservice.service;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.message.TbEmailMessageMessage;
 import top.huhuiyu.teachservice.model.TbEmailMessageModel;
+import top.huhuiyu.teachservice.model.TbEmailModel;
 
 /**
  * TbEmailMessage的Service
@@ -76,5 +77,16 @@ public interface TbEmailMessageService {
    * @throws Exception 处理发生错误
    */
   BaseResult<TbEmailMessageMessage> reply(TbEmailMessageModel model) throws Exception;
+
+  /**
+   * 分页查询当前用户的TbEmailMessage信息
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 分页查询当前用户的TbEmailMessage信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbEmailMessageMessage> queryAllByUser(TbEmailModel model) throws Exception;
 
 }

@@ -23,7 +23,7 @@ public class TbStudentMessage extends BaseEntity {
   private TbStudent tbStudent;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "学生列表")
   private List<TbStudent> list;
   @ApiModelProperty(value = "班级列表")
   private List<TbClass> classList;

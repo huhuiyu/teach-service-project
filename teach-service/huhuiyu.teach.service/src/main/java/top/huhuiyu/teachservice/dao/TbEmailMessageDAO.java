@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import top.huhuiyu.teachservice.entity.TbEmail;
 import top.huhuiyu.teachservice.entity.TbEmailMessage;
 
 /**
@@ -21,6 +22,17 @@ public interface TbEmailMessageDAO {
    * @throws Exception 处理发生异常
    */
   List<TbEmailMessage> queryAll() throws Exception;
+
+  /**
+   * 查询全部tb_email_message
+   *
+   * @param tbEmail 查询条件
+   * 
+   * @return tb_email_message的信息
+   * 
+   * @throws Exception 处理发生异常
+   */
+  List<TbEmailMessage> queryAllByUser(TbEmail tbEmail) throws Exception;
 
   /**
    * 按照主键查询tb_email_message

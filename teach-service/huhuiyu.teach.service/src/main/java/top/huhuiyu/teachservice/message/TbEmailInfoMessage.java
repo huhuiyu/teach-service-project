@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbEmail;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbEmailMessage", description = "TbEmailMessage")
+@ApiModel(value = "TbEmailMessage", description = "邮箱应答信息")
 public class TbEmailInfoMessage extends BaseEntity {
 
   private static final long serialVersionUID = 5822733260437296070L;
 
-  @ApiModelProperty(value = "TbEmail")
+  @ApiModelProperty(value = "邮箱信息")
   private TbEmail tbEmail;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "邮箱列表")
   private List<TbEmail> list;
 
   public TbEmailInfoMessage() {

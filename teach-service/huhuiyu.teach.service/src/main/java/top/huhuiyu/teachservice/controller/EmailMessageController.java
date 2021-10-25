@@ -13,6 +13,7 @@ import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.aop.AnnoNoToken;
 import top.huhuiyu.teachservice.message.TbEmailMessageMessage;
 import top.huhuiyu.teachservice.model.TbEmailMessageModel;
+import top.huhuiyu.teachservice.model.TbEmailModel;
 import top.huhuiyu.teachservice.service.TbEmailMessageService;
 
 /**
@@ -44,6 +45,14 @@ public class EmailMessageController {
   @PostMapping("/reply")
   public BaseResult<TbEmailMessageMessage> reply(TbEmailMessageModel model) throws Exception {
     return tbEmailMessageService.reply(model);
+  }
+
+  @ApiOperation(value = "查询邮箱留言，需要用户登录")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbEmail.email", value = "指定邮箱用户的留言", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
+      @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
+  @PostMapping("/queryAll")
+  public BaseResult<TbEmailMessageMessage> queryAll(TbEmailModel model) throws Exception {
+    return tbEmailMessageService.queryAllByUser(model);
   }
 
 }

@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbActions;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbActionsMessage", description = "TbActionsMessage")
+@ApiModel(value = "TbActionsMessage", description = "api权限应答信息")
 public class TbActionsMessage extends BaseEntity {
 
   private static final long serialVersionUID = 3055085124831923393L;
 
-  @ApiModelProperty(value = "TbActions")
+  @ApiModelProperty(value = "api权限信息")
   private TbActions tbActions;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "api权限信息列表")
   private List<TbActions> list;
 
   public TbActionsMessage() {

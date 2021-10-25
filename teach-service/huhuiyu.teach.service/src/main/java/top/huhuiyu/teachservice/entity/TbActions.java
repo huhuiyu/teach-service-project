@@ -10,21 +10,21 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbActions", description = "TbActions")
+@ApiModel(value = "TbActions", description = "api接口信息")
 public class TbActions extends BaseEntity {
 
   private static final long serialVersionUID = 1091660054750067530L;
 
-  @ApiModelProperty(value = "aid")
+  @ApiModelProperty(value = "主键")
   @ApiParam(hidden = true)
   private java.lang.Integer aid;
-  @ApiModelProperty(value = "url")
+  @ApiModelProperty(value = "api地址")
   @ApiParam(hidden = true)
   private java.lang.String url;
-  @ApiModelProperty(value = "info")
+  @ApiModelProperty(value = "api描述")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "role")
+  @ApiModelProperty(value = "隶属角色")
   @ApiParam(hidden = true)
   private java.lang.String role;
 

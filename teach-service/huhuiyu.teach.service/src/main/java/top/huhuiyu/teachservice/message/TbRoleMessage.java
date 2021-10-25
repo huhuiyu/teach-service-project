@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbRole;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbRoleMessage", description = "TbRoleMessage")
+@ApiModel(value = "TbRoleMessage", description = "角色应答信息")
 public class TbRoleMessage extends BaseEntity {
 
   private static final long serialVersionUID = -5613090216811846518L;
 
-  @ApiModelProperty(value = "TbRole")
+  @ApiModelProperty(value = "角色信息")
   private TbRole tbRole;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "角色信息列表")
   private List<TbRole> list;
 
   public TbRoleMessage() {

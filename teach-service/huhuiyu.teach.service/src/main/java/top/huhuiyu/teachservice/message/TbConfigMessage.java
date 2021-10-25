@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbConfig;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbConfigMessage", description = "TbConfigMessage")
+@ApiModel(value = "TbConfigMessage", description = "系统配置应答信息")
 public class TbConfigMessage extends BaseEntity {
 
   private static final long serialVersionUID = -4414460014053704379L;
 
-  @ApiModelProperty(value = "TbConfig")
+  @ApiModelProperty(value = "系统配置信息")
   private TbConfig tbConfig;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "系统配置信息列表")
   private List<TbConfig> list;
 
   public TbConfigMessage() {

@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbGoodsType;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbGoodsTypeMessage", description = "TbGoodsTypeMessage")
+@ApiModel(value = "TbGoodsTypeMessage", description = "商品类型应答信息")
 public class TbGoodsTypeMessage extends BaseEntity {
 
   private static final long serialVersionUID = 4102107182071311208L;
 
-  @ApiModelProperty(value = "TbGoodsType")
+  @ApiModelProperty(value = "商品类型信息")
   private TbGoodsType tbGoodsType;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "商品类型信息列表")
   private List<TbGoodsType> list;
 
   public TbGoodsTypeMessage() {

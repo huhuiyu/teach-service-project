@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbTokenInfo;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbTokenInfoMessage", description = "TbTokenInfoMessage")
+@ApiModel(value = "TbTokenInfoMessage", description = "token认证应答信息")
 public class TbTokenInfoMessage extends BaseEntity {
 
   private static final long serialVersionUID = 876449107059813941L;
 
-  @ApiModelProperty(value = "TbTokenInfo")
+  @ApiModelProperty(value = "token认证信息")
   private TbTokenInfo tbTokenInfo;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "token认证信息列表")
   private List<TbTokenInfo> list;
 
   public TbTokenInfoMessage() {

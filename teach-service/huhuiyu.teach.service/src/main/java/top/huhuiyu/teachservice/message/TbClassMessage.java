@@ -13,7 +13,7 @@ import top.huhuiyu.teachservice.entity.TbClass;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbClassMessage", description = "TbClassMessage")
+@ApiModel(value = "TbClassMessage", description = "班级应答信息")
 public class TbClassMessage extends BaseEntity {
 
   private static final long serialVersionUID = -7145833754465266914L;
@@ -22,7 +22,7 @@ public class TbClassMessage extends BaseEntity {
   private TbClass tbClass;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "班级列表")
   private List<TbClass> list;
 
   public TbClassMessage() {

@@ -10,21 +10,21 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbConfig", description = "TbConfig")
+@ApiModel(value = "TbConfig", description = "系统配置信息")
 public class TbConfig extends BaseEntity {
 
   private static final long serialVersionUID = -2188804943132829407L;
 
-  @ApiModelProperty(value = "cid")
+  @ApiModelProperty(value = "主键")
   @ApiParam(hidden = true)
   private java.lang.Integer cid;
-  @ApiModelProperty(value = "configKey")
+  @ApiModelProperty(value = "配置键")
   @ApiParam(hidden = true)
   private java.lang.String configKey;
-  @ApiModelProperty(value = "configValue")
+  @ApiModelProperty(value = "配置值")
   @ApiParam(hidden = true)
   private java.lang.String configValue;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

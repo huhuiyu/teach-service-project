@@ -10,21 +10,21 @@ import top.huhuiyu.api.spring.base.BaseEntity;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbGoodsType", description = "TbGoodsType")
+@ApiModel(value = "TbGoodsType", description = "商品分类")
 public class TbGoodsType extends BaseEntity {
 
   private static final long serialVersionUID = -4773509483015780139L;
 
-  @ApiModelProperty(value = "typeId")
+  @ApiModelProperty(value = "主键")
   @ApiParam(hidden = true)
   private java.lang.Integer typeId;
-  @ApiModelProperty(value = "typeName")
+  @ApiModelProperty(value = "类型名称")
   @ApiParam(hidden = true)
   private java.lang.String typeName;
-  @ApiModelProperty(value = "typeInfo")
+  @ApiModelProperty(value = "类型描述")
   @ApiParam(hidden = true)
   private java.lang.String typeInfo;
-  @ApiModelProperty(value = "lastupdate")
+  @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
 

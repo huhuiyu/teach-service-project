@@ -101,6 +101,7 @@ insert into tb_actions(url,info,role) values('/userMessage/deleteReply','删除�
 
 /* 邮件留言功能权限 */
 insert into tb_actions(url,info,role) values('/email/message/reply','邮件留言回复功能','user');
+insert into tb_actions(url,info,role) values('/email/message/queryAll','查询邮件留言回复功能','user');
 
 /* 后台管理功能*/
 insert into tb_actions(url,info,role) values('/admin/querySystemLog','日志查询功能','admin');

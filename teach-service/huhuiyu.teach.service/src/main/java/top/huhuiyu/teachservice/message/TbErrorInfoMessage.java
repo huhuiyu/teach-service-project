@@ -13,16 +13,16 @@ import top.huhuiyu.teachservice.entity.TbErrorInfo;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbErrorInfoMessage", description = "TbErrorInfoMessage")
+@ApiModel(value = "TbErrorInfoMessage", description = "系统错误应答信息")
 public class TbErrorInfoMessage extends BaseEntity {
 
   private static final long serialVersionUID = -4399373033317186092L;
 
-  @ApiModelProperty(value = "TbErrorInfo")
+  @ApiModelProperty(value = "系统错误信息")
   private TbErrorInfo tbErrorInfo;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
-  @ApiModelProperty(value = "查询结果")
+  @ApiModelProperty(value = "系统错误信息列表")
   private List<TbErrorInfo> list;
 
   public TbErrorInfoMessage() {

@@ -20,6 +20,7 @@ import top.huhuiyu.teachservice.entity.TbEmail;
 import top.huhuiyu.teachservice.entity.TbEmailMessage;
 import top.huhuiyu.teachservice.message.TbEmailMessageMessage;
 import top.huhuiyu.teachservice.model.TbEmailMessageModel;
+import top.huhuiyu.teachservice.model.TbEmailModel;
 import top.huhuiyu.teachservice.service.MailService;
 import top.huhuiyu.teachservice.service.TbEmailMessageService;
 import top.huhuiyu.teachservice.utils.SystemConstants;
@@ -46,6 +47,22 @@ public class TbEmailMessageServiceImpl implements TbEmailMessageService {
     PageBean page = model.getPage();
     PageHelper.startPage(page.getPageNumber(), page.getPageSize());
     List<TbEmailMessage> list = tbEmailMessageDAO.queryAll();
+    PageInfo<?> pageInfo = new PageInfo<>(list);
+    page.setPageInfo(pageInfo);
+    BaseResult<TbEmailMessageMessage> message = new BaseResult<TbEmailMessageMessage>(new TbEmailMessageMessage());
+    message.setSuccessInfo("");
+    message.getResultData().setPage(page);
+    message.getResultData().setList(list);
+    return message;
+  }
+
+  @Override
+  public BaseResult<TbEmailMessageMessage> queryAllByUser(TbEmailModel model) throws Exception {
+    TbEmail tbEmail = model.getTbEmail();
+    tbEmail.setAid(model.getLoginAdmin().getAid());
+    PageBean page = model.getPage();
+    PageHelper.startPage(page.getPageNumber(), page.getPageSize());
+    List<TbEmailMessage> list = tbEmailMessageDAO.queryAllByUser(model.getTbEmail());
     PageInfo<?> pageInfo = new PageInfo<>(list);
     page.setPageInfo(pageInfo);
     BaseResult<TbEmailMessageMessage> message = new BaseResult<TbEmailMessageMessage>(new TbEmailMessageMessage());
