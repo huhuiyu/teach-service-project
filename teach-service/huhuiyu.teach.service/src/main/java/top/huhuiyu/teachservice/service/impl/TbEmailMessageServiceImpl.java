@@ -179,7 +179,8 @@ public class TbEmailMessageServiceImpl implements TbEmailMessageService {
     }
     int result = tbEmailMessageDAO.reply(tbEmailMessage);
     if (result == 1) {
-      mailService.sendHtmlMail(tbEmail.getEmail(), String.format(SystemConstants.EMAIL_MESSAGE_REPLY_TITLE, tbEmail.getUsername()), tbEmailMessage.getReply());
+      mailService.sendHtmlMail(tbEmail.getEmail(), String.format(SystemConstants.EMAIL_MESSAGE_REPLY_TITLE, tbEmail.getUsername()),
+          tbEmailMessage.getReply() + "<br><br><br>原消息:<br>" + check.getInfo());
       message.setSuccessInfo("回复信息成功");
     } else {
       message.setFailInfo("回复信息失败");

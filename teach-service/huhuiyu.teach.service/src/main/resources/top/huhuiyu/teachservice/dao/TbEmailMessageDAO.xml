@@ -16,6 +16,7 @@
    inner join tb_email b on a.eid=b.eid
    where b.aid = #{aid}
    <if test="email!=null and email!=''"> and email = #{email}</if>
+   order by a.emid desc
   </select>
 
   <!--

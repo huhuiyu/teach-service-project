@@ -39,5 +39,7 @@ myplugin.install = function (Vue) {
   };
   // md5加密
   Vue.prototype.$md5 = tools.md5;
+  // 开发者密钥
+  Vue.prototype.$accessKey = 'fadd7acc-0f40-45e7-91b5-73d6679d6cbb';
 };
 export default myplugin;

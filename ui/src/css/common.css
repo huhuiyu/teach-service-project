@@ -21,3 +21,29 @@ body {
 .fs20 {
   font-size: 2rem;
 }
+
+.page-title {
+  display: flex;
+  padding: 0.5rem 2rem;
+  font-size: 2rem;
+}
+.page-title > :first-child {
+  flex: 1;
+  text-align: center;
+}
+.page-title > :last-child {
+  cursor: pointer;
+}
+.page-title > :last-child:hover {
+  color: #0000ff;
+}
+
+.flex-box {
+  display: flex;
+}
+
+.flex-box-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
