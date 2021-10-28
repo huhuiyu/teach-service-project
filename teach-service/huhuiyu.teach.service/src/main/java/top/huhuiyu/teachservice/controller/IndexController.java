@@ -1,5 +1,9 @@
 package top.huhuiyu.teachservice.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +42,19 @@ public class IndexController {
   @ApiImplicitParams(@ApiImplicitParam(name = "echo", value = "回声参数，内容会通过应答的message返回", paramType = "query"))
   @PostMapping("/info")
   public BaseResult<IndexMessage> info(IndexModel model) throws Exception {
+
     return indexService.index(model);
+  }
+
+  @ApiOperation(value = "原生接口测试")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "echo", value = "回声参数，内容会通过应答的message返回", paramType = "query"), @ApiImplicitParam(name = "test", value = "测试", paramType = "query") })
+  @PostMapping("/reqmap")
+  public Map<String, String[]> test(HttpServletRequest req) throws Exception {
+    Map<String, String[]> map = req.getParameterMap();
+    for (Map.Entry<String, String[]> entity : map.entrySet()) {
+      System.err.println(entity.getKey());
+    }
+
+    return req.getParameterMap();
   }
 }

@@ -88,6 +88,16 @@
     select aid,username,password,salt,nickname,role,enable,lastupdate from tb_admin
     where username=#{username} and role=#{role}
   </select>
+  
+  <update id="modifyAdminPassword" parameterType="TbAdmin">
+  	update tb_admin set password=#{password}
+  	where aid = #{aid} and role=#{role}
+  </update>
+  
+   <update id="modifyAdminNickname" parameterType="TbAdmin">
+  	update tb_admin set nickname=#{nickname}
+  	where aid = #{aid} and role=#{role}
+  </update> 
 
   <!-- 查询token对应的管理员信息 -->
   <select id="queryAdminByToken" parameterType="TbTokenInfo" resultType="TbAdmin">

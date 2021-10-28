@@ -36,6 +36,12 @@ public class TbUserMessageReply extends BaseEntity {
   @ApiModelProperty(value = "评论的留言信息")
   @ApiParam(hidden = true)
   private TbUserMessage message;
+  @ApiModelProperty(value = "是否为当前用户的")
+  @ApiParam(hidden = true)
+  private boolean mine;
+  @ApiModelProperty(hidden = true)
+  @ApiParam(hidden = true)
+  private Integer loginAid;
 
   public TbUserMessageReply() {
   }
@@ -94,6 +100,22 @@ public class TbUserMessageReply extends BaseEntity {
 
   public void setMessage(TbUserMessage message) {
     this.message = message;
+  }
+
+  public boolean isMine() {
+    return mine;
+  }
+
+  public void setMine(boolean mine) {
+    this.mine = mine;
+  }
+
+  public Integer getLoginAid() {
+    return loginAid;
+  }
+
+  public void setLoginAid(Integer loginAid) {
+    this.loginAid = loginAid;
   }
 
 }

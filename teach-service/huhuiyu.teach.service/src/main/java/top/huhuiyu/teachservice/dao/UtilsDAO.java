@@ -173,4 +173,26 @@ public interface UtilsDAO {
    */
   TbActions queryByUrl(TbActions tbActions) throws Exception;
 
+  /**
+   * 修改密码
+   * 
+   * @param tbAdmin 密码信息
+   * 
+   * @return 修改密码的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int modifyAdminPassword(TbAdmin tbAdmin) throws Exception;
+
+  /**
+   * 修改昵称
+   * 
+   * @param tbAdmin 密码信息
+   * 
+   * @return 修改昵称的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int modifyAdminNickname(TbAdmin tbAdmin) throws Exception;
+
 }

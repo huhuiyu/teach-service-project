@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog :title="title" :visible.sync="visible" :close-on-click-modal="false">
+    <el-dialog :title="title" :visible.sync="infoVisable" :close-on-click-modal="false" @closed="closeDialog">
       <div>
         <div v-html="info"></div>
       </div>
@@ -10,9 +10,16 @@
 
 <script>
 export default {
-  name: '信息显示窗口',
+  name: 'InfoDialog',
   data() {
-    return {};
+    return {
+      infoVisable: this.visible,
+    };
+  },
+  watch: {
+    visible(nv) {
+      this.infoVisable = nv;
+    },
   },
   props: {
     title: {
@@ -29,6 +36,11 @@ export default {
       default() {
         return false;
       },
+    },
+  },
+  methods: {
+    closeDialog() {
+      this.$emit('update:visible', false);
     },
   },
 };

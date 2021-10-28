@@ -46,12 +46,6 @@ public class UserController {
     return utilService.adminLogout(model);
   }
 
-  @ApiOperation(value = "获取登录用户信息")
-  @PostMapping("/getUserLoginInfo")
-  public BaseResult<UtilMessage> getUserLoginInfo(UtilModel model) throws Exception {
-    return utilService.getAdminLoginInfo(model);
-  }
-
   @ApiOperation(value = "用户注册")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true), @ApiImplicitParam(name = "tbAdmin.nickname", value = "用户昵称", paramType = "query") })
@@ -59,5 +53,25 @@ public class UserController {
   public BaseResult<UtilMessage> reg(UtilModel model) throws Exception {
     model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
     return userService.reg(model);
+  }
+
+  @ApiOperation(value = "获取登录用户信息")
+  @PostMapping("/getUserLoginInfo")
+  public BaseResult<UtilMessage> getUserLoginInfo(UtilModel model) throws Exception {
+    return utilService.getAdminLoginInfo(model);
+  }
+
+  @ApiOperation(value = "修改密码，需要用户登录")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
+  @PostMapping("/modifyPassword")
+  public BaseResult<UtilMessage> modifyPassword(UtilModel model) throws Exception {
+    return utilService.modifyPassword(model);
+  }
+
+  @ApiOperation(value = "修改昵称，需要用户登录")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.nickname", value = "昵称", paramType = "query", required = true) })
+  @PostMapping("/modifyNickname")
+  public BaseResult<UtilMessage> modifyNickname(UtilModel model) throws Exception {
+    return utilService.modifyNickname(model);
   }
 }

@@ -54,8 +54,14 @@ public class TbUserMessageReplyServiceImpl implements TbUserMessageReplyService 
   @Override
   public BaseResult<TbUserMessageReplyMessage> queryUserMessageDetail(TbUserMessageReplyModel model) throws Exception {
     TbUserMessageReply tbUserMessageReply = model.getTbUserMessageReply();
+    if (model.getLoginAdmin() != null) {
+      tbUserMessageReply.setLoginAid(model.getLoginAdmin().getAid());
+    }
     BaseResult<TbUserMessageReplyMessage> message = new BaseResult<TbUserMessageReplyMessage>(new TbUserMessageReplyMessage());
     TbUserMessage tbUserMessage = new TbUserMessage();
+    if (model.getLoginAdmin() != null) {
+      tbUserMessage.setLoginAid(model.getLoginAdmin().getAid());
+    }
     tbUserMessage.setUmid(tbUserMessageReply.getUmid());
     tbUserMessage = tbUserMessageDAO.queryByKey(tbUserMessage);
     if (tbUserMessage == null) {

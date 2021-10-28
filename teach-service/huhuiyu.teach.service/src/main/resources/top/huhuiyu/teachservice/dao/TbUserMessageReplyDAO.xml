@@ -19,10 +19,11 @@
   </select>
   
   <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.aid,a.info,a.lastupdate
+    select a.umrid,a.umid,a.aid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
+    where a.umid = #{umid}
     order by a.umrid desc
   </select>
 

@@ -86,4 +86,26 @@ public interface UtilService {
    * @throws Exception 处理发生异常
    */
   BaseResult<UtilMessage> adminLogout(UtilModel model) throws Exception;
+
+  /**
+   * 管理用户修改密码
+   * 
+   * @param model 请求参数
+   * 
+   * @return 管理用户修改密码结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  BaseResult<UtilMessage> modifyPassword(UtilModel model) throws Exception;
+
+  /**
+   * 管理用户修改昵称
+   * 
+   * @param model 请求参数
+   * 
+   * @return 管理用户修改昵称结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  BaseResult<UtilMessage> modifyNickname(UtilModel model) throws Exception;
 }

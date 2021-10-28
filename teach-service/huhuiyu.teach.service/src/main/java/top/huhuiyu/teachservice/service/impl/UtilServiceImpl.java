@@ -268,4 +268,45 @@ public class UtilServiceImpl implements UtilService {
     result.setSuccessInfo("登出成功");
     return result;
   }
+
+  @Override
+  public BaseResult<UtilMessage> modifyPassword(UtilModel model) throws Exception {
+    BaseResult<UtilMessage> message = new BaseResult<UtilMessage>(new UtilMessage());
+    TbAdmin loginUser = model.getLoginAdmin();
+    TbAdmin tbUser = model.getTbAdmin();
+    if (!SystemConstants.isMd5(tbUser.getPassword())) {
+      message.setFailInfo("密码必须填写且是md5加密格式");
+      return message;
+    }
+    tbUser.setRole(loginUser.getRole());
+    tbUser.setAid(loginUser.getAid());
+    tbUser.setPassword(Md5.saltMd5(tbUser.getPassword(), loginUser.getSalt()));
+    int result = utilsDAO.modifyAdminPassword(tbUser);
+    if (result == 1) {
+      message.setSuccessInfo("修改密码成功");
+    } else {
+      message.setFailInfo("修改密码失败");
+    }
+    return message;
+  }
+
+  @Override
+  public BaseResult<UtilMessage> modifyNickname(UtilModel model) throws Exception {
+    BaseResult<UtilMessage> message = new BaseResult<UtilMessage>(new UtilMessage());
+    TbAdmin loginUser = model.getLoginAdmin();
+    TbAdmin tbUser = model.getTbAdmin();
+    if (StringUtils.isEmpty(tbUser.getNickname())) {
+      message.setFailInfo("昵称必须填写");
+      return message;
+    }
+    tbUser.setRole(loginUser.getRole());
+    tbUser.setAid(loginUser.getAid());
+    int result = utilsDAO.modifyAdminNickname(tbUser);
+    if (result == 1) {
+      message.setSuccessInfo("修改昵称成功");
+    } else {
+      message.setFailInfo("修改昵称失败");
+    }
+    return message;
+  }
 }

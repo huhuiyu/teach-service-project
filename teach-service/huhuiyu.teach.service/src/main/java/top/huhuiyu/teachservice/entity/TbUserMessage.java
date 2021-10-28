@@ -1,5 +1,7 @@
 package top.huhuiyu.teachservice.entity;
 
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
@@ -33,6 +35,18 @@ public class TbUserMessage extends BaseEntity {
   @ApiModelProperty(value = "留言用户信息")
   @ApiParam(hidden = true)
   private TbAdmin user;
+  @ApiModelProperty(value = "是否为当前用户的")
+  @ApiParam(hidden = true)
+  private boolean mine;
+  @ApiModelProperty(hidden = true)
+  @ApiParam(hidden = true)
+  private Integer loginAid;
+  @ApiModelProperty(value = "最新评论")
+  @ApiParam(hidden = true)
+  private List<TbUserMessageReply> topReplyList;
+  @ApiModelProperty(value = "评论总数")
+  @ApiParam(hidden = true)
+  private Integer replyCount;
 
   public TbUserMessage() {
   }
@@ -83,6 +97,38 @@ public class TbUserMessage extends BaseEntity {
 
   public void setUser(TbAdmin user) {
     this.user = user;
+  }
+
+  public boolean isMine() {
+    return mine;
+  }
+
+  public void setMine(boolean mine) {
+    this.mine = mine;
+  }
+
+  public Integer getLoginAid() {
+    return loginAid;
+  }
+
+  public void setLoginAid(Integer loginAid) {
+    this.loginAid = loginAid;
+  }
+
+  public List<TbUserMessageReply> getTopReplyList() {
+    return topReplyList;
+  }
+
+  public void setTopReplyList(List<TbUserMessageReply> topReplyList) {
+    this.topReplyList = topReplyList;
+  }
+
+  public Integer getReplyCount() {
+    return replyCount;
+  }
+
+  public void setReplyCount(Integer replyCount) {
+    this.replyCount = replyCount;
   }
 
 }

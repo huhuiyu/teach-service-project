@@ -6,7 +6,7 @@
 <mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageDAO">
     
   <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage">
-    select a.umid,a.title,a.info,a.lastupdate
+    select a.umid,a.title,a.info,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
     ,b.username 'user.username',b.nickname 'user.nickname'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -25,7 +25,7 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
-    select a.umid,a.title,a.info,a.lastupdate
+    select a.umid,a.title,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid 
