@@ -5,6 +5,7 @@ import tools from '../router/tools';
 import basic from '../router/basic';
 import user from '../router/user';
 import admin from '../router/admin';
+import portable from '../router/portable';
 
 Vue.use(VueRouter);
 
@@ -13,7 +14,8 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue'),
-  }, {
+  },
+  {
     path: '/error/404',
     name: 'Error404',
     component: () => import('../views/Error404.vue'),
@@ -24,6 +26,7 @@ const routes = [
   .concat(basic)
   .concat(user)
   .concat(admin)
+  .concat(portable)
   .concat([
     {
       path: '*',

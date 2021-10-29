@@ -1,8 +1,13 @@
 <template>
   <div>
-    <div class="page-title">
-      <span>{{ title }}</span>
-      <span @click="backToMain"><i class="iconfont">&#xe617;</i></span>
+    <div class="user-info-page-title">
+      <div>
+        <span>{{ title }}</span>
+        <span @click="backToMain"><i class="iconfont">&#xe617;</i></span>
+      </div>
+      <div>
+        <user-info></user-info>
+      </div>
     </div>
     <hr />
     <div class="flex-box-center" v-loading="loading">
@@ -34,7 +39,9 @@
 </template>
 
 <script>
+import UserInfo from '../../components/UserInfo.vue';
 export default {
+  components: { UserInfo },
   name: 'EmailMessage',
   data() {
     return {
@@ -47,7 +54,7 @@ export default {
   },
   methods: {
     backToMain() {
-      this.$router.push('/user/main');
+      this.$router.push('/portable/main');
     },
     sendMessage() {
       this.loading = true;

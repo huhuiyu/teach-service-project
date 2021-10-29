@@ -100,7 +100,7 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.add(model);
   }
 
-  @ApiOperation(value = "修改留言评论（操作无法撤回），需要用户登录")
+  @ApiOperation(value = "修改留言评论，需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要修改的评论编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbUserMessageReply.info", value = "评论内容", paramType = "query", required = true) })
   @PostMapping("/updateReply")
@@ -108,7 +108,7 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.update(model);
   }
 
-  @ApiOperation(value = "修改留言评论，需要用户登录")
+  @ApiOperation(value = "删除留言评论（操作无法撤回），需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要删除的评论编号", paramType = "query", required = true) })
   @PostMapping("/deleteReply")
   public BaseResult<TbUserMessageReplyMessage> deleteReply(TbUserMessageReplyModel model) throws Exception {

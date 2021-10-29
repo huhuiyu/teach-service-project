@@ -17,11 +17,6 @@ routers = routers.concat([
     component: () => import('../views/user/Reg.vue'),
   },
   {
-    path: '/user/emailmessage',
-    name: 'EmailMessage',
-    component: () => import('../views/user/EmailMessage.vue'),
-  },
-  {
     path: '/user/manage/emailmessage',
     name: 'ManageEmailMessage',
     component: () => import('../views/user/ManageEmailMessage.vue'),

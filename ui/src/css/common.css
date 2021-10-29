@@ -47,3 +47,25 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.user-info-page-title {
+  display: flex;
+  padding: 0.5rem 2rem;
+  align-items: flex-end;
+}
+
+.user-info-page-title > :first-child {
+  flex: 1;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.user-info-page-title > :first-child > :last-child {
+  display: inline-block;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+.user-info-page-title > :first-child > :last-child:hover {
+  color: #ff0000;
+}

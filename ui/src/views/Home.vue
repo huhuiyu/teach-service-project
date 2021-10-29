@@ -12,7 +12,11 @@
       </div>
     </div>
     <div class="links">
-      <el-link type="primary" v-for="p in pages" :key="p.path" @click="toPage(p.path)">{{ p.text }}</el-link>
+      <div v-for="p in pages" :key="p.path" @click="toPage(p.path)">
+        <div><i class="iconfont" v-html="p.icon"></i></div>
+        <div>{{ p.text }}</div>
+      </div>
+      <!-- <el-link type="primary" v-for="p in pages" :key="p.path" @click="toPage(p.path)">{{ p.text }}</el-link> -->
     </div>
   </div>
 </template>
@@ -24,12 +28,13 @@ export default {
       title: ' 黑暗骑士的教学演示网站',
       rate: 5,
       pages: [
-        { path: '/basic/link', text: '联动和图片校验码' },
-        { path: '/basic/dept', text: '部门信息管理' },
-        { path: '/basic/emp', text: '员工信息管理' },
-        { path: '/user/main', text: '用户首页' },
-        { path: '/tools/wschat', text: 'WebSocket简易聊天室' },
-        { path: '/admin/main', text: '管理员首页' },
+        { path: '/basic/link', text: '联动和图片校验码', icon: '&#xe616;' },
+        { path: '/basic/dept', text: '部门信息管理', icon: '&#xe61d;' },
+        { path: '/basic/emp', text: '员工信息管理', icon: '&#xe6be;' },
+        { path: '/portable/main', text: '门户网站', icon: '&#xe640;' },
+        { path: '/user/main', text: '用户首页', icon: '&#xe60a;' },
+        { path: '/tools/wschat', text: 'WebSocket简易聊天室', icon: '&#xe60e;' },
+        { path: '/admin/main', text: '管理员首页', icon: '&#xe62a;' },
       ],
     };
   },
@@ -85,10 +90,27 @@ export default {
 .links {
   width: 80vw;
   margin: 1rem auto;
-  background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.links .el-link {
-  margin-right: 0.5rem;
+.links > div {
+  margin: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.links > div .iconfont {
+  font-size: 5rem;
+}
+.links > div :last-child {
+  padding: 0.5rem;
+}
+.links > div :first-child:hover {
+  color: #ff0000;
+  cursor: pointer;
 }
 </style>
