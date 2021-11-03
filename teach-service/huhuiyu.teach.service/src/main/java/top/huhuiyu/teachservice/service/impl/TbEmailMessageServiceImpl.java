@@ -107,6 +107,7 @@ public class TbEmailMessageServiceImpl implements TbEmailMessageService {
       message.setFailInfo("开发key不存在");
       return message;
     }
+    tbEmail.setAid(tbAdmin.getAid());
     TbEmail check = tbEmailDAO.queryByEmail(tbEmail);
     if (check == null) {
       // 不存在就添加记录
@@ -121,7 +122,7 @@ public class TbEmailMessageServiceImpl implements TbEmailMessageService {
     int result = tbEmailMessageDAO.add(model.getTbEmailMessage());
     if (result == 1) {
       // 发送自动回复
-      mailService.sendHtmlMail(tbEmail.getEmail(), SystemConstants.EMAIL_MESSAGE_TITLE, String.format(SystemConstants.EMAIL_MESSAGE_CONTENT, check.getUsername()));
+      mailService.sendHtmlMail(tbEmail.getEmail(), SystemConstants.EMAIL_MESSAGE_TITLE, String.format(SystemConstants.EMAIL_MESSAGE_CONTENT, check.getUsername(), tbEmailMessage.getInfo()));
       message.setSuccessInfo("邮箱留言成功");
     } else {
       message.setFailInfo("邮箱留言失败");

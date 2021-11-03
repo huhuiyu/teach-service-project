@@ -108,7 +108,7 @@ public interface SystemConstants {
   /**
    * 邮箱留言自动回复模板内容
    */
-  String EMAIL_MESSAGE_CONTENT = "%s你好,感谢你的留言,客服稍后会联系你,请勿回复本邮件";
+  String EMAIL_MESSAGE_CONTENT = "%s你好,感谢你的留言,客服稍后会联系你,请勿回复本邮件<br><br>留言内容：%s";
 
   /**
    * 邮箱留言回复信息标题

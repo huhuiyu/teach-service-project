@@ -22,7 +22,7 @@
   
   <select id="queryByEmail" parameterType="TbEmail" resultType="TbEmail">
     select eid,aid,email,username,lastupdate from tb_email 
-    where email=#{email}
+    where email=#{email} and aid=#{aid}
   </select>
   
   <insert id="add" parameterType="TbEmail" useGeneratedKeys="true" keyProperty="eid">
