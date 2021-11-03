@@ -26,6 +26,22 @@
         </el-form-item>
       </el-form>
     </div>
+    <hr />
+    <div class="tc" v-loading="areaLoding">
+      <el-select v-model="aid1" value-key="aid" @change="queryArea(2, aid1)">
+        <el-option v-for="p in list1" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
+      </el-select>
+      <el-select v-model="aid2" value-key="aid" @change="queryArea(3, aid2)">
+        <el-option v-for="p in list2" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
+      </el-select>
+      <el-select v-model="aid3" value-key="aid" @change="queryArea(4, aid3)">
+        <el-option v-for="p in list3" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
+      </el-select>
+      <el-select v-model="aid4" value-key="aid">
+        <el-option v-for="p in list4" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
+      </el-select>
+      <div> {{ aid1 }}- {{ aid2 }}- {{ aid3 }}- {{ aid4 }} </div>
+    </div>
   </div>
 </template>
 
@@ -42,9 +58,38 @@ export default {
       imageCode: '',
       loading: false,
       imgLoading: false,
+      areaLoding: false,
+      list1: [],
+      list2: [],
+      list3: [],
+      list4: [],
+      aid1: 0,
+      aid2: 0,
+      aid3: 0,
+      aid4: 0,
     };
   },
   methods: {
+    queryArea(level, pid) {
+      let app = this;
+      this.areaLoding = true;
+      this.$ajax(
+        '/linkinfo/queryAreaByPid',
+        {
+          'tbAreaInfo.pid': pid,
+        },
+        function (data) {
+          let list = data.resultData.list;
+          this['list' + level] = list;
+          this['aid' + level] = list[0].aid;
+          if (level < 4) {
+            app.queryArea(level + 1, list[0].aid);
+          } else {
+            this.areaLoding = false;
+          }
+        }
+      );
+    },
     queryProvince() {
       this.loading = true;
       this.$ajax('/linkinfo/queryAllProvince', {}, function (data) {
@@ -102,8 +147,18 @@ export default {
     },
   },
   created() {
+    let app = this;
+
     this.queryProvince();
     this.queryImgCode();
+    app.queryArea(1, 0);
+    // app.queryArea(1, 0, function (pid1) {
+    //   app.queryArea(2, pid1, function (pid2) {
+    //     app.queryArea(3, pid2, function (pid3) {
+    //       app.queryArea(4, pid3);
+    //     });
+    //   });
+    // });
   },
 };
 </script>

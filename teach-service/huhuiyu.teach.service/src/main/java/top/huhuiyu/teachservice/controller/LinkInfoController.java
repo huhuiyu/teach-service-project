@@ -11,18 +11,21 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.aop.AnnoNoToken;
+import top.huhuiyu.teachservice.message.TbAreaInfoMessage;
 import top.huhuiyu.teachservice.message.TbCityMessage;
 import top.huhuiyu.teachservice.message.TbClassMessage;
 import top.huhuiyu.teachservice.message.TbDeptMessage;
 import top.huhuiyu.teachservice.message.TbEmployeeMessage;
 import top.huhuiyu.teachservice.message.TbProvinceMessage;
 import top.huhuiyu.teachservice.message.TbStudentMessage;
+import top.huhuiyu.teachservice.model.TbAreaInfoModel;
 import top.huhuiyu.teachservice.model.TbCityModel;
 import top.huhuiyu.teachservice.model.TbClassModel;
 import top.huhuiyu.teachservice.model.TbDeptModel;
 import top.huhuiyu.teachservice.model.TbEmployeeModel;
 import top.huhuiyu.teachservice.model.TbProvinceModel;
 import top.huhuiyu.teachservice.model.TbStudentModel;
+import top.huhuiyu.teachservice.service.TbAreaInfoService;
 import top.huhuiyu.teachservice.service.TbCityService;
 import top.huhuiyu.teachservice.service.TbClassService;
 import top.huhuiyu.teachservice.service.TbDeptService;
@@ -54,6 +57,16 @@ public class LinkInfoController {
   private TbClassService tbClassService;
   @Autowired
   private TbStudentService tbStudentService;
+  @Autowired
+  private TbAreaInfoService tbAreaInfoService;
+
+  @AnnoNoToken
+  @ApiOperation(value = "区域信息多级联动查询，不需要token信息")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAreaInfo.pid", value = "上级区域编号", paramType = "query", required = true) })
+  @PostMapping("/queryAreaByPid")
+  public BaseResult<TbAreaInfoMessage> queryAreaByPid(TbAreaInfoModel model) throws Exception {
+    return tbAreaInfoService.queryAllByPid(model);
+  }
 
   @AnnoNoToken
   @ApiOperation(value = "查询省份信息，不需要token信息")

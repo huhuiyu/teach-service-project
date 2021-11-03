@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbAreaInfoDAO">
+    
+  <select id="queryAll" resultType="TbAreaInfo">
+    select aiid,level,name,pid,aid,sort,label from tb_area_info
+  </select>
+  
+  <select id="queryAllByPid" parameterType="TbAreaInfo" resultType="TbAreaInfo">
+    select aiid,level,name,pid,aid,sort,label from tb_area_info
+    where pid=#{pid}
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_area_info
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbAreaInfo" resultType="TbAreaInfo">
+    select aiid,level,name,pid,aid,sort,label from tb_area_info 
+    where aiid=#{aiid}
+  </select>
+  
+  <insert id="add" parameterType="TbAreaInfo">
+    insert into tb_area_info(level,name,pid,aid,sort,label)
+    values(#{level},#{name},#{pid},#{aid},#{sort},#{label})
+  </insert>
+  
+  <update id="update" parameterType="TbAreaInfo">
+    update tb_area_info set level=#{level},name=#{name},pid=#{pid},aid=#{aid},sort=#{sort},label=#{label}
+    where aiid=#{aiid}
+  </update>
+  
+  <delete id="delete" parameterType="TbAreaInfo" >
+    delete from tb_area_info
+    where aiid=#{aiid}
+  </delete>
+  
+</mapper>
