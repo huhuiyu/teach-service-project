@@ -24,7 +24,7 @@
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
     where a.umid = #{umid}
-    order by a.umrid desc
+    order by a.umrid
   </select>
 
   <!--

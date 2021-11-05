@@ -3,6 +3,7 @@ package top.huhuiyu.teachservice.service;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
 import top.huhuiyu.teachservice.message.UtilMessage;
+import top.huhuiyu.teachservice.model.TbUserInfoModel;
 import top.huhuiyu.teachservice.model.UtilModel;
 
 /**
@@ -108,4 +109,15 @@ public interface UtilService {
    * @throws Exception 处理发生异常
    */
   BaseResult<UtilMessage> modifyNickname(UtilModel model) throws Exception;
+
+  /**
+   * 用户修改附加信息
+   * 
+   * @param model 请求参数
+   * 
+   * @return 用户修改附加信息的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  BaseResult<UtilMessage> modifyUserInfo(TbUserInfoModel model) throws Exception;
 }

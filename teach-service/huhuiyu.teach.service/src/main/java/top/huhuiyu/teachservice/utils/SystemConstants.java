@@ -116,6 +116,21 @@ public interface SystemConstants {
   String EMAIL_MESSAGE_REPLY_TITLE = "%s的留言回复";
 
   /**
+   * 性别保密
+   */
+  String SEX_NONE = "n";
+
+  /**
+   * 性别男
+   */
+  String SEX_MAN = "m";
+
+  /**
+   * 性别女
+   */
+  String SEX_FEMALE = "f";
+
+  /**
    * 邮箱校验
    * 
    * @param email 邮箱

@@ -160,8 +160,7 @@ select * from tb_email_message_reply;
 
 create table tb_user_info
 (
-  uiid integer auto_increment primary key not null comment '主键',
-  aid integer not null comment '所属用户',
+  aid integer auto_increment primary key not null comment '主键，所属用户',
   sex enum('m','f','n')  not null default 'n' comment '性别，m：男，f：女，n：保密',
   email varchar(255) not null default '' comment 'email',
   phone varchar(50) not null default '' comment '手机号码',

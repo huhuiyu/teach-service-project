@@ -42,8 +42,19 @@ public class TbAdmin extends BaseEntity {
   @ApiModelProperty(value = "信息最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
+  @ApiModelProperty(value = "用户附加信息")
+  @ApiParam(hidden = true)
+  private TbUserInfo userInfo;
 
   public TbAdmin() {
+  }
+
+  public TbUserInfo getUserInfo() {
+    return userInfo;
+  }
+
+  public void setUserInfo(TbUserInfo userInfo) {
+    this.userInfo = userInfo;
   }
 
   public java.lang.Integer getAid() {

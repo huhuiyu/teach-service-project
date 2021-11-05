@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbUserInfoDAO">
+    
+  <select id="queryAll" resultType="TbUserInfo">
+    select aid,sex,email,phone,qq,wechat,img,info,lastupdate from tb_user_info
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_user_info
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbUserInfo" resultType="TbUserInfo">
+    select aid,sex,email,phone,qq,wechat,img,info,lastupdate from tb_user_info 
+    where aid=#{aid}
+  </select>
+  
+  <insert id="add" parameterType="TbUserInfo">
+    insert into tb_user_info(aid,email,phone,qq,wechat,img,info)
+    values(#{aid},#{email},#{phone},#{qq},#{wechat},#{img},#{info})
+  </insert>
+  
+  <update id="update" parameterType="TbUserInfo">
+    update tb_user_info set sex=#{sex},email=#{email},phone=#{phone},qq=#{qq},wechat=#{wechat},img=#{img},info=#{info}
+    where aid=#{aid}
+  </update>
+  
+  <delete id="delete" parameterType="TbUserInfo" >
+    delete from tb_user_info
+    where aid=#{aid}
+  </delete>
+  
+</mapper>

@@ -34,13 +34,14 @@
       <el-select v-model="aid2" value-key="aid" @change="queryArea(3, aid2)">
         <el-option v-for="p in list2" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
       </el-select>
-      <el-select v-model="aid3" value-key="aid" @change="queryArea(4, aid3)">
+      <el-select v-if="maxLevel >= 3" v-model="aid3" value-key="aid" @change="queryArea(4, aid3)">
         <el-option v-for="p in list3" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
       </el-select>
-      <el-select v-model="aid4" value-key="aid">
+      <el-select v-if="maxLevel >= 4" v-model="aid4" value-key="aid">
         <el-option v-for="p in list4" :key="p.aiid" :value="p.aid" :label="p.name"></el-option>
       </el-select>
-      <div> {{ aid1 }}- {{ aid2 }}- {{ aid3 }}- {{ aid4 }} </div>
+      <div> ({{ aid1 }}- {{ aid2 }}- {{ aid3 }}- {{ aid4 }})-({{ aid }}) </div>
+      <!-- <el-button @click="selectArea">确定</el-button> -->
     </div>
   </div>
 </template>
@@ -67,10 +68,20 @@ export default {
       aid2: 0,
       aid3: 0,
       aid4: 0,
+      maxLevel: 1,
     };
   },
+  computed: {
+    aid() {
+      return this['aid' + this.maxLevel];
+    },
+  },
   methods: {
+    selectArea() {
+      this.$logger.debug('选择的区域编号', this.aid);
+    },
     queryArea(level, pid) {
+      this.$logger.debug('queryArea', level, pid);
       let app = this;
       this.areaLoding = true;
       this.$ajax(
@@ -80,13 +91,15 @@ export default {
         },
         function (data) {
           let list = data.resultData.list;
+          if (list.length <= 0) {
+            this.maxLevel = level - 1;
+            this.$logger.debug('数据层级：', this.maxLevel);
+            this.areaLoding = false;
+            return;
+          }
           this['list' + level] = list;
           this['aid' + level] = list[0].aid;
-          if (level < 4) {
-            app.queryArea(level + 1, list[0].aid);
-          } else {
-            this.areaLoding = false;
-          }
+          app.queryArea(level + 1, list[0].aid);
         }
       );
     },

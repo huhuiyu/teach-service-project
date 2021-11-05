@@ -191,7 +191,7 @@ tools.openFile = function(cb) {
 
 // 通用表单正则校验
 tools.regValidator = function(rule, value, callback, reg, message) {
-  console.log(rule);
+  logger.debug(rule);
   if (reg.test(value)) {
     callback();
   } else {

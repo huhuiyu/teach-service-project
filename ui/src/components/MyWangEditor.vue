@@ -26,7 +26,7 @@ export default {
   },
   watch: {
     content(nv, ov) {
-      console.log(nv, ov);
+      this.$logger.debug(nv, ov);
       this.editor.txt.html(this.content);
     },
   },

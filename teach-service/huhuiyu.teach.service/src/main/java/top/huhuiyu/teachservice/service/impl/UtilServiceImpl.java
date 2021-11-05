@@ -13,13 +13,16 @@ import top.huhuiyu.api.utils.ImageCode;
 import top.huhuiyu.api.utils.StringUtils;
 import top.huhuiyu.teachservice.dao.TbErrorInfoDAO;
 import top.huhuiyu.teachservice.dao.TbLogDAO;
+import top.huhuiyu.teachservice.dao.TbUserInfoDAO;
 import top.huhuiyu.teachservice.dao.UtilsDAO;
 import top.huhuiyu.teachservice.entity.TbAdmin;
 import top.huhuiyu.teachservice.entity.TbConfig;
 import top.huhuiyu.teachservice.entity.TbErrorInfo;
 import top.huhuiyu.teachservice.entity.TbLog;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
+import top.huhuiyu.teachservice.entity.TbUserInfo;
 import top.huhuiyu.teachservice.message.UtilMessage;
+import top.huhuiyu.teachservice.model.TbUserInfoModel;
 import top.huhuiyu.teachservice.model.UtilModel;
 import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.utils.IpUtils;
@@ -39,6 +42,8 @@ public class UtilServiceImpl implements UtilService {
   private TbLogDAO tbLogDAO;
   @Autowired
   private TbErrorInfoDAO tbErrorInfoDAO;
+  @Autowired
+  private TbUserInfoDAO tbUserInfoDAO;
 
   /**
    * 处理admin的敏感信息
@@ -243,13 +248,18 @@ public class UtilServiceImpl implements UtilService {
     TbTokenInfo tokenInfo = model.makeTbTokenInfo();
     tokenInfo.setInfoKey(SystemConstants.LOGIN_ADMIN);
     TbAdmin user = utilsDAO.queryAdminByToken(tokenInfo);
-    processAdminInfo(user);
+
     BaseResult<UtilMessage> result = new BaseResult<>(new UtilMessage());
     if (user == null) {
       result.setFailInfo(SystemConstants.NEED_LOGIN, SystemConstants.NEED_ROLE_LOGIN);
     } else {
+      TbUserInfo tbUserInfo = new TbUserInfo();
+      tbUserInfo.setAid(user.getAid());
+      user.setUserInfo(getTbUserInfo(tbUserInfo));
       result.setSuccessInfo("");
+      processAdminInfo(user);
       result.getResultData().setLoginInfo(user);
+
     }
     return result;
   }
@@ -308,5 +318,56 @@ public class UtilServiceImpl implements UtilService {
       message.setFailInfo("修改昵称失败");
     }
     return message;
+  }
+
+  @Override
+  public BaseResult<UtilMessage> modifyUserInfo(TbUserInfoModel model) throws Exception {
+    BaseResult<UtilMessage> message = new BaseResult<UtilMessage>(new UtilMessage());
+    TbAdmin loginUser = model.getLoginAdmin();
+    TbUserInfo tbUser = model.getTbUserInfo();
+    if (!StringUtils.isEmpty(tbUser.getEmail()) && !SystemConstants.isEmail(tbUser.getEmail())) {
+      message.setFailInfo("请填写正确的邮箱地址");
+      return message;
+    }
+    if (!StringUtils.isEmpty(tbUser.getPhone()) && !SystemConstants.isPhone(tbUser.getPhone())) {
+      message.setFailInfo("请填写正确的手机号码");
+      return message;
+    }
+    tbUser.setAid(loginUser.getAid());
+    int result = tbUserInfoDAO.update(tbUser);
+    if (result == 1) {
+      message.setSuccessInfo("修改附加信息成功");
+    } else {
+      message.setFailInfo("修改附加信息失败");
+    }
+    return message;
+  }
+
+  /**
+   * 获取用户附加信息
+   * 
+   * @param tbAdmin 用户信息
+   * 
+   * @return 用户附加信息
+   * 
+   * @throws Exception 处理发生
+   */
+  private TbUserInfo getTbUserInfo(TbUserInfo tbUserInfo) throws Exception {
+    TbUserInfo userInfo = tbUserInfoDAO.queryByKey(tbUserInfo);
+    if (userInfo == null) {
+      // 添加一个空记录
+      tbUserInfo.setSex(SystemConstants.SEX_NONE);
+      tbUserInfo.setEmail("");
+      tbUserInfo.setImg("");
+      tbUserInfo.setInfo("");
+      tbUserInfo.setPhone("");
+      tbUserInfo.setQq("");
+      tbUserInfo.setWechat("");
+      tbUserInfoDAO.add(tbUserInfo);
+      tbUserInfo.setAid(null);
+      return tbUserInfo;
+    }
+    userInfo.setAid(null);
+    return userInfo;
   }
 }

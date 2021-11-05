@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.message.UtilMessage;
+import top.huhuiyu.teachservice.model.TbUserInfoModel;
 import top.huhuiyu.teachservice.model.UtilModel;
 import top.huhuiyu.teachservice.service.UserService;
 import top.huhuiyu.teachservice.service.UtilService;
@@ -73,5 +74,15 @@ public class UserController {
   @PostMapping("/modifyNickname")
   public BaseResult<UtilMessage> modifyNickname(UtilModel model) throws Exception {
     return utilService.modifyNickname(model);
+  }
+
+  @ApiOperation(value = "修改用户附加信息，需要用户登录")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserInfo.info", value = "简介", paramType = "query"), @ApiImplicitParam(name = "tbUserInfo.img", value = "用户头像url地址", paramType = "query"),
+      @ApiImplicitParam(name = "tbUserInfo.wechat", value = "微信", paramType = "query"), @ApiImplicitParam(name = "tbUserInfo.qq", value = "qq", paramType = "query"),
+      @ApiImplicitParam(name = "tbUserInfo.phone", value = "手机号", paramType = "query"), @ApiImplicitParam(name = "tbUserInfo.sex", value = "性别，m：男，f：女，n：保密", paramType = "query"),
+      @ApiImplicitParam(name = "tbUserInfo.email", value = "email", paramType = "query") })
+  @PostMapping("/modifyUserInfo")
+  public BaseResult<UtilMessage> modifyUserInfo(TbUserInfoModel model) throws Exception {
+    return utilService.modifyUserInfo(model);
   }
 }
