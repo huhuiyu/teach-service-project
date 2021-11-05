@@ -3,521 +3,539 @@ use db_teach_service;
 /* 部门信息 */
 truncate table tb_dept;
 
-insert into tb_dept(dept_name,dept_info) values('人事部','hr，管理人员的部门');
-insert into tb_dept(dept_name,dept_info) values('开发部','包含神秘力量的部门');
-insert into tb_dept(dept_name,dept_info) values('测试部','限制包含神秘力量部门的部门');
+insert into tb_dept(dept_name,dept_info) values
+('人事部','hr，管理人员的部门')
+,('开发部','包含神秘力量的部门')
+,('测试部','限制包含神秘力量部门的部门');
 
 select * from tb_dept;
 
 /* 员工信息 */
 truncate table tb_employee;
 
-insert into tb_employee(dept_id,employee_name,phone) values(1,'黑暗骑士','15973637383');
-insert into tb_employee(dept_id,employee_name,phone) values(2,'DarkKnight','17363622707');
-insert into tb_employee(dept_id,employee_name,phone) values(2,'huhuiyu','15080604020');
-insert into tb_employee(dept_id,employee_name,phone) values(3,'WonderWoman','18888888888');
+insert into tb_employee(dept_id,employee_name,phone) values
+(1,'黑暗骑士','15973637383')
+,(2,'DarkKnight','17363622707')
+,(2,'huhuiyu','15080604020')
+,(3,'user','17777777777')
+,(2,'员工','13333333333')
+,(2,'蜘蛛侠','13555555555')
+,(3,'SpiderWoman','15888888888')
+,(1,'超人','13666666666')
+,(2,'罗夏','15999999999')
+,(3,'x教授','15024681357');
 
 select * from tb_employee;
 
 /* 班级信息 */
 truncate table tb_class;
 
-insert into tb_class(cname,cinfo) values('1501','计算机15级一班');
-insert into tb_class(cname,cinfo) values('1502','计算机15级二班');
+insert into tb_class(cname,cinfo) values
+('1901','计算机19级一班')
+,('1902','计算机19级二班');
 
 select * from tb_class;
 
 /* 学生信息 */
 truncate table tb_student;
 
-insert into tb_student(cid,sname,phone,address,wechat,qq) values(1,'张三丰','13412342234','湖南常德','13412342235','134123422341');
-insert into tb_student(cid,sname,phone,address,wechat,qq) values(1,'李易峰','13513572357','湖北武汉','13513572356','135135723572');
-insert into tb_student(cid,sname,phone,address,wechat,qq) values(2,'张三','13412342234','湖南张家界','13412342235','134123422343');
-insert into tb_student(cid,sname,phone,address,wechat,qq) values(2,'肖战','18711871287','湖南常德','18711871286','187118712874');
-insert into tb_student(cid,sname,phone,address,wechat,qq) values(2,'李四','18856786678','湖北宜昌','18856786679','188567866785');
+insert into tb_student(cid,sname,phone,address,wechat,qq) values
+(1,'张三丰','13412342234','湖南常德','13412342235','134123422341')
+,(1,'丁一','13513572357','湖北武汉','13513572356','135135723572')
+,(2,'张三','13412342234','湖南张家界','13412342235','134123422343')
+,(2,'唐冲','18711871287','湖南常德','18711871286','187118712874')
+,(2,'李四','18856786678','湖北宜昌','18856786679','188567866785')
+,(1,'吕佳龙','17701235689','湖南常德','17701235689','17701235689')
+,(1,'李佳','13513775357','湖北武汉','13513775357','13513775357')
+,(2,'唐彪','13912348834','湖南张家界','13912348834','13912348834')
+,(2,'蔡邕林','18818871287','湖南常德','18818871287','18818871287')
+,(2,'方妮','18856786600','湖北宜昌','18856786600','18856786600');
 
 select * from tb_student;
 
 /* 省份和城市信息 */
 truncate table tb_province;
 
-insert into tb_province(province) values('北京');
-insert into tb_province(province) values('天津');
-insert into tb_province(province) values('上海');
-insert into tb_province(province) values('重庆');
-insert into tb_province(province) values('河北');
-insert into tb_province(province) values('山西');
-insert into tb_province(province) values('辽宁');
-insert into tb_province(province) values('吉林');
-insert into tb_province(province) values('黑龙江');
-insert into tb_province(province) values('江苏');
-insert into tb_province(province) values('浙江');
-insert into tb_province(province) values('安徽');
-insert into tb_province(province) values('福建');
-insert into tb_province(province) values('江西');
-insert into tb_province(province) values('山东');
-insert into tb_province(province) values('河南');
-insert into tb_province(province) values('湖北');
-insert into tb_province(province) values('湖南');
-insert into tb_province(province) values('广东');
-insert into tb_province(province) values('海南');
-insert into tb_province(province) values('四川');
-insert into tb_province(province) values('贵州');
-insert into tb_province(province) values('云南');
-insert into tb_province(province) values('陕西');
-insert into tb_province(province) values('甘肃');
-insert into tb_province(province) values('青海');
-insert into tb_province(province) values('内蒙古');
-insert into tb_province(province) values('广西');
-insert into tb_province(province) values('西藏');
-insert into tb_province(province) values('宁夏');
-insert into tb_province(province) values('新疆维吾尔自治区');
-insert into tb_province(province) values('香港');
-insert into tb_province(province) values('澳门');
-insert into tb_province(province) values('台湾');
+insert into tb_province(province) values
+('北京'),
+('天津'),
+('上海'),
+('重庆'),
+('河北'),
+('山西'),
+('辽宁'),
+('吉林'),
+('黑龙江'),
+('江苏'),
+('浙江'),
+('安徽'),
+('福建'),
+('江西'),
+('山东'),
+('河南'),
+('湖北'),
+('湖南'),
+('广东'),
+('海南'),
+('四川'),
+('贵州'),
+('云南'),
+('陕西'),
+('甘肃'),
+('青海'),
+('内蒙古'),
+('广西'),
+('西藏'),
+('宁夏'),
+('新疆维吾尔自治区'),
+('香港'),
+('澳门'),
+('台湾');
 
 select * from tb_province;
 
 truncate table tb_city;
 
-insert into tb_city(pid,city) values(1,'东城区');
-insert into tb_city(pid,city) values(1,'西城区');
-insert into tb_city(pid,city) values(1,'崇文区');
-insert into tb_city(pid,city) values(1,'宣武区');
-insert into tb_city(pid,city) values(1,'朝阳区');
-insert into tb_city(pid,city) values(1,'海淀区');
-insert into tb_city(pid,city) values(1,'丰台区');
-insert into tb_city(pid,city) values(1,'石景山区');
-insert into tb_city(pid,city) values(1,'房山区');
-insert into tb_city(pid,city) values(1,'通州区');
-insert into tb_city(pid,city) values(1,'顺义区');
-insert into tb_city(pid,city) values(1,'昌平区');
-insert into tb_city(pid,city) values(1,'大兴区');
-insert into tb_city(pid,city) values(1,'怀柔区');
-insert into tb_city(pid,city) values(1,'平谷区');
-insert into tb_city(pid,city) values(1,'门头沟区');
-insert into tb_city(pid,city) values(1,'密云县');
-insert into tb_city(pid,city) values(1,'延庆县');
-insert into tb_city(pid,city) values(2,'和平区');
-insert into tb_city(pid,city) values(2,'河东区');
-insert into tb_city(pid,city) values(2,'河西区');
-insert into tb_city(pid,city) values(2,'南开区');
-insert into tb_city(pid,city) values(2,'河北区');
-insert into tb_city(pid,city) values(2,'红桥区');
-insert into tb_city(pid,city) values(2,'东丽区');
-insert into tb_city(pid,city) values(2,'西青区');
-insert into tb_city(pid,city) values(2,'北辰区');
-insert into tb_city(pid,city) values(2,'津南区');
-insert into tb_city(pid,city) values(2,'武清区');
-insert into tb_city(pid,city) values(2,'宝坻区');
-insert into tb_city(pid,city) values(2,'滨海新区');
-insert into tb_city(pid,city) values(2,'静海县');
-insert into tb_city(pid,city) values(2,'宁河县');
-insert into tb_city(pid,city) values(2,'蓟县');
-insert into tb_city(pid,city) values(3,'黄浦区');
-insert into tb_city(pid,city) values(3,'卢湾区');
-insert into tb_city(pid,city) values(3,'徐汇区');
-insert into tb_city(pid,city) values(3,'长宁区');
-insert into tb_city(pid,city) values(3,'静安区');
-insert into tb_city(pid,city) values(3,'普陀区');
-insert into tb_city(pid,city) values(3,'闸北区');
-insert into tb_city(pid,city) values(3,'虹口区');
-insert into tb_city(pid,city) values(3,'杨浦区');
-insert into tb_city(pid,city) values(3,'闵行区');
-insert into tb_city(pid,city) values(3,'宝山区');
-insert into tb_city(pid,city) values(3,'嘉定区');
-insert into tb_city(pid,city) values(3,'浦东新区');
-insert into tb_city(pid,city) values(3,'金山区');
-insert into tb_city(pid,city) values(3,'松江区');
-insert into tb_city(pid,city) values(3,'青浦区');
-insert into tb_city(pid,city) values(3,'奉贤区');
-insert into tb_city(pid,city) values(3,'崇明县');
-insert into tb_city(pid,city) values(4,'渝中区');
-insert into tb_city(pid,city) values(4,'大渡口区');
-insert into tb_city(pid,city) values(4,'江北区');
-insert into tb_city(pid,city) values(4,'南岸区');
-insert into tb_city(pid,city) values(4,'北碚区');
-insert into tb_city(pid,city) values(4,'渝北区');
-insert into tb_city(pid,city) values(4,'巴南区');
-insert into tb_city(pid,city) values(4,'长寿区');
-insert into tb_city(pid,city) values(4,'双桥区');
-insert into tb_city(pid,city) values(4,'沙坪坝区');
-insert into tb_city(pid,city) values(4,'万盛区');
-insert into tb_city(pid,city) values(4,'万州区');
-insert into tb_city(pid,city) values(4,'涪陵区');
-insert into tb_city(pid,city) values(4,'黔江区');
-insert into tb_city(pid,city) values(4,'永川区');
-insert into tb_city(pid,city) values(4,'合川区');
-insert into tb_city(pid,city) values(4,'江津区');
-insert into tb_city(pid,city) values(4,'九龙坡区');
-insert into tb_city(pid,city) values(4,'南川区');
-insert into tb_city(pid,city) values(4,'綦江县');
-insert into tb_city(pid,city) values(4,'潼南县');
-insert into tb_city(pid,city) values(4,'荣昌县');
-insert into tb_city(pid,city) values(4,'璧山县');
-insert into tb_city(pid,city) values(4,'大足县');
-insert into tb_city(pid,city) values(4,'铜梁县');
-insert into tb_city(pid,city) values(4,'梁平县');
-insert into tb_city(pid,city) values(4,'开县');
-insert into tb_city(pid,city) values(4,'忠县');
-insert into tb_city(pid,city) values(4,'城口县');
-insert into tb_city(pid,city) values(4,'垫江县');
-insert into tb_city(pid,city) values(4,'武隆县');
-insert into tb_city(pid,city) values(4,'丰都县');
-insert into tb_city(pid,city) values(4,'奉节县');
-insert into tb_city(pid,city) values(4,'云阳县');
-insert into tb_city(pid,city) values(4,'巫溪县');
-insert into tb_city(pid,city) values(4,'巫山县');
-insert into tb_city(pid,city) values(4,'石柱土家族自治县');
-insert into tb_city(pid,city) values(4,'秀山土家族苗族自治县');
-insert into tb_city(pid,city) values(4,'酉阳土家族苗族自治县');
-insert into tb_city(pid,city) values(4,'彭水苗族土家族自治县');
-insert into tb_city(pid,city) values(5,'石家庄');
-insert into tb_city(pid,city) values(5,'唐山');
-insert into tb_city(pid,city) values(5,'秦皇岛');
-insert into tb_city(pid,city) values(5,'邯郸');
-insert into tb_city(pid,city) values(5,'邢台');
-insert into tb_city(pid,city) values(5,'保定');
-insert into tb_city(pid,city) values(5,'张家口');
-insert into tb_city(pid,city) values(5,'承德');
-insert into tb_city(pid,city) values(5,'沧州');
-insert into tb_city(pid,city) values(5,'廊坊');
-insert into tb_city(pid,city) values(5,'衡水');
-insert into tb_city(pid,city) values(6,'太原');
-insert into tb_city(pid,city) values(6,'大同');
-insert into tb_city(pid,city) values(6,'阳泉');
-insert into tb_city(pid,city) values(6,'长治');
-insert into tb_city(pid,city) values(6,'晋城');
-insert into tb_city(pid,city) values(6,'朔州');
-insert into tb_city(pid,city) values(6,'晋中');
-insert into tb_city(pid,city) values(6,'运城');
-insert into tb_city(pid,city) values(6,'忻州');
-insert into tb_city(pid,city) values(6,'临汾');
-insert into tb_city(pid,city) values(6,'吕梁');
-insert into tb_city(pid,city) values(7,'沈阳');
-insert into tb_city(pid,city) values(7,'大连');
-insert into tb_city(pid,city) values(7,'鞍山');
-insert into tb_city(pid,city) values(7,'抚顺');
-insert into tb_city(pid,city) values(7,'本溪');
-insert into tb_city(pid,city) values(7,'丹东');
-insert into tb_city(pid,city) values(7,'锦州');
-insert into tb_city(pid,city) values(7,'营口');
-insert into tb_city(pid,city) values(7,'阜新');
-insert into tb_city(pid,city) values(7,'辽阳');
-insert into tb_city(pid,city) values(7,'盘锦');
-insert into tb_city(pid,city) values(7,'铁岭');
-insert into tb_city(pid,city) values(7,'朝阳');
-insert into tb_city(pid,city) values(7,'葫芦岛');
-insert into tb_city(pid,city) values(8,'长春');
-insert into tb_city(pid,city) values(8,'吉林');
-insert into tb_city(pid,city) values(8,'四平');
-insert into tb_city(pid,city) values(8,'辽源');
-insert into tb_city(pid,city) values(8,'通化');
-insert into tb_city(pid,city) values(8,'白山');
-insert into tb_city(pid,city) values(8,'松原');
-insert into tb_city(pid,city) values(8,'白城');
-insert into tb_city(pid,city) values(8,'延边朝鲜族自治州');
-insert into tb_city(pid,city) values(9,'哈尔滨');
-insert into tb_city(pid,city) values(9,'齐齐哈尔');
-insert into tb_city(pid,city) values(9,'鹤岗');
-insert into tb_city(pid,city) values(9,'双鸭山');
-insert into tb_city(pid,city) values(9,'鸡西');
-insert into tb_city(pid,city) values(9,'大庆');
-insert into tb_city(pid,city) values(9,'伊春');
-insert into tb_city(pid,city) values(9,'牡丹江');
-insert into tb_city(pid,city) values(9,'佳木斯');
-insert into tb_city(pid,city) values(9,'七台河');
-insert into tb_city(pid,city) values(9,'黑河');
-insert into tb_city(pid,city) values(9,'绥化');
-insert into tb_city(pid,city) values(9,'大兴安岭');
-insert into tb_city(pid,city) values(10,'南京');
-insert into tb_city(pid,city) values(10,'苏州');
-insert into tb_city(pid,city) values(10,'无锡');
-insert into tb_city(pid,city) values(10,'常州');
-insert into tb_city(pid,city) values(10,'镇江');
-insert into tb_city(pid,city) values(10,'南通');
-insert into tb_city(pid,city) values(10,'泰州');
-insert into tb_city(pid,city) values(10,'扬州');
-insert into tb_city(pid,city) values(10,'盐城');
-insert into tb_city(pid,city) values(10,'连云港');
-insert into tb_city(pid,city) values(10,'徐州');
-insert into tb_city(pid,city) values(10,'淮安');
-insert into tb_city(pid,city) values(10,'宿迁');
-insert into tb_city(pid,city) values(11,'杭州');
-insert into tb_city(pid,city) values(11,'宁波');
-insert into tb_city(pid,city) values(11,'温州');
-insert into tb_city(pid,city) values(11,'嘉兴');
-insert into tb_city(pid,city) values(11,'湖州');
-insert into tb_city(pid,city) values(11,'绍兴');
-insert into tb_city(pid,city) values(11,'金华');
-insert into tb_city(pid,city) values(11,'衢州');
-insert into tb_city(pid,city) values(11,'舟山');
-insert into tb_city(pid,city) values(11,'台州');
-insert into tb_city(pid,city) values(11,'丽水');
-insert into tb_city(pid,city) values(12,'合肥');
-insert into tb_city(pid,city) values(12,'芜湖');
-insert into tb_city(pid,city) values(12,'蚌埠');
-insert into tb_city(pid,city) values(12,'淮南');
-insert into tb_city(pid,city) values(12,'马鞍山');
-insert into tb_city(pid,city) values(12,'淮北');
-insert into tb_city(pid,city) values(12,'铜陵');
-insert into tb_city(pid,city) values(12,'安庆');
-insert into tb_city(pid,city) values(12,'黄山');
-insert into tb_city(pid,city) values(12,'滁州');
-insert into tb_city(pid,city) values(12,'阜阳');
-insert into tb_city(pid,city) values(12,'宿州');
-insert into tb_city(pid,city) values(12,'巢湖');
-insert into tb_city(pid,city) values(12,'六安');
-insert into tb_city(pid,city) values(12,'亳州');
-insert into tb_city(pid,city) values(12,'池州');
-insert into tb_city(pid,city) values(12,'宣城');
-insert into tb_city(pid,city) values(13,'福州');
-insert into tb_city(pid,city) values(13,'厦门');
-insert into tb_city(pid,city) values(13,'莆田');
-insert into tb_city(pid,city) values(13,'三明');
-insert into tb_city(pid,city) values(13,'泉州');
-insert into tb_city(pid,city) values(13,'漳州');
-insert into tb_city(pid,city) values(13,'南平');
-insert into tb_city(pid,city) values(13,'龙岩');
-insert into tb_city(pid,city) values(13,'宁德');
-insert into tb_city(pid,city) values(14,'南昌');
-insert into tb_city(pid,city) values(14,'景德镇');
-insert into tb_city(pid,city) values(14,'萍乡');
-insert into tb_city(pid,city) values(14,'九江');
-insert into tb_city(pid,city) values(14,'新余');
-insert into tb_city(pid,city) values(14,'鹰潭');
-insert into tb_city(pid,city) values(14,'赣州');
-insert into tb_city(pid,city) values(14,'吉安');
-insert into tb_city(pid,city) values(14,'宜春');
-insert into tb_city(pid,city) values(14,'抚州');
-insert into tb_city(pid,city) values(14,'上饶');
-insert into tb_city(pid,city) values(15,'济南');
-insert into tb_city(pid,city) values(15,'青岛');
-insert into tb_city(pid,city) values(15,'淄博');
-insert into tb_city(pid,city) values(15,'枣庄');
-insert into tb_city(pid,city) values(15,'东营');
-insert into tb_city(pid,city) values(15,'烟台');
-insert into tb_city(pid,city) values(15,'潍坊');
-insert into tb_city(pid,city) values(15,'济宁');
-insert into tb_city(pid,city) values(15,'泰安');
-insert into tb_city(pid,city) values(15,'威海');
-insert into tb_city(pid,city) values(15,'日照');
-insert into tb_city(pid,city) values(15,'莱芜');
-insert into tb_city(pid,city) values(15,'临沂');
-insert into tb_city(pid,city) values(15,'德州');
-insert into tb_city(pid,city) values(15,'聊城');
-insert into tb_city(pid,city) values(15,'滨州');
-insert into tb_city(pid,city) values(15,'菏泽');
-insert into tb_city(pid,city) values(16,'郑州');
-insert into tb_city(pid,city) values(16,'开封');
-insert into tb_city(pid,city) values(16,'洛阳');
-insert into tb_city(pid,city) values(16,'平顶山');
-insert into tb_city(pid,city) values(16,'安阳');
-insert into tb_city(pid,city) values(16,'鹤壁');
-insert into tb_city(pid,city) values(16,'新乡');
-insert into tb_city(pid,city) values(16,'焦作');
-insert into tb_city(pid,city) values(16,'濮阳');
-insert into tb_city(pid,city) values(16,'许昌');
-insert into tb_city(pid,city) values(16,'漯河');
-insert into tb_city(pid,city) values(16,'三门峡');
-insert into tb_city(pid,city) values(16,'南阳');
-insert into tb_city(pid,city) values(16,'商丘');
-insert into tb_city(pid,city) values(16,'信阳');
-insert into tb_city(pid,city) values(16,'周口');
-insert into tb_city(pid,city) values(16,'驻马店');
-insert into tb_city(pid,city) values(17,'武汉');
-insert into tb_city(pid,city) values(17,'黄石');
-insert into tb_city(pid,city) values(17,'十堰');
-insert into tb_city(pid,city) values(17,'荆州');
-insert into tb_city(pid,city) values(17,'宜昌');
-insert into tb_city(pid,city) values(17,'襄樊');
-insert into tb_city(pid,city) values(17,'鄂州');
-insert into tb_city(pid,city) values(17,'荆门');
-insert into tb_city(pid,city) values(17,'孝感');
-insert into tb_city(pid,city) values(17,'黄冈');
-insert into tb_city(pid,city) values(17,'咸宁');
-insert into tb_city(pid,city) values(17,'随州');
-insert into tb_city(pid,city) values(17,'恩施');
-insert into tb_city(pid,city) values(18,'长沙');
-insert into tb_city(pid,city) values(18,'株洲');
-insert into tb_city(pid,city) values(18,'湘潭');
-insert into tb_city(pid,city) values(18,'衡阳');
-insert into tb_city(pid,city) values(18,'邵阳');
-insert into tb_city(pid,city) values(18,'岳阳');
-insert into tb_city(pid,city) values(18,'常德');
-insert into tb_city(pid,city) values(18,'张家界');
-insert into tb_city(pid,city) values(18,'益阳');
-insert into tb_city(pid,city) values(18,'郴州');
-insert into tb_city(pid,city) values(18,'永州');
-insert into tb_city(pid,city) values(18,'怀化');
-insert into tb_city(pid,city) values(18,'娄底');
-insert into tb_city(pid,city) values(18,'湘西');
-insert into tb_city(pid,city) values(19,'广州');
-insert into tb_city(pid,city) values(19,'深圳');
-insert into tb_city(pid,city) values(19,'珠海');
-insert into tb_city(pid,city) values(19,'汕头');
-insert into tb_city(pid,city) values(19,'韶关');
-insert into tb_city(pid,city) values(19,'佛山');
-insert into tb_city(pid,city) values(19,'江门');
-insert into tb_city(pid,city) values(19,'湛江');
-insert into tb_city(pid,city) values(19,'茂名');
-insert into tb_city(pid,city) values(19,'肇庆');
-insert into tb_city(pid,city) values(19,'惠州');
-insert into tb_city(pid,city) values(19,'梅州');
-insert into tb_city(pid,city) values(19,'汕尾');
-insert into tb_city(pid,city) values(19,'河源');
-insert into tb_city(pid,city) values(19,'阳江');
-insert into tb_city(pid,city) values(19,'清远');
-insert into tb_city(pid,city) values(19,'东莞');
-insert into tb_city(pid,city) values(19,'中山');
-insert into tb_city(pid,city) values(19,'潮州');
-insert into tb_city(pid,city) values(19,'揭阳');
-insert into tb_city(pid,city) values(19,'云浮');
-insert into tb_city(pid,city) values(20,'海口');
-insert into tb_city(pid,city) values(20,'三亚');
-insert into tb_city(pid,city) values(21,'成都');
-insert into tb_city(pid,city) values(21,'自贡');
-insert into tb_city(pid,city) values(21,'攀枝花');
-insert into tb_city(pid,city) values(21,'泸州');
-insert into tb_city(pid,city) values(21,'德阳');
-insert into tb_city(pid,city) values(21,'绵阳');
-insert into tb_city(pid,city) values(21,'广元');
-insert into tb_city(pid,city) values(21,'遂宁');
-insert into tb_city(pid,city) values(21,'内江');
-insert into tb_city(pid,city) values(21,'乐山');
-insert into tb_city(pid,city) values(21,'南充');
-insert into tb_city(pid,city) values(21,'眉山');
-insert into tb_city(pid,city) values(21,'宜宾');
-insert into tb_city(pid,city) values(21,'广安');
-insert into tb_city(pid,city) values(21,'达州');
-insert into tb_city(pid,city) values(21,'雅安');
-insert into tb_city(pid,city) values(21,'巴中');
-insert into tb_city(pid,city) values(21,'资阳');
-insert into tb_city(pid,city) values(21,'阿坝');
-insert into tb_city(pid,city) values(21,'甘孜');
-insert into tb_city(pid,city) values(21,'凉山');
-insert into tb_city(pid,city) values(22,'贵阳');
-insert into tb_city(pid,city) values(22,'六盘水');
-insert into tb_city(pid,city) values(22,'遵义');
-insert into tb_city(pid,city) values(22,'安顺');
-insert into tb_city(pid,city) values(22,'铜仁');
-insert into tb_city(pid,city) values(22,'毕节');
-insert into tb_city(pid,city) values(22,'黔西南');
-insert into tb_city(pid,city) values(22,'黔东南');
-insert into tb_city(pid,city) values(22,'黔南');
-insert into tb_city(pid,city) values(23,'昆明');
-insert into tb_city(pid,city) values(23,'曲靖');
-insert into tb_city(pid,city) values(23,'玉溪');
-insert into tb_city(pid,city) values(23,'保山');
-insert into tb_city(pid,city) values(23,'昭通');
-insert into tb_city(pid,city) values(23,'丽江');
-insert into tb_city(pid,city) values(23,'普洱');
-insert into tb_city(pid,city) values(23,'临沧');
-insert into tb_city(pid,city) values(23,'德宏');
-insert into tb_city(pid,city) values(23,'怒江');
-insert into tb_city(pid,city) values(23,'迪庆');
-insert into tb_city(pid,city) values(23,'大理');
-insert into tb_city(pid,city) values(23,'楚雄');
-insert into tb_city(pid,city) values(23,'红河');
-insert into tb_city(pid,city) values(23,'文山');
-insert into tb_city(pid,city) values(23,'西双版纳');
-insert into tb_city(pid,city) values(24,'西安');
-insert into tb_city(pid,city) values(24,'铜川');
-insert into tb_city(pid,city) values(24,'宝鸡');
-insert into tb_city(pid,city) values(24,'咸阳');
-insert into tb_city(pid,city) values(24,'渭南');
-insert into tb_city(pid,city) values(24,'延安');
-insert into tb_city(pid,city) values(24,'汉中');
-insert into tb_city(pid,city) values(24,'榆林');
-insert into tb_city(pid,city) values(24,'安康');
-insert into tb_city(pid,city) values(24,'商洛');
-insert into tb_city(pid,city) values(25,'兰州');
-insert into tb_city(pid,city) values(25,'嘉峪关');
-insert into tb_city(pid,city) values(25,'金昌');
-insert into tb_city(pid,city) values(25,'白银');
-insert into tb_city(pid,city) values(25,'天水');
-insert into tb_city(pid,city) values(25,'武威');
-insert into tb_city(pid,city) values(25,'酒泉');
-insert into tb_city(pid,city) values(25,'张掖');
-insert into tb_city(pid,city) values(25,'庆阳');
-insert into tb_city(pid,city) values(25,'平凉');
-insert into tb_city(pid,city) values(25,'定西');
-insert into tb_city(pid,city) values(25,'陇南');
-insert into tb_city(pid,city) values(25,'临夏');
-insert into tb_city(pid,city) values(25,'甘南');
-insert into tb_city(pid,city) values(26,'西宁');
-insert into tb_city(pid,city) values(26,'海东');
-insert into tb_city(pid,city) values(26,'海北');
-insert into tb_city(pid,city) values(26,'海南');
-insert into tb_city(pid,city) values(26,'黄南');
-insert into tb_city(pid,city) values(26,'果洛');
-insert into tb_city(pid,city) values(26,'玉树');
-insert into tb_city(pid,city) values(26,'海西');
-insert into tb_city(pid,city) values(27,'呼和浩特');
-insert into tb_city(pid,city) values(27,'包头');
-insert into tb_city(pid,city) values(27,'乌海');
-insert into tb_city(pid,city) values(27,'赤峰');
-insert into tb_city(pid,city) values(27,'通辽');
-insert into tb_city(pid,city) values(27,'鄂尔多斯');
-insert into tb_city(pid,city) values(27,'呼伦贝尔');
-insert into tb_city(pid,city) values(27,'巴彦淖尔');
-insert into tb_city(pid,city) values(27,'乌兰察布');
-insert into tb_city(pid,city) values(27,'锡林郭勒盟');
-insert into tb_city(pid,city) values(27,'兴安盟');
-insert into tb_city(pid,city) values(27,'阿拉善盟');
-insert into tb_city(pid,city) values(28,'南宁');
-insert into tb_city(pid,city) values(28,'柳州');
-insert into tb_city(pid,city) values(28,'桂林');
-insert into tb_city(pid,city) values(28,'梧州');
-insert into tb_city(pid,city) values(28,'北海');
-insert into tb_city(pid,city) values(28,'防城港');
-insert into tb_city(pid,city) values(28,'钦州');
-insert into tb_city(pid,city) values(28,'贵港');
-insert into tb_city(pid,city) values(28,'玉林');
-insert into tb_city(pid,city) values(28,'百色');
-insert into tb_city(pid,city) values(28,'贺州');
-insert into tb_city(pid,city) values(28,'河池');
-insert into tb_city(pid,city) values(28,'来宾');
-insert into tb_city(pid,city) values(28,'崇左');
-insert into tb_city(pid,city) values(29,'拉萨');
-insert into tb_city(pid,city) values(29,'那曲');
-insert into tb_city(pid,city) values(29,'昌都');
-insert into tb_city(pid,city) values(29,'林芝');
-insert into tb_city(pid,city) values(29,'山南');
-insert into tb_city(pid,city) values(29,'日喀则');
-insert into tb_city(pid,city) values(29,'阿里');
-insert into tb_city(pid,city) values(30,'银川');
-insert into tb_city(pid,city) values(30,'石嘴山');
-insert into tb_city(pid,city) values(30,'吴忠');
-insert into tb_city(pid,city) values(30,'固原');
-insert into tb_city(pid,city) values(30,'中卫');
-insert into tb_city(pid,city) values(31,'乌鲁木齐');
-insert into tb_city(pid,city) values(31,'克拉玛依');
-insert into tb_city(pid,city) values(31,'吐鲁番');
-insert into tb_city(pid,city) values(31,'哈密');
-insert into tb_city(pid,city) values(31,'和田');
-insert into tb_city(pid,city) values(31,'阿克苏');
-insert into tb_city(pid,city) values(31,'喀什');
-insert into tb_city(pid,city) values(31,'克孜勒苏');
-insert into tb_city(pid,city) values(31,'巴音郭楞');
-insert into tb_city(pid,city) values(31,'昌吉');
-insert into tb_city(pid,city) values(31,'博尔塔拉');
-insert into tb_city(pid,city) values(31,'伊犁');
-insert into tb_city(pid,city) values(31,'塔城');
-insert into tb_city(pid,city) values(31,'阿勒泰');
-insert into tb_city(pid,city) values(32,'香港岛');
-insert into tb_city(pid,city) values(32,'九龙东');
-insert into tb_city(pid,city) values(32,'九龙西');
-insert into tb_city(pid,city) values(32,'新界东');
-insert into tb_city(pid,city) values(32,'新界西');
-insert into tb_city(pid,city) values(33,'澳门半岛');
-insert into tb_city(pid,city) values(33,'离岛');
-insert into tb_city(pid,city) values(34,'台北');
-insert into tb_city(pid,city) values(34,'高雄');
-insert into tb_city(pid,city) values(34,'基隆');
-insert into tb_city(pid,city) values(34,'新竹');
-insert into tb_city(pid,city) values(34,'台中');
-insert into tb_city(pid,city) values(34,'嘉义');
-insert into tb_city(pid,city) values(34,'台南市');
+
+insert into tb_city(pid,city) values
+(1,'东城区')
+,(1,'西城区')
+,(1,'崇文区')
+,(1,'宣武区')
+,(1,'朝阳区')
+,(1,'海淀区')
+,(1,'丰台区')
+,(1,'石景山区')
+,(1,'房山区')
+,(1,'通州区')
+,(1,'顺义区')
+,(1,'昌平区')
+,(1,'大兴区')
+,(1,'怀柔区')
+,(1,'平谷区')
+,(1,'门头沟区')
+,(1,'密云县')
+,(1,'延庆县')
+,(2,'和平区')
+,(2,'河东区')
+,(2,'河西区')
+,(2,'南开区')
+,(2,'河北区')
+,(2,'红桥区')
+,(2,'东丽区')
+,(2,'西青区')
+,(2,'北辰区')
+,(2,'津南区')
+,(2,'武清区')
+,(2,'宝坻区')
+,(2,'滨海新区')
+,(2,'静海县')
+,(2,'宁河县')
+,(2,'蓟县')
+,(3,'黄浦区')
+,(3,'卢湾区')
+,(3,'徐汇区')
+,(3,'长宁区')
+,(3,'静安区')
+,(3,'普陀区')
+,(3,'闸北区')
+,(3,'虹口区')
+,(3,'杨浦区')
+,(3,'闵行区')
+,(3,'宝山区')
+,(3,'嘉定区')
+,(3,'浦东新区')
+,(3,'金山区')
+,(3,'松江区')
+,(3,'青浦区')
+,(3,'奉贤区')
+,(3,'崇明县')
+,(4,'渝中区')
+,(4,'大渡口区')
+,(4,'江北区')
+,(4,'南岸区')
+,(4,'北碚区')
+,(4,'渝北区')
+,(4,'巴南区')
+,(4,'长寿区')
+,(4,'双桥区')
+,(4,'沙坪坝区')
+,(4,'万盛区')
+,(4,'万州区')
+,(4,'涪陵区')
+,(4,'黔江区')
+,(4,'永川区')
+,(4,'合川区')
+,(4,'江津区')
+,(4,'九龙坡区')
+,(4,'南川区')
+,(4,'綦江县')
+,(4,'潼南县')
+,(4,'荣昌县')
+,(4,'璧山县')
+,(4,'大足县')
+,(4,'铜梁县')
+,(4,'梁平县')
+,(4,'开县')
+,(4,'忠县')
+,(4,'城口县')
+,(4,'垫江县')
+,(4,'武隆县')
+,(4,'丰都县')
+,(4,'奉节县')
+,(4,'云阳县')
+,(4,'巫溪县')
+,(4,'巫山县')
+,(4,'石柱土家族自治县')
+,(4,'秀山土家族苗族自治县')
+,(4,'酉阳土家族苗族自治县')
+,(4,'彭水苗族土家族自治县')
+,(5,'石家庄')
+,(5,'唐山')
+,(5,'秦皇岛')
+,(5,'邯郸')
+,(5,'邢台')
+,(5,'保定')
+,(5,'张家口')
+,(5,'承德')
+,(5,'沧州')
+,(5,'廊坊')
+,(5,'衡水')
+,(6,'太原')
+,(6,'大同')
+,(6,'阳泉')
+,(6,'长治')
+,(6,'晋城')
+,(6,'朔州')
+,(6,'晋中')
+,(6,'运城')
+,(6,'忻州')
+,(6,'临汾')
+,(6,'吕梁')
+,(7,'沈阳')
+,(7,'大连')
+,(7,'鞍山')
+,(7,'抚顺')
+,(7,'本溪')
+,(7,'丹东')
+,(7,'锦州')
+,(7,'营口')
+,(7,'阜新')
+,(7,'辽阳')
+,(7,'盘锦')
+,(7,'铁岭')
+,(7,'朝阳')
+,(7,'葫芦岛')
+,(8,'长春')
+,(8,'吉林')
+,(8,'四平')
+,(8,'辽源')
+,(8,'通化')
+,(8,'白山')
+,(8,'松原')
+,(8,'白城')
+,(8,'延边朝鲜族自治州')
+,(9,'哈尔滨')
+,(9,'齐齐哈尔')
+,(9,'鹤岗')
+,(9,'双鸭山')
+,(9,'鸡西')
+,(9,'大庆')
+,(9,'伊春')
+,(9,'牡丹江')
+,(9,'佳木斯')
+,(9,'七台河')
+,(9,'黑河')
+,(9,'绥化')
+,(9,'大兴安岭')
+,(10,'南京')
+,(10,'苏州')
+,(10,'无锡')
+,(10,'常州')
+,(10,'镇江')
+,(10,'南通')
+,(10,'泰州')
+,(10,'扬州')
+,(10,'盐城')
+,(10,'连云港')
+,(10,'徐州')
+,(10,'淮安')
+,(10,'宿迁')
+,(11,'杭州')
+,(11,'宁波')
+,(11,'温州')
+,(11,'嘉兴')
+,(11,'湖州')
+,(11,'绍兴')
+,(11,'金华')
+,(11,'衢州')
+,(11,'舟山')
+,(11,'台州')
+,(11,'丽水')
+,(12,'合肥')
+,(12,'芜湖')
+,(12,'蚌埠')
+,(12,'淮南')
+,(12,'马鞍山')
+,(12,'淮北')
+,(12,'铜陵')
+,(12,'安庆')
+,(12,'黄山')
+,(12,'滁州')
+,(12,'阜阳')
+,(12,'宿州')
+,(12,'巢湖')
+,(12,'六安')
+,(12,'亳州')
+,(12,'池州')
+,(12,'宣城')
+,(13,'福州')
+,(13,'厦门')
+,(13,'莆田')
+,(13,'三明')
+,(13,'泉州')
+,(13,'漳州')
+,(13,'南平')
+,(13,'龙岩')
+,(13,'宁德')
+,(14,'南昌')
+,(14,'景德镇')
+,(14,'萍乡')
+,(14,'九江')
+,(14,'新余')
+,(14,'鹰潭')
+,(14,'赣州')
+,(14,'吉安')
+,(14,'宜春')
+,(14,'抚州')
+,(14,'上饶')
+,(15,'济南')
+,(15,'青岛')
+,(15,'淄博')
+,(15,'枣庄')
+,(15,'东营')
+,(15,'烟台')
+,(15,'潍坊')
+,(15,'济宁')
+,(15,'泰安')
+,(15,'威海')
+,(15,'日照')
+,(15,'莱芜')
+,(15,'临沂')
+,(15,'德州')
+,(15,'聊城')
+,(15,'滨州')
+,(15,'菏泽')
+,(16,'郑州')
+,(16,'开封')
+,(16,'洛阳')
+,(16,'平顶山')
+,(16,'安阳')
+,(16,'鹤壁')
+,(16,'新乡')
+,(16,'焦作')
+,(16,'濮阳')
+,(16,'许昌')
+,(16,'漯河')
+,(16,'三门峡')
+,(16,'南阳')
+,(16,'商丘')
+,(16,'信阳')
+,(16,'周口')
+,(16,'驻马店')
+,(17,'武汉')
+,(17,'黄石')
+,(17,'十堰')
+,(17,'荆州')
+,(17,'宜昌')
+,(17,'襄樊')
+,(17,'鄂州')
+,(17,'荆门')
+,(17,'孝感')
+,(17,'黄冈')
+,(17,'咸宁')
+,(17,'随州')
+,(17,'恩施')
+,(18,'长沙')
+,(18,'株洲')
+,(18,'湘潭')
+,(18,'衡阳')
+,(18,'邵阳')
+,(18,'岳阳')
+,(18,'常德')
+,(18,'张家界')
+,(18,'益阳')
+,(18,'郴州')
+,(18,'永州')
+,(18,'怀化')
+,(18,'娄底')
+,(18,'湘西')
+,(19,'广州')
+,(19,'深圳')
+,(19,'珠海')
+,(19,'汕头')
+,(19,'韶关')
+,(19,'佛山')
+,(19,'江门')
+,(19,'湛江')
+,(19,'茂名')
+,(19,'肇庆')
+,(19,'惠州')
+,(19,'梅州')
+,(19,'汕尾')
+,(19,'河源')
+,(19,'阳江')
+,(19,'清远')
+,(19,'东莞')
+,(19,'中山')
+,(19,'潮州')
+,(19,'揭阳')
+,(19,'云浮')
+,(20,'海口')
+,(20,'三亚')
+,(21,'成都')
+,(21,'自贡')
+,(21,'攀枝花')
+,(21,'泸州')
+,(21,'德阳')
+,(21,'绵阳')
+,(21,'广元')
+,(21,'遂宁')
+,(21,'内江')
+,(21,'乐山')
+,(21,'南充')
+,(21,'眉山')
+,(21,'宜宾')
+,(21,'广安')
+,(21,'达州')
+,(21,'雅安')
+,(21,'巴中')
+,(21,'资阳')
+,(21,'阿坝')
+,(21,'甘孜')
+,(21,'凉山')
+,(22,'贵阳')
+,(22,'六盘水')
+,(22,'遵义')
+,(22,'安顺')
+,(22,'铜仁')
+,(22,'毕节')
+,(22,'黔西南')
+,(22,'黔东南')
+,(22,'黔南')
+,(23,'昆明')
+,(23,'曲靖')
+,(23,'玉溪')
+,(23,'保山')
+,(23,'昭通')
+,(23,'丽江')
+,(23,'普洱')
+,(23,'临沧')
+,(23,'德宏')
+,(23,'怒江')
+,(23,'迪庆')
+,(23,'大理')
+,(23,'楚雄')
+,(23,'红河')
+,(23,'文山')
+,(23,'西双版纳')
+,(24,'西安')
+,(24,'铜川')
+,(24,'宝鸡')
+,(24,'咸阳')
+,(24,'渭南')
+,(24,'延安')
+,(24,'汉中')
+,(24,'榆林')
+,(24,'安康')
+,(24,'商洛')
+,(25,'兰州')
+,(25,'嘉峪关')
+,(25,'金昌')
+,(25,'白银')
+,(25,'天水')
+,(25,'武威')
+,(25,'酒泉')
+,(25,'张掖')
+,(25,'庆阳')
+,(25,'平凉')
+,(25,'定西')
+,(25,'陇南')
+,(25,'临夏')
+,(25,'甘南')
+,(26,'西宁')
+,(26,'海东')
+,(26,'海北')
+,(26,'海南')
+,(26,'黄南')
+,(26,'果洛')
+,(26,'玉树')
+,(26,'海西')
+,(27,'呼和浩特')
+,(27,'包头')
+,(27,'乌海')
+,(27,'赤峰')
+,(27,'通辽')
+,(27,'鄂尔多斯')
+,(27,'呼伦贝尔')
+,(27,'巴彦淖尔')
+,(27,'乌兰察布')
+,(27,'锡林郭勒盟')
+,(27,'兴安盟')
+,(27,'阿拉善盟')
+,(28,'南宁')
+,(28,'柳州')
+,(28,'桂林')
+,(28,'梧州')
+,(28,'北海')
+,(28,'防城港')
+,(28,'钦州')
+,(28,'贵港')
+,(28,'玉林')
+,(28,'百色')
+,(28,'贺州')
+,(28,'河池')
+,(28,'来宾')
+,(28,'崇左')
+,(29,'拉萨')
+,(29,'那曲')
+,(29,'昌都')
+,(29,'林芝')
+,(29,'山南')
+,(29,'日喀则')
+,(29,'阿里')
+,(30,'银川')
+,(30,'石嘴山')
+,(30,'吴忠')
+,(30,'固原')
+,(30,'中卫')
+,(31,'乌鲁木齐')
+,(31,'克拉玛依')
+,(31,'吐鲁番')
+,(31,'哈密')
+,(31,'和田')
+,(31,'阿克苏')
+,(31,'喀什')
+,(31,'克孜勒苏')
+,(31,'巴音郭楞')
+,(31,'昌吉')
+,(31,'博尔塔拉')
+,(31,'伊犁')
+,(31,'塔城')
+,(31,'阿勒泰')
+,(32,'香港岛')
+,(32,'九龙东')
+,(32,'九龙西')
+,(32,'新界东')
+,(32,'新界西')
+,(33,'澳门半岛')
+,(33,'离岛')
+,(34,'台北')
+,(34,'高雄')
+,(34,'基隆')
+,(34,'新竹')
+,(34,'台中')
+,(34,'嘉义')
+,(34,'台南市');
 
 select * from tb_city;

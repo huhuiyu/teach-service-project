@@ -157,3 +157,19 @@ create table tb_email_message_reply
 )comment '用户留言回复信息表';
 
 select * from tb_email_message_reply;
+
+create table tb_user_info
+(
+  uiid integer auto_increment primary key not null comment '主键',
+  aid integer not null comment '所属用户',
+  sex enum('m','f','n')  not null default 'n' comment '性别，m：男，f：女，n：保密',
+  email varchar(255) not null default '' comment 'email',
+  phone varchar(50) not null default '' comment '手机号码',
+  qq varchar(255) not null default '' comment 'qq号码',
+  wechat varchar(255) not null default '' comment '微信号码',
+  img varchar(255) not null default '' comment '用户头像',
+  info varchar(2000) not null default '' comment '用户简介',
+  lastupdate timestamp on update now() default now() not null comment '信息最后修改时间'  
+)comment '用户信息表';
+
+select * from tb_user_info;
