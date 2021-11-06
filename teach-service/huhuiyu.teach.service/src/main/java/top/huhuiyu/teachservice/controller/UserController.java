@@ -56,6 +56,32 @@ public class UserController {
     return userService.reg(model);
   }
 
+  @ApiOperation(value = "邮箱用户注册")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户邮箱", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true), @ApiImplicitParam(name = "tbAdmin.nickname", value = "用户昵称", paramType = "query") })
+  @PostMapping("/emailReg")
+  public BaseResult<UtilMessage> emailReg(UtilModel model) throws Exception {
+    model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
+    return userService.emailReg(model);
+  }
+
+  @ApiOperation(value = "发送找回密码用的邮箱验证码")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "要找回密码的用户登录名", paramType = "query", required = true) })
+  @PostMapping("/sendEmailCode")
+  public BaseResult<UtilMessage> sendEmailCode(UtilModel model) throws Exception {
+    model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
+    return userService.sendEmailCode(model);
+  }
+
+  @ApiOperation(value = "通过邮箱找回(修改)密码")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "要找回密码的用户登录名", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbAdmin.password", value = "新密码（需要md5加密）", paramType = "query", required = true), @ApiImplicitParam(name = "tbAdmin.nickname", value = "邮箱验证码", paramType = "query") })
+  @PostMapping("/findPwd")
+  public BaseResult<UtilMessage> findPwd(UtilModel model) throws Exception {
+    model.getTbAdmin().setRole(SystemConstants.ROLE_USER);
+    return userService.findPwd(model);
+  }
+
   @ApiOperation(value = "获取登录用户信息")
   @PostMapping("/getUserLoginInfo")
   public BaseResult<UtilMessage> getUserLoginInfo(UtilModel model) throws Exception {

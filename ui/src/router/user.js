@@ -21,6 +21,11 @@ routers = routers.concat([
     name: 'ManageEmailMessage',
     component: () => import('../views/user/ManageEmailMessage.vue'),
   },
+  {
+    path: '/user/findpwd',
+    name: 'UserFindPwd',
+    component: () => import('../views/user/FindPwd.vue'),
+  },
 ]);
 
 export default routers;

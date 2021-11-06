@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div v-loading="loading">
-      <el-card title="dfdf">
+      <el-card>
         <div slot="header">用户登录</div>
         <div>
           <el-form>
@@ -15,6 +15,7 @@
               <el-button type="primary" @click="login">登录</el-button>
               <el-button type="warning" @click="reset">重置</el-button>
               <el-button type="success" @click="reg">注册</el-button>
+              <el-button type="info" @click="findpwd">忘记密码</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -48,6 +49,9 @@ export default {
     },
     reset() {
       this.tbAdmin = {};
+    },
+    findpwd() {
+      this.$router.push('/user/findpwd');
     },
     reg() {
       this.$router.push('/user/reg');

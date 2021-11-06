@@ -2,7 +2,9 @@
   <div>
     <div v-loading="loading" class="top-user-box">
       <div>
-        <img v-if="userinfo.userInfo.img" :src="userinfo.userInfo.img" />
+        <div v-if="userinfo.userInfo && userinfo.userInfo.img && userinfo.userInfo.img != ''">
+          <img :src="userinfo.userInfo.img" />
+        </div>
       </div>
       <div>
         <el-dropdown trigger="click" @command="handleCommand">

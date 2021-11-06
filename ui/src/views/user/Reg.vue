@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div v-loading="loading">
-      <el-card title="dfdf">
+      <el-card>
         <div slot="header">用户注册</div>
         <div>
           <el-form>

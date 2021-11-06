@@ -1,5 +1,6 @@
 package top.huhuiyu.teachservice.utils;
 
+import java.util.Random;
 import java.util.regex.Pattern;
 
 import org.springframework.util.StringUtils;
@@ -23,6 +24,10 @@ public interface SystemConstants {
    * 图片校验码存放的key
    */
   String IMAGE_CODE = "imageCode";
+  /**
+   * 邮件校验码存放的key
+   */
+  String EMAIL_CODE = "emailCode";
   /**
    * 管理员登陆存放的key
    */
@@ -230,6 +235,30 @@ public interface SystemConstants {
     tbErrorInfo.setErrorType(ERROR_LOGIN_PASSWORD_TYPE);
     tbErrorInfo.setLinkInfo(username);
     return tbErrorInfo;
+  }
+
+  /**
+   * 随机数生成器
+   */
+  Random RANDOM = new Random();
+
+  /**
+   * 验证码邮箱标题
+   */
+  String EMAIL_CODE_TITLE = "验证码信息";
+
+  /**
+   * 验证码邮箱内容模板
+   */
+  String EMAIL_CODE_INFO = "你的验证码信息为%s";
+
+  /**
+   * 生成随机邮箱校验码
+   * 
+   * @return 随机邮箱校验码
+   */
+  static String emailCode() {
+    return RANDOM.nextInt(999999 - 100000) + 1 + "";
   }
 
 }
