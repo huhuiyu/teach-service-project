@@ -26,6 +26,7 @@ import top.huhuiyu.teachservice.model.TbUserInfoModel;
 import top.huhuiyu.teachservice.model.UtilModel;
 import top.huhuiyu.teachservice.service.UtilService;
 import top.huhuiyu.teachservice.utils.IpUtils;
+import top.huhuiyu.teachservice.utils.PinyinUtils;
 import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
@@ -60,6 +61,13 @@ public class UtilServiceImpl implements UtilService {
     admin.setSalt(null);
     // admin.setAccessKey(null);
     // admin.setRole(null);
+  }
+
+  @Override
+  public BaseResult<Object> pinyin(String info) throws Exception {
+    BaseResult<Object> message = new BaseResult<Object>();
+    message.setSuccessInfo(PinyinUtils.getPinYin(info));
+    return message;
   }
 
   @Override
@@ -325,6 +333,15 @@ public class UtilServiceImpl implements UtilService {
     BaseResult<UtilMessage> message = new BaseResult<UtilMessage>(new UtilMessage());
     TbAdmin loginUser = model.getLoginAdmin();
     TbUserInfo tbUser = model.getTbUserInfo();
+    // 设置默认值
+    tbUser.setEmail(StringUtils.trim(tbUser.getEmail()));
+    tbUser.setImg(StringUtils.trim(tbUser.getImg()));
+    tbUser.setInfo(StringUtils.trim(tbUser.getInfo()));
+    tbUser.setPhone(StringUtils.trim(tbUser.getPhone()));
+    tbUser.setQq(StringUtils.trim(tbUser.getQq()));
+    tbUser.setWechat(StringUtils.trim(tbUser.getWechat()));
+    tbUser.setSex(SystemConstants.checkSex(tbUser.getSex()));
+    // 邮箱和电话校验
     if (!StringUtils.isEmpty(tbUser.getEmail()) && !SystemConstants.isEmail(tbUser.getEmail())) {
       message.setFailInfo("请填写正确的邮箱地址");
       return message;

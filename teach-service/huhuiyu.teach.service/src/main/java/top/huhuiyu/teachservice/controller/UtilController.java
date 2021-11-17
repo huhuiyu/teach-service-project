@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
+import top.huhuiyu.teachservice.aop.AnnoNoToken;
 import top.huhuiyu.teachservice.message.UtilMessage;
 import top.huhuiyu.teachservice.model.UtilModel;
 import top.huhuiyu.teachservice.service.UtilService;
@@ -53,5 +54,13 @@ public class UtilController {
   @PostMapping("/getAdminLoginInfo")
   public BaseResult<UtilMessage> getAdminLoginInfo(UtilModel model) throws Exception {
     return utilService.getAdminLoginInfo(model);
+  }
+
+  @AnnoNoToken
+  @ApiOperation(value = "获取字符的拼音信息（多音字随机返回一个），不要token信息，结果通过message信息返回")
+  @ApiImplicitParam(name = "info", value = "要获取拼音的字符", paramType = "query", required = true)
+  @PostMapping("/pinyin")
+  public BaseResult<Object> getToken(String info) throws Exception {
+    return utilService.pinyin(info);
   }
 }

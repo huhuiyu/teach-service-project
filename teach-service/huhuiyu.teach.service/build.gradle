@@ -74,6 +74,14 @@ dependencies {
   implementation('com.github.caspar-chen:swagger-ui-layer:1.1.3')
   // websocket
   implementation('org.springframework.boot:spring-boot-starter-websocket')
+  
+  // excel依赖
+  implementation('org.apache.poi:poi:' + poi_version)
+  implementation('org.apache.poi:poi-ooxml:' + poi_version)
+  implementation('org.apache.poi:poi-scratchpad:' + poi_version)
+  
+  // 拼音工具
+  implementation('com.belerweb:pinyin4j:2.5.1')
     
   // huhuiyu.api
   implementation('top.huhuiyu.api:huhuiyu.api.fileutils:' + fileutils_version)

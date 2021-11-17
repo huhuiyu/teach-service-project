@@ -22,7 +22,7 @@ import top.huhuiyu.teachservice.utils.SystemConstants;
  * 
  * @author 胡辉煜
  */
-@Api(tags = { "用户登录相关" })
+@Api(tags = { "用户登录信息相关" })
 @RestController
 @RequestMapping("/user")
 public class UserController {

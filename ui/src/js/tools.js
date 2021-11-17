@@ -4,12 +4,15 @@ import md5 from 'js-md5';
 let tools = {};
 
 // md5加密
-tools.md5 = function(info) {
-  return md5(info);
+tools.md5 = function (info) {
+  if (info && info.trim() != '') {
+    return md5(info);
+  }
+  return '';
 };
 
 // 格式化日期
-tools.formatDate = function(value, format) {
+tools.formatDate = function (value, format) {
   try {
     // 获取日期格式参数
     format = format ? format : 'yyyy-MM-dd hh:mm:ss';
@@ -43,27 +46,27 @@ tools.formatDate = function(value, format) {
 };
 
 // 是否为手机模式
-tools.isMobile = function() {
+tools.isMobile = function () {
   return tools.getBrowserInfo().versions.mobile;
 };
 
 // 是否为ios
-tools.isIos = function() {
+tools.isIos = function () {
   return tools.getBrowserInfo().versions.ios;
 };
 // 是否为android
-tools.isAndroid = function() {
+tools.isAndroid = function () {
   return tools.getBrowserInfo().versions.android;
 };
 // 是否为weixin
-tools.isWx = function() {
+tools.isWx = function () {
   return tools.getBrowserInfo().versions.weixin;
 };
 
 // 获取浏览器信息
-tools.getBrowserInfo = function() {
+tools.getBrowserInfo = function () {
   let browser = {
-    versions: (function() {
+    versions: (function () {
       let u = navigator.userAgent;
       // let app = navigator.appVersion;
       return {
@@ -78,10 +81,10 @@ tools.getBrowserInfo = function() {
         iPad: u.indexOf('iPad') > -1, //是否iPad
         webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
         weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
-        qq: u.match(/\sQQ/i) == ' qq' //是否QQ
+        qq: u.match(/\sQQ/i) == ' qq', //是否QQ
       };
     })(),
-    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    language: (navigator.browserLanguage || navigator.language).toLowerCase(),
   };
 
   return browser;
@@ -93,10 +96,10 @@ const styles = {
   string: 'color: fuchsia',
   number: 'color: green',
   boolean: 'color: maroon',
-  other: 'color: maroon'
+  other: 'color: maroon',
 };
 
-tools.formatJson = function(json, highlight) {
+tools.formatJson = function (json, highlight) {
   // 缩进显示json字符串
   const result = JSON.stringify(json, undefined, 4);
   if (highlight) {
@@ -105,14 +108,11 @@ tools.formatJson = function(json, highlight) {
   return result;
 };
 
-tools.jsonSyntaxHighlight = function(json) {
+tools.jsonSyntaxHighlight = function (json) {
   // 格式化显示json
   // json语法高亮
-  json = json
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-  json = json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g, function(match) {
+  json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  json = json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g, function (match) {
     let style = 'number';
     if (/^"/.test(match)) {
       if (/:$/.test(match)) {
@@ -131,34 +131,34 @@ tools.jsonSyntaxHighlight = function(json) {
 };
 
 // 获取大类型名称
-tools.getFileType = function(type) {
+tools.getFileType = function (type) {
   let index = type.indexOf('/');
   return index > -1 ? type.substring(0, index) : type;
 };
 
 // 读取图片文件为data数据
-tools.readImgFile = function(file, cb) {
+tools.readImgFile = function (file, cb) {
   if (tools.getFileType(file.type) != 'image') {
     cb('');
     return;
   }
   let reader = new FileReader();
   //读取文件过程方法
-  reader.onloadstart = function() {
+  reader.onloadstart = function () {
     logger.debug('开始读取....');
   };
-  reader.onprogress = function() {
+  reader.onprogress = function () {
     logger.debug('正在读取中....');
   };
-  reader.onabort = function() {
+  reader.onabort = function () {
     logger.debug('中断读取....');
     cb('');
   };
-  reader.onerror = function() {
+  reader.onerror = function () {
     logger.debug('读取异常....');
     cb('');
   };
-  reader.onload = function(e) {
+  reader.onload = function (e) {
     logger.debug('成功读取....');
     cb(e.target.result);
   };
@@ -166,13 +166,13 @@ tools.readImgFile = function(file, cb) {
 };
 
 // 打开文件功能
-tools.openFile = function(cb) {
+tools.openFile = function (cb) {
   let result = { el: null, file: null, type: '' };
   let file = document.createElement('input');
   file.setAttribute('type', 'file');
   result.el = file;
   // 文件改变事件
-  file.addEventListener('change', function() {
+  file.addEventListener('change', function () {
     logger.debug('文件选中变化', file.files);
     if (file.files && file.files.length == 1) {
       result.file = file.files[0];
@@ -182,7 +182,7 @@ tools.openFile = function(cb) {
     }
     cb(null);
   });
-  file.addEventListener('cancel', function() {
+  file.addEventListener('cancel', function () {
     logger.debug('文件选中取消');
     cb(null);
   });
@@ -190,7 +190,7 @@ tools.openFile = function(cb) {
 };
 
 // 通用表单正则校验
-tools.regValidator = function(rule, value, callback, reg, message) {
+tools.regValidator = function (rule, value, callback, reg, message) {
   logger.debug(rule);
   if (reg.test(value)) {
     callback();

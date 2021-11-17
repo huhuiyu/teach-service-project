@@ -1,9 +1,9 @@
 package top.huhuiyu.teachservice.test;
 
 import java.util.Scanner;
-import java.util.UUID;
 
 import top.huhuiyu.api.fileutil.Md5;
+import top.huhuiyu.teachservice.utils.PinyinUtils;
 import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
@@ -41,22 +41,30 @@ public class Temp {
     System.out.println(SystemConstants.isPhone("13312345678"));
   }
 
+  public static void five() throws Exception {
+    System.out.println(PinyinUtils.getPinYin("吕家龙"));
+    System.out.println(PinyinUtils.getPinYin("李蔚"));
+    System.out.println(PinyinUtils.getPinYin("吕家龙", true));
+    System.out.println(PinyinUtils.getPinYin("李蔚", true));
+  }
+
   public static void main(String[] args) throws Exception {
     // System.out.println(Md5.makeSalt());
     // Temp.one();
     // Temp.two();
     // Temp.three();
     // Temp.four();
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
-    System.out.println(UUID.randomUUID().toString());
+    Temp.five();
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
+    // System.out.println(UUID.randomUUID().toString());
 
   }
 }

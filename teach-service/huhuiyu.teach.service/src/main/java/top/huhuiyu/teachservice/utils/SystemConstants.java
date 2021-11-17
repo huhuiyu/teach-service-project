@@ -1,5 +1,7 @@
 package top.huhuiyu.teachservice.utils;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -134,6 +136,25 @@ public interface SystemConstants {
    * 性别女
    */
   String SEX_FEMALE = "f";
+  /**
+   * 性别集合
+   */
+  List<String> SEX_INFO = Arrays.asList(SEX_FEMALE, SEX_MAN, SEX_NONE);
+
+  /**
+   * 检查性别信息，不存在就返回SEX_NONE
+   * 
+   * @param sex 性别信息
+   * 
+   * @return 检查性别信息的结果
+   */
+  static String checkSex(String sex) {
+    if (SEX_INFO.indexOf(sex) > -1) {
+      return sex;
+    }
+    return SEX_NONE;
+
+  }
 
   /**
    * 邮箱校验

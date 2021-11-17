@@ -120,4 +120,15 @@ public interface UtilService {
    * @throws Exception 处理发生异常
    */
   BaseResult<UtilMessage> modifyUserInfo(TbUserInfoModel model) throws Exception;
+
+  /**
+   * 获取info对应的拼音信息
+   * 
+   * @param info 要获取拼音的信息
+   * 
+   * @return info对应的拼音信息
+   * 
+   * @throws Exception
+   */
+  BaseResult<Object> pinyin(String info) throws Exception;
 }
