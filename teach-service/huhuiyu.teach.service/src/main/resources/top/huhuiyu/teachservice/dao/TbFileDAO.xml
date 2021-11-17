@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbFileDAO">
+
+  <select id="queryAll" resultType="TbFile">
+    select fid,aid,filename,content_type,file_size,fileinfo,lastupdate from tb_file
+  </select>
+
+  <select id="queryAllByUser" resultType="TbFile" parameterType="TbFile">
+    select fid,filename,content_type,file_size,fileinfo,lastupdate from tb_file
+    <trim prefix="where" prefixOverrides="and">
+      aid=#{aid}
+      <if test="filename!=null and filename!=''"> and filename like #{filename}</if>
+      <if test="fileinfo!=null and fileinfo!=''"> and fileinfo like #{fileinfo}</if>
+      <if test="contentType!=null and contentType!=''"> and content_type like #{contentType}</if>
+    </trim>
+    order by lastupdate desc
+  </select>
+
+  <!-- <select id="queryAll_COUNT" resultType="int"> select count(*) from tb_file </select> -->
+
+  <select id="queryByKey" parameterType="TbFile" resultType="TbFile">
+    select fid,aid,filename,content_type,file_size,fileinfo,lastupdate from tb_file
+    where fid=#{fid}
+  </select>
+
+  <select id="queryByUserKey" parameterType="TbFile" resultType="TbFile">
+    select fid,aid,filename,content_type,file_size,fileinfo,lastupdate from tb_file
+    where fid=#{fid} and aid=#{aid}
+  </select>
+
+  <insert id="add" parameterType="TbFile" useGeneratedKeys="true" keyProperty="fid">
+    insert into tb_file(aid,filename,content_type,file_size,fileinfo)
+    values(#{aid},#{filename},#{contentType},#{fileSize},#{fileinfo})
+  </insert>
+
+  <update id="update" parameterType="TbFile">
+    update tb_file set aid=#{aid},filename=#{filename},content_type=#{contentType},file_size=#{fileSize},fileinfo=#{fileinfo}
+    where fid=#{fid}
+  </update>
+
+  <delete id="delete" parameterType="TbFile">
+    delete from tb_file
+    where fid=#{fid}
+  </delete>
+
+</mapper>

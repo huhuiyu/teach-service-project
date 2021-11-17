@@ -29,7 +29,7 @@ public class UtilController {
   @Autowired
   private UtilService utilService;
 
-  @ApiOperation(value = "获取token信息，如果输入了合法的token会原值返回，否则会返回一个新的合法token值")
+  @ApiOperation(value = "获取token信息", notes = "如果输入了合法的token会原值返回，否则会返回一个新的合法token值")
   @PostMapping("/getToken")
   public BaseResult<Object> getToken(UtilModel model) throws Exception {
     return BaseResult.getSuccess("获取token信息成功");
@@ -57,7 +57,7 @@ public class UtilController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "获取字符的拼音信息（多音字随机返回一个），不要token信息，结果通过message信息返回")
+  @ApiOperation(value = "转换拼音", notes = "获取字符的拼音信息（多音字随机返回一个），不要token信息，结果通过message信息返回")
   @ApiImplicitParam(name = "info", value = "要获取拼音的字符", paramType = "query", required = true)
   @PostMapping("/pinyin")
   public BaseResult<Object> getToken(String info) throws Exception {

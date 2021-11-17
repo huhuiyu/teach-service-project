@@ -24,3 +24,14 @@ Vue.filter('dept', function (value, list) {
   }
   return '部门信息错误';
 });
+
+// 文件大小的过滤器
+Vue.filter('filesize', function (info) {
+  if (info === 0) {
+    return '0 B';
+  }
+  let k = 1024;
+  let sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'], //单位值
+    i = Math.floor(Math.log(info) / Math.log(k));
+  return (info / Math.pow(k, i)).toPrecision(3) + '' + sizes[i];
+});

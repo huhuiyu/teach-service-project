@@ -95,6 +95,7 @@ export default {
       menus: [
         // { title: '邮箱留言', icon: '&#xe627;', path: '/user/emailmessage' },
         { title: '邮箱留言管理', icon: '&#xe62d;', path: '/user/manage/emailmessage' },
+        { title: '文件信息管理', icon: '&#xe739;', path: '/user/manage/file' },
       ],
       sexList: [
         {

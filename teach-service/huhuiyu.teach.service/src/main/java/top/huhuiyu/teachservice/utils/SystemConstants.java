@@ -282,4 +282,9 @@ public interface SystemConstants {
     return RANDOM.nextInt(999999 - 100000) + 1 + "";
   }
 
+  /**
+   * 上传路径配置key
+   */
+  String UPLOAD_DIR_CONFIG_KEY = "upload_dir";
+
 }

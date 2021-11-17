@@ -28,6 +28,8 @@ insert into tb_config(config_key,config_value) values('tomcat_context_path','/hu
 insert into tb_config(config_key,config_value) values('login_password_error_limit',10);
 /* 密码错误次数超时 */
 insert into tb_config(config_key,config_value) values('login_password_error_timeout',600);
+/* 文件上传保存路径 */
+insert into tb_config(config_key,config_value) values('upload_dir','files/');
 
 
 select cid,config_key,config_value,lastupdate from tb_config;

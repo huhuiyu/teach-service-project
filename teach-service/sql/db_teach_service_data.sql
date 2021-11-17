@@ -172,3 +172,16 @@ create table tb_user_info
 )comment '用户信息表';
 
 select * from tb_user_info;
+
+create table tb_file
+(
+  fid int auto_increment primary key comment '主键',
+  aid int not null comment '所属用户',
+  filename varchar(255) not null comment '原始文件名',
+  content_type varchar(255) not null comment '文件类型',
+  file_size bigint not null comment '文件大小',
+  fileinfo varchar(1000) not null default '' comment '文件信息',
+  lastupdate timestamp on update now() default now() not null comment '最后更新时间'
+)comment '用户文件上传信息表';
+
+select * from tb_file;

@@ -26,6 +26,11 @@ routers = routers.concat([
     name: 'UserFindPwd',
     component: () => import('../views/user/FindPwd.vue'),
   },
+  {
+    path: '/user/manage/file',
+    name: 'UserFile',
+    component: () => import('../views/user/File.vue'),
+  },
 ]);
 
 export default routers;

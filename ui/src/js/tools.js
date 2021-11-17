@@ -199,4 +199,16 @@ tools.regValidator = function (rule, value, callback, reg, message) {
   }
 };
 
+// 复制文本的方法
+tools.copyText = function (str) {
+  let input = document.createElement('input');
+  input.readOnly = 'readonly';
+  input.value = str;
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, input.value.length);
+  document.execCommand('Copy');
+  document.body.removeChild(input);
+};
+
 export default tools;
