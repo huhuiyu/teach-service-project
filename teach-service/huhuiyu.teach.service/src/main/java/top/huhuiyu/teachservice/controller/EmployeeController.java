@@ -29,7 +29,7 @@ public class EmployeeController {
   private TbEmployeeService tbEmployeeService;
 
   @AnnoNoToken
-  @ApiOperation(value = "查询全部员工信息，不需要token信息")
+  @ApiOperation(value = "查询全部员工信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbEmployee.deptId", value = "所属部门编号", paramType = "query"), @ApiImplicitParam(name = "tbEmployee.employeeName", value = "姓名模糊查询", paramType = "query"),
       @ApiImplicitParam(name = "tbEmployee.phone", value = "电话模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
       @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
@@ -39,7 +39,7 @@ public class EmployeeController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "添加员工信息，不需要token信息")
+  @ApiOperation(value = "添加员工信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbEmployee.deptId", value = "所属部门编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbEmployee.employeeName", value = "员工名称", paramType = "query", required = true), @ApiImplicitParam(name = "tbEmployee.phone", value = "员工电话", paramType = "query") })
   @PostMapping("/add")
@@ -48,7 +48,7 @@ public class EmployeeController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "修改员工信息，不需要token信息")
+  @ApiOperation(value = "修改员工信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbEmployee.employeeId", value = "要修改的员工编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbEmployee.deptId", value = "所属部门编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbEmployee.employeeName", value = "员工名称", paramType = "query", required = true), @ApiImplicitParam(name = "tbEmployee.phone", value = "员工电话", paramType = "query") })
@@ -58,7 +58,7 @@ public class EmployeeController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "删除员工信息，不需要token信息")
+  @ApiOperation(value = "删除员工信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbEmployee.employeeId", value = "要删除的员工编号", paramType = "query", required = true) })
   @PostMapping("/delete")
   public BaseResult<TbEmployeeMessage> delete(TbEmployeeModel model) throws Exception {

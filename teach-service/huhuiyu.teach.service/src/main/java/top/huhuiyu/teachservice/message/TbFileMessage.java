@@ -18,12 +18,22 @@ public class TbFileMessage extends BaseEntity {
 
   private static final long serialVersionUID = -6384442015538309602L;
 
+  @ApiModelProperty(value = "文件信息")
+  private TbFile tbFile;
   @ApiModelProperty(value = "分页信息")
   private PageBean page;
   @ApiModelProperty(value = "查询结果")
   private List<TbFile> list;
 
   public TbFileMessage() {
+  }
+
+  public TbFile getTbFile() {
+    return tbFile;
+  }
+
+  public void setTbFile(TbFile tbFile) {
+    this.tbFile = tbFile;
   }
 
   public PageBean getPage() {

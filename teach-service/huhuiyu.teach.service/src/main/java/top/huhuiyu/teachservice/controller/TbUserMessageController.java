@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
+import top.huhuiyu.teachservice.aop.AnnoNoToken;
 import top.huhuiyu.teachservice.message.TbUserMessageMessage;
 import top.huhuiyu.teachservice.message.TbUserMessageReplyMessage;
 import top.huhuiyu.teachservice.model.TbUserMessageModel;
@@ -32,7 +33,8 @@ public class TbUserMessageController {
   @Autowired
   private TbUserMessageReplyService tbUserMessageReplyService;
 
-  @ApiOperation(value = "查询全部留言信息")
+  @AnnoNoToken
+  @ApiOperation(value = "查询全部留言信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.title", value = "留言标题模糊查询", paramType = "query"),
       @ApiImplicitParam(name = "tbUserMessage.info", value = "留言内容模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
       @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
@@ -41,7 +43,7 @@ public class TbUserMessageController {
     return tbUserMessageService.queryAll(model);
   }
 
-  @ApiOperation(value = "查询用户全部留言信息，需要用户登录")
+  @ApiOperation(value = "查询用户全部留言信息", notes = "需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.title", value = "留言标题模糊查询", paramType = "query"),
       @ApiImplicitParam(name = "tbUserMessage.info", value = "留言内容模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
       @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
@@ -51,7 +53,7 @@ public class TbUserMessageController {
     return tbUserMessageService.queryAll(model);
   }
 
-  @ApiOperation(value = "发布留言，需要用户登录")
+  @ApiOperation(value = "发布留言", notes = "需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.title", value = "留言标题(长度不超过30)", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbUserMessage.info", value = "留言内容", paramType = "query", required = true) })
   @PostMapping("/add")
@@ -59,7 +61,7 @@ public class TbUserMessageController {
     return tbUserMessageService.add(model);
   }
 
-  @ApiOperation(value = "修改留言，需要用户登录")
+  @ApiOperation(value = "修改留言", notes = "需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.umid", value = "要修改的留言编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbUserMessage.title", value = "留言标题(长度不超过30)", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbUserMessage.info", value = "留言内容", paramType = "query", required = true) })
@@ -68,14 +70,15 @@ public class TbUserMessageController {
     return tbUserMessageService.update(model);
   }
 
-  @ApiOperation(value = "删除留言（操作无法撤回），需要用户登录")
+  @ApiOperation(value = "删除留言", notes = "需要用户登录（该操作无法撤回）")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.umid", value = "要删除的留言编号", paramType = "query", required = true) })
   @PostMapping("/delete")
   public BaseResult<TbUserMessageMessage> delete(TbUserMessageModel model) throws Exception {
     return tbUserMessageService.delete(model);
   }
 
-  @ApiOperation(value = "查询留言详细信息（包括评论列表）")
+  @AnnoNoToken
+  @ApiOperation(value = "查询留言详细信息（包括评论列表）", notes = "不需要token信息，详细信息包括评论列表")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umid", value = "留言编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryUserMessageDetail")
@@ -83,7 +86,7 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.queryUserMessageDetail(model);
   }
 
-  @ApiOperation(value = "查询用户全部评论信息，需要用户登录")
+  @ApiOperation(value = "查询用户全部评论信息", notes = "需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.info", value = "评论内容模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
       @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAllUserReply")
@@ -92,7 +95,7 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.queryAll(model);
   }
 
-  @ApiOperation(value = "留言评论，需要用户登录")
+  @ApiOperation(value = "留言评论", notes = "需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umid", value = "评论的留言编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbUserMessageReply.info", value = "评论内容", paramType = "query", required = true) })
   @PostMapping("/addReply")
@@ -100,7 +103,7 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.add(model);
   }
 
-  @ApiOperation(value = "修改留言评论，需要用户登录")
+  @ApiOperation(value = "修改留言评论", notes = "需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要修改的评论编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbUserMessageReply.info", value = "评论内容", paramType = "query", required = true) })
   @PostMapping("/updateReply")
@@ -108,17 +111,11 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.update(model);
   }
 
-  @ApiOperation(value = "删除留言评论（操作无法撤回），需要用户登录")
+  @ApiOperation(value = "删除留言评论", notes = "需要用户登录，操作无法撤回")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要删除的评论编号", paramType = "query", required = true) })
   @PostMapping("/deleteReply")
   public BaseResult<TbUserMessageReplyMessage> deleteReply(TbUserMessageReplyModel model) throws Exception {
     return tbUserMessageReplyService.delete(model);
   }
-
-  // @ApiOperation(value = "主键查询")
-  // @PostMapping("/queryByKey")
-  // public BaseResult<TbUserMessageMessage> queryByKey(TbUserMessageModel model) throws Exception {
-  // return tbUserMessageService.queryByKey(model);
-  // }
 
 }

@@ -29,7 +29,7 @@ public class StudentController {
   private TbStudentService tbStudentService;
 
   @AnnoNoToken
-  @ApiOperation(value = "查询学生信息，不需要token信息")
+  @ApiOperation(value = "查询学生信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbStudent.cid", value = "所属班级编号", paramType = "query"), @ApiImplicitParam(name = "tbStudent.sname", value = "学生姓名", paramType = "query"),
       @ApiImplicitParam(name = "tbStudent.phone", value = "联系电话", paramType = "query"), @ApiImplicitParam(name = "tbStudent.address", value = "家庭地址", paramType = "query"),
       @ApiImplicitParam(name = "tbStudent.wechat", value = "微信号", paramType = "query"), @ApiImplicitParam(name = "tbStudent.qq", value = "QQ号", paramType = "query"),
@@ -40,7 +40,7 @@ public class StudentController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "添加学生信息，不需要token信息")
+  @ApiOperation(value = "添加学生信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbStudent.cid", value = "所属班级编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbStudent.sname", value = "学生姓名", paramType = "query", required = true), @ApiImplicitParam(name = "tbStudent.phone", value = "联系电话", paramType = "query"),
       @ApiImplicitParam(name = "tbStudent.address", value = "家庭地址", paramType = "query"), @ApiImplicitParam(name = "tbStudent.wechat", value = "微信号", paramType = "query"),
@@ -51,7 +51,7 @@ public class StudentController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "修改学生信息，不需要token信息")
+  @ApiOperation(value = "修改学生信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbStudent.sid", value = "要修改的学生编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbStudent.cid", value = "所属班级编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbStudent.sname", value = "学生姓名", paramType = "query", required = true), @ApiImplicitParam(name = "tbStudent.phone", value = "联系电话", paramType = "query"),
@@ -63,7 +63,7 @@ public class StudentController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "删除学生信息，不需要token信息")
+  @ApiOperation(value = "删除学生信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbStudent.sid", value = "要删除的学生编号", paramType = "query", required = true) })
   @PostMapping("/delete")
   public BaseResult<TbStudentMessage> delete(TbStudentModel model) throws Exception {

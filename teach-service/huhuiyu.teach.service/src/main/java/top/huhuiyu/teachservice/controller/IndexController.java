@@ -30,8 +30,8 @@ public class IndexController {
   private IndexService indexService;
 
   @AnnoNoToken
-  @ApiOperation(value = "首页，回声应答，本方法不需要token")
-  @ApiImplicitParams(@ApiImplicitParam(name = "echo", value = "回声参数，内容会通过应答的message返回", paramType = "query"))
+  @ApiOperation(value = "首页，回声应答", notes = "本方法不需要token，echo参数的内容会通过应答的message返回")
+  @ApiImplicitParams(@ApiImplicitParam(name = "echo", value = "回声参数，", paramType = "query"))
   @PostMapping("")
   public BaseResult<IndexMessage> index(IndexModel model) throws Exception {
     return indexService.index(model);

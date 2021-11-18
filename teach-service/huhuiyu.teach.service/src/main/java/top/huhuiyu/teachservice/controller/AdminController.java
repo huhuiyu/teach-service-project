@@ -27,7 +27,7 @@ public class AdminController {
   @Autowired
   private TbLogService tbLogService;
 
-  @ApiOperation(value = "查询全部系统日志，需要管理员登录")
+  @ApiOperation(value = "查询全部系统日志", notes = "需要管理员登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbLog.logType", value = "日志类型模糊查询", paramType = "query"), @ApiImplicitParam(name = "tbLog.logInfo", value = "日志内容模糊查询", paramType = "query"),
       @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/querySystemLog")

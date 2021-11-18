@@ -29,7 +29,7 @@ public class ClassController {
   private TbClassService tbClassService;
 
   @AnnoNoToken
-  @ApiOperation(value = "查询全部班级信息，不需要token信息")
+  @ApiOperation(value = "查询全部班级信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAll")
   public BaseResult<TbClassMessage> queryAll(TbClassModel model) throws Exception {
@@ -37,7 +37,7 @@ public class ClassController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "添加班级信息，不需要token信息")
+  @ApiOperation(value = "添加班级信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbClass.cname", value = "班级名称", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbClass.cinfo", value = "班级描述", paramType = "query") })
   @PostMapping("/add")
@@ -46,7 +46,7 @@ public class ClassController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "修改班级信息，不需要token信息")
+  @ApiOperation(value = "修改班级信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbClass.cid", value = "要修改的班级编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbClass.cname", value = "班级名称", paramType = "query", required = true), @ApiImplicitParam(name = "tbClass.cinfo", value = "班级描述", paramType = "query") })
   @PostMapping("/update")
@@ -55,7 +55,7 @@ public class ClassController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "删除班级信息，不需要token信息")
+  @ApiOperation(value = "删除班级信息", notes = "不需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbClass.cid", value = "要删除的班级编号", paramType = "query", required = true) })
   @PostMapping("/delete")
   public BaseResult<TbClassMessage> delete(TbClassModel model) throws Exception {
