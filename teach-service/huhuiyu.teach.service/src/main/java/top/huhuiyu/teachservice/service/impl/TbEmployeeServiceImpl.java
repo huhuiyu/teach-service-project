@@ -102,8 +102,12 @@ public class TbEmployeeServiceImpl implements TbEmployeeService {
   @Override
   public BaseResult<TbEmployeeMessage> delete(TbEmployeeModel model) throws Exception {
     BaseResult<TbEmployeeMessage> message = new BaseResult<TbEmployeeMessage>(new TbEmployeeMessage());
-    tbEmployeeDAO.delete(model.getTbEmployee());
-    message.setSuccessInfo("删除数据成功");
+    int result = tbEmployeeDAO.delete(model.getTbEmployee());
+    if (result == 1) {
+      message.setSuccessInfo("删除数据成功");
+    } else {
+      message.setFailInfo("删除数据失败");
+    }
     return message;
   }
 

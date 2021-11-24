@@ -1,7 +1,11 @@
 package top.huhuiyu.teachservice.config;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +38,21 @@ public class MyExceptionHandler {
       result.setToken(appException.getToken());
       log.debug("自定义异常token：{}", appException.getToken());
       return result;
+    }
+    if (ex instanceof MethodArgumentNotValidException) {
+      MethodArgumentNotValidException manve = (MethodArgumentNotValidException) ex;
+      List<ObjectError> errors = manve.getBindingResult().getAllErrors();
+      StringBuilder sb = new StringBuilder();
+      for (ObjectError oe : errors) {
+        sb.append(oe.getDefaultMessage()).append(",");
+      }
+      if (sb.length() > 0) {
+        sb.deleteCharAt(sb.length() - 1);
+      }
+      BaseResult<Object> result = BaseResult.getFail(sb.toString());
+      log.debug("校验异常：{}", manve.getMessage());
+      return result;
+
     }
     if (ex instanceof NoHandlerFoundException) {
       return BaseResult.getFail(404, "资源不存在");

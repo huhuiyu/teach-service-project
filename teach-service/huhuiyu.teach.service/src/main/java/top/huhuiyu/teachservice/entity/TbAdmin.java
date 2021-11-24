@@ -1,9 +1,12 @@
 package top.huhuiyu.teachservice.entity;
 
+import javax.validation.constraints.NotBlank;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import top.huhuiyu.api.spring.base.BaseEntity;
+import top.huhuiyu.teachservice.validate.TbAdminValidate;
 
 /**
  * tb_admin表
@@ -18,9 +21,11 @@ public class TbAdmin extends BaseEntity {
   @ApiModelProperty(value = "用户编号")
   @ApiParam(hidden = true)
   private java.lang.Integer aid;
+  @NotBlank(message = "登录名必须填写", groups = { TbAdminValidate.Login.class, TbAdminValidate.Add.class })
   @ApiModelProperty(value = "登录名")
   @ApiParam(hidden = true)
   private java.lang.String username;
+  @NotBlank(message = "密码必须填写", groups = { TbAdminValidate.Login.class })
   @ApiModelProperty(value = "密码")
   @ApiParam(hidden = true)
   private java.lang.String password;

@@ -1,9 +1,13 @@
 package top.huhuiyu.teachservice.entity;
 
+import javax.validation.constraints.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import top.huhuiyu.api.spring.base.BaseEntity;
+import top.huhuiyu.teachservice.utils.SystemConstants;
+import top.huhuiyu.teachservice.validate.TbAdminValidate;
 
 /**
  * tb_user_info表
@@ -21,6 +25,7 @@ public class TbUserInfo extends BaseEntity {
   @ApiModelProperty(value = "性别，m：男，f：女，n：保密")
   @ApiParam(hidden = true)
   private java.lang.String sex;
+  @Pattern(regexp = SystemConstants.EMAIL_CHECK, message = "邮箱必须正确填写", groups = { TbAdminValidate.Add.class })
   @ApiModelProperty(value = "邮箱")
   @ApiParam(hidden = true)
   private java.lang.String email;

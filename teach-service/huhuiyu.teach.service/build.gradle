@@ -53,6 +53,8 @@ repositories {
 dependencies {
   // springboot依赖
   implementation('org.springframework.boot:spring-boot-starter-web')
+  // springboot校验框架依赖
+  implementation('org.springframework.boot:spring-boot-starter-validation')
   // springboot开发工具，可以热部署代码（不要用于生成环境）
   implementation('org.springframework.boot:spring-boot-devtools')
   // email

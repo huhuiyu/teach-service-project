@@ -8,6 +8,11 @@ if (process.env.NODE_ENV === 'development') {
       name: 'Test',
       component: () => import('../views/test/Index.vue'),
     },
+    {
+      path: '/test/json',
+      name: 'TestJson',
+      component: () => import('../views/test/Json.vue'),
+    },
   ]);
 }
 export default routers;

@@ -6,8 +6,10 @@ import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Base64Utils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +19,13 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.utils.ImageCode;
+import top.huhuiyu.teachservice.aop.AnnoNoToken;
 import top.huhuiyu.teachservice.entity.TbTokenInfo;
+import top.huhuiyu.teachservice.message.MyTestMessage;
+import top.huhuiyu.teachservice.model.MyTestModel;
 import top.huhuiyu.teachservice.model.UtilModel;
 import top.huhuiyu.teachservice.service.UtilService;
+import top.huhuiyu.teachservice.validate.TbAdminValidate;
 
 /**
  * 测试控制器
@@ -109,4 +115,28 @@ public class TestController {
   // public BaseResult<Object> notoken(TestModel model) throws Exception {
   // throw AppException.getAppException("自定义异常", model.getToken());
   // }
+  @AnnoNoToken
+  @ApiOperation(value = "json模式参数", notes = "不需要token信息，使用数据校验一")
+  @PostMapping("/json")
+  public MyTestMessage json(@RequestBody @Validated(value = { TbAdminValidate.Login.class }) MyTestModel model) throws Exception {
+    MyTestMessage result = new MyTestMessage();
+    result.setTbAdmin(model.getTbAdmin());
+    result.setTbUserInfo(model.getTbUserInfo());
+    result.setImgCode(model.getImgCode());
+    result.setSuccessInfo("请求成功！");
+    return result;
+  }
+
+  @AnnoNoToken
+  @ApiOperation(value = "数据校验", notes = "不需要token信息，使用数据校验二")
+  @PostMapping("/validate")
+  public MyTestMessage validate(@RequestBody @Validated(value = { TbAdminValidate.Add.class }) MyTestModel model) throws Exception {
+    MyTestMessage result = new MyTestMessage();
+    result.setTbAdmin(model.getTbAdmin());
+    result.setTbUserInfo(model.getTbUserInfo());
+    result.setImgCode(model.getImgCode());
+    result.setSuccessInfo("请求成功！");
+    return result;
+  }
+
 }
