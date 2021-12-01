@@ -1,4 +1,4 @@
-package top.huhuiyu.teachservice.message;
+package top.huhuiyu.teachservice.model;
 
 import java.util.List;
 

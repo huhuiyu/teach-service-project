@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>胡辉煜</title>
+  <meta name="author" content="胡辉煜">
+  <meta name="keywords" content="胡辉煜">
+  <meta name="description" content="胡辉煜">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <link rel="shortcut icon" href="https://klcxy.top/oss-manage-service/ossinfo/queryOssUrl?tbOssInfo.oiid=95" type="image/jpeg">
+  <link rel="stylesheet" href="../lib/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/iconfont.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="h1 p-2 text-center" v-text="title"></div>
+
+    <div class="d-flex">
+      <div class="input-group m-2">
+        <span class="input-group-text">分类</span>
+        <select class="form-select" v-model="queryInfo.typeId">
+          <option value="-1">请选择分类</option>
+          <option v-for="t in typeList" :key="t.typeId" :value="t.typeId" v-text="t.typeName"></option>
+        </select>
+      </div>
+      <div class="input-group m-2">
+        <span class="input-group-text">商品名称</span>
+        <input type="text" class="form-control" v-model="queryInfo.goodsName" placeholder="名称模糊查询">
+      </div>
+      <div class="input-group m-2">
+        <span class="btn btn-primary" @click="query">查询</span>
+        <span class="btn btn-danger" @click="reset">重置</span>
+        <span class="btn btn-info" @click="showAdd">添加</span>
+      </div>
+    </div>
+
+    <table class="table table-info table-hover table-striped">
+      <thead>
+        <tr class="table-primary">
+          <th>所属分类</th>
+          <th>商品名称</th>
+          <th>商品价格</th>
+          <th>信息最后修改时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="d in list" :key="d.goodId">
+          <td>{{showType(d.typeId)}}</td>
+          <td>{{d.goodsName}}</td>
+          <td>{{d.price}}</td>
+          <td>{{showTime(d.lastupdate)}}</td>
+          <td>
+            <span class="btn btn-info" @click="showModify(d)">修改</span>
+            <span class="btn btn-danger" @click="del(d)">删除</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="javascript:void(0)" @click="prePage()">上一页</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)" @click="nextPage()">下一页</a></li>
+        <li class="page-item" v-for="index in page.pageCount" :class="{active:index==page.pageNumber}">
+          <a class="page-link" href="javascript:void(0)" @click="toPage(index)">{{index}}</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">
+            当前页：{{page.pageNumber}}，总页数：{{page.pageCount}}，记录数：{{page.total}}</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div id="add-dialog" class="modal fade" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content" id="addForm">
+        <div class="modal-header">添加商品</div>
+        <div class="modal-body">
+          <div class="input-group m-2">
+            <span class="input-group-text">分类</span>
+            <select class="form-select" v-model="addInfo.typeId">
+              <option v-for="t in typeList" :key="t.typeId" :value="t.typeId" v-text="t.typeName"></option>
+            </select>
+          </div>
+          <div class="input-group m-2">
+            <span class="input-group-text">名称</span>
+            <input type="text" class="form-control" v-model="addInfo.goodsName" placeholder="商品名称">
+          </div>
+          <div class="input-group m-2">
+            <span class="input-group-text">价格</span>
+            <input type="text" class="form-control" v-model="addInfo.price" placeholder="商品价格">
+          </div>
+          <div class="m-2 text-danger text-center">
+            {{ info }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <span class="btn btn-primary" @click="add">添加</span>
+            <span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#add-dialog">关闭</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="modify-dialog" class="modal fade" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content" id="modifyForm">
+        <div class="modal-header">修改商品</div>
+        <div class="modal-body">
+          <div class="input-group m-2">
+            <span class="input-group-text">分类</span>
+            <select class="form-select" v-model="modifyInfo.typeId">
+              <option v-for="t in typeList" :key="t.typeId" :value="t.typeId" v-text="t.typeName"></option>
+            </select>
+          </div>
+          <div class="input-group m-2">
+            <span class="input-group-text">名称</span>
+            <input type="text" class="form-control" v-model="modifyInfo.goodsName" placeholder="商品名称">
+          </div>
+          <div class="input-group m-2">
+            <span class="input-group-text">价格</span>
+            <input type="text" class="form-control" v-model="modifyInfo.price" placeholder="商品价格">
+          </div>
+          <div class="m-2 text-danger text-center">
+            {{ info }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <span class="btn btn-primary" @click="modify">保存</span>
+            <span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modify-dialog">关闭</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="position-fixed bottom-0 end-0 m-3" style="z-index: 1000;">
+    <div class="toast" id="div-toast" data-bs-delay="3000">
+      <div class="toast-body"></div>
+    </div>
+  </div>
+
+
+  <!-- 
+    <div>{{page}}</div>
+    <div>{{list}}</div>
+    <div>{{typeList}}</div> 
+    <div>{{queryInfo}}</div>
+    -->
+
+
+
+
+  <script src="../lib/vue.min.js"></script>
+  <script src="../lib/axios.min.js"></script>
+  <script src="../lib/qs.min.js"></script>
+  <script src="../lib/bootstrap.bundle.min.js"></script>
+  <script src="../lib/server.js"></script>
+
+  <script src="./index.js"></script>
+
+
+</body>
+
+</html>

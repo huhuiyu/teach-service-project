@@ -16,11 +16,13 @@ public interface TbGoodsDAO {
   /**
    * 查询全部tb_goods
    *
+   * @param tbGoods 过滤条件
+   * 
    * @return tb_goods的信息
    * 
    * @throws Exception 处理发生异常
    */
-  List<TbGoods> queryAll() throws Exception;
+  List<TbGoods> queryAll(TbGoods tbGoods) throws Exception;
 
   /**
    * 按照主键查询tb_goods
