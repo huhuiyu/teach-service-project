@@ -32,9 +32,10 @@
 
   <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
     select a.umid,a.title,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
-    ,b.username 'user.username',b.nickname 'user.nickname'
+    ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
-    inner join tb_admin b on a.aid=b.aid 
+    inner join tb_admin b on a.aid=b.aid
+    inner join tb_user_info c on c.aid=b.aid
     where a.umid=#{umid}
   </select>
   
