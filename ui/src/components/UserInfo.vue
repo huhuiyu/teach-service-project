@@ -16,7 +16,7 @@
     </div>
     <!-- 登录对话框 -->
     <el-dialog :visible.sync="loginVisible" :close-on-click-modal="false">
-      <div v-loading="loginVisible">
+      <div v-loading="loginLoading">
         <el-form>
           <el-form-item>
             <el-input v-model="tbAdmin.username" placeholder="姓名"></el-input>

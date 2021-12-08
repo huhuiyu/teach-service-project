@@ -23,7 +23,7 @@ import top.huhuiyu.teachservice.service.TbDeptService;
  */
 @Api(tags = { "部门和员工信息管理" })
 @RestController
-@RequestMapping("/manange/dept")
+@RequestMapping("/manage/dept")
 public class DeptController {
   @Autowired
   private TbDeptService tbDeptService;

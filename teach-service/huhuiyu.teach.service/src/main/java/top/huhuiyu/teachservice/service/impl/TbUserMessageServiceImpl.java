@@ -39,9 +39,9 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
     if (model.getLoginAdmin() != null) {
       tbUserMessage.setLoginAid(model.getLoginAdmin().getAid());
     }
-    if (!StringUtils.isEmpty(tbUserMessage.getTitle())) {
-      tbUserMessage.setTitle(StringUtils.getLikeStr(tbUserMessage.getTitle()));
-    }
+    // if (!StringUtils.isEmpty(tbUserMessage.getTitle())) {
+    // tbUserMessage.setTitle(StringUtils.getLikeStr(tbUserMessage.getTitle()));
+    // }
     if (!StringUtils.isEmpty(tbUserMessage.getInfo())) {
       tbUserMessage.setInfo(StringUtils.getLikeStr(tbUserMessage.getInfo()));
     }

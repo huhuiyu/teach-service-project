@@ -76,7 +76,7 @@ export default {
     },
     modify() {
       this.loading = true;
-      this.$ajax('/manange/dept/update', { tbDept: this.modifyInfo }, function (data) {
+      this.$ajax('/manage/dept/update', { tbDept: this.modifyInfo }, function (data) {
         this.loading = false;
         data.success ? this.$message(data.message) : this.$message.error(data.message);
       });
@@ -87,7 +87,7 @@ export default {
         .$confirm('是否删除部门：' + info.deptName, '删除部门')
         .then(function () {
           app.loading = true;
-          app.$ajax('/manange/dept/delete', { 'tbDept.deptId': info.deptId }, function (data) {
+          app.$ajax('/manage/dept/delete', { 'tbDept.deptId': info.deptId }, function (data) {
             app.loading = false;
             data.success ? app.$message(data.message) : app.$message.error(data.message);
             app.query();
@@ -97,7 +97,7 @@ export default {
     },
     add() {
       this.loading = true;
-      this.$ajax('/manange/dept/add', { tbDept: this.addInfo }, function (data) {
+      this.$ajax('/manage/dept/add', { tbDept: this.addInfo }, function (data) {
         this.loading = false;
         if (!data.success) {
           this.$message.error(data.message);
@@ -109,7 +109,7 @@ export default {
     },
     query() {
       this.loading = true;
-      this.$ajax('/manange/dept/query', { page: this.page }, function (data) {
+      this.$ajax('/manage/dept/query', { page: this.page }, function (data) {
         this.loading = false;
         if (!data.success) {
           this.$message.error(data.message);

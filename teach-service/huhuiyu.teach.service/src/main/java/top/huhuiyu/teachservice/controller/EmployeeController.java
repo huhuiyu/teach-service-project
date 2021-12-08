@@ -22,7 +22,7 @@ import top.huhuiyu.teachservice.service.TbEmployeeService;
  */
 @Api(tags = { "部门和员工信息管理" })
 @RestController
-@RequestMapping("/manange/employee")
+@RequestMapping("/manage/employee")
 public class EmployeeController {
 
   @Autowired

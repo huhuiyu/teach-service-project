@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import top.huhuiyu.api.spring.base.BaseResult;
-import top.huhuiyu.teachservice.aop.AnnoNoToken;
 import top.huhuiyu.teachservice.message.TbUserMessageMessage;
 import top.huhuiyu.teachservice.message.TbUserMessageReplyMessage;
 import top.huhuiyu.teachservice.model.TbUserMessageModel;
@@ -33,10 +32,8 @@ public class TbUserMessageController {
   @Autowired
   private TbUserMessageReplyService tbUserMessageReplyService;
 
-  @AnnoNoToken
-  @ApiOperation(value = "查询全部留言信息", notes = "不需要token信息")
-  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.title", value = "留言标题模糊查询", paramType = "query"),
-      @ApiImplicitParam(name = "tbUserMessage.info", value = "留言内容模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
+  @ApiOperation(value = "查询全部留言信息")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.info", value = "留言标题或留言内容模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
       @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAll")
   public BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception {
@@ -77,8 +74,7 @@ public class TbUserMessageController {
     return tbUserMessageService.delete(model);
   }
 
-  @AnnoNoToken
-  @ApiOperation(value = "查询留言详细信息（包括评论列表）", notes = "不需要token信息，详细信息包括评论列表")
+  @ApiOperation(value = "查询留言详细信息", notes = "详细信息包括评论列表")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umid", value = "留言编号", paramType = "query", required = true),
       @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryUserMessageDetail")
