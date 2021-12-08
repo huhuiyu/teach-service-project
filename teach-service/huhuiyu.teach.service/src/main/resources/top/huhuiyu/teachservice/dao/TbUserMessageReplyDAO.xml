@@ -20,11 +20,23 @@
   
   <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
     select a.umrid,a.umid,a.aid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
-    ,b.username 'user.username',b.nickname 'user.nickname'
+    ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
+    inner join tb_user_info c on c.aid=b.aid
     where a.umid = #{umid}
     order by a.umrid
+  </select>
+  
+   <select id="queryTopByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
+    select a.umrid,a.umid,a.aid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
+    ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
+    from tb_user_message_reply a
+    inner join tb_admin b on a.aid=b.aid
+    inner join tb_user_info c on c.aid=b.aid
+    where a.umid = #{umid}
+    order by a.umrid
+    limit 3
   </select>
 
   <!--

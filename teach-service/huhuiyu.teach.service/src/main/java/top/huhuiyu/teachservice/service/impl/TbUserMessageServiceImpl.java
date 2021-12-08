@@ -13,9 +13,7 @@ import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.base.PageBean;
 import top.huhuiyu.api.utils.StringUtils;
 import top.huhuiyu.teachservice.dao.TbUserMessageDAO;
-import top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO;
 import top.huhuiyu.teachservice.entity.TbUserMessage;
-import top.huhuiyu.teachservice.entity.TbUserMessageReply;
 import top.huhuiyu.teachservice.message.TbUserMessageMessage;
 import top.huhuiyu.teachservice.model.TbUserMessageModel;
 import top.huhuiyu.teachservice.service.TbUserMessageService;
@@ -30,8 +28,8 @@ import top.huhuiyu.teachservice.service.TbUserMessageService;
 public class TbUserMessageServiceImpl implements TbUserMessageService {
   @Autowired
   private TbUserMessageDAO tbUserMessageDAO;
-  @Autowired
-  private TbUserMessageReplyDAO tbUserMessageReplyDAO;
+  // @Autowired
+  // private TbUserMessageReplyDAO tbUserMessageReplyDAO;
 
   @Override
   public BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception {
@@ -51,18 +49,18 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
     PageInfo<?> pageInfo = new PageInfo<>(list);
     page.setPageInfo(pageInfo);
     // 添加前几比评论
-    PageBean rpage = new PageBean();
-    rpage.setPageSize(3);
-    rpage.setPageNumber(1);
-    TbUserMessageReply ump = new TbUserMessageReply();
-    for (TbUserMessage um : list) {
-      ump.setUmid(um.getUmid());
-      if (model.getLoginAdmin() != null) {
-        ump.setLoginAid(model.getLoginAdmin().getAid());
-      }
-      PageHelper.startPage(rpage.getPageNumber(), rpage.getPageSize());
-      um.setTopReplyList(tbUserMessageReplyDAO.queryAllByUmid(ump));
-    }
+    // PageBean rpage = new PageBean();
+    // rpage.setPageSize(3);
+    // rpage.setPageNumber(1);
+    // TbUserMessageReply ump = new TbUserMessageReply();
+    // for (TbUserMessage um : list) {
+    // ump.setUmid(um.getUmid());
+    // if (model.getLoginAdmin() != null) {
+    // ump.setLoginAid(model.getLoginAdmin().getAid());
+    // }
+    // PageHelper.startPage(rpage.getPageNumber(), rpage.getPageSize());
+    // um.setTopReplyList(tbUserMessageReplyDAO.queryAllByUmid(ump));
+    // }
     BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
     message.setSuccessInfo("");
     message.getResultData().setPage(page);

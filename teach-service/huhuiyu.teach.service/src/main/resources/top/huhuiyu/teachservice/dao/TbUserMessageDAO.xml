@@ -4,12 +4,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageDAO">
-    
-  <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage">
+
+  <resultMap type="TbUserMessage" id="messageReply">
+    <id property="umid" column="umid" />
+    <!-- 一对多级联查询，ofType表示集合中的元素类型，将id传递给selectOrderById -->
+    <collection property="topReplyList" ofType="TbUserMessageReply" column="umid" select="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO.queryTopByUmid" />
+  </resultMap>
+   
+  <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage" resultMap="messageReply">
     select a.umid,a.title,a.info,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
-    ,b.username 'user.username',b.nickname 'user.nickname'
+    ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
+    inner join tb_user_info c on c.aid=b.aid
     <trim prefix="where" prefixOverrides="and">
       <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info})</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
