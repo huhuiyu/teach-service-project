@@ -7,10 +7,11 @@
     
   <select id="queryAll" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
     select a.umrid,a.umid,a.info,a.lastupdate,
-    b.title 'message.title',c.username 'message.user.username',c.nickname 'message.user.nickname'
+    b.title 'message.title',c.username 'message.user.username',c.nickname 'message.user.nickname',d.img 'message.user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_user_message b on a.umid=b.umid
-    inner join tb_admin c on b.aid=c.aid
+    inner join tb_admin c on a.aid=c.aid
+    inner join tb_user_info d on c.aid=d.aid
     <trim prefix="where" prefixOverrides="and">
       <if test="info!=null and info!=''"> and a.info like #{info}</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
@@ -19,7 +20,7 @@
   </select>
   
   <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.aid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
@@ -29,7 +30,7 @@
   </select>
   
    <select id="queryTopByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.aid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid

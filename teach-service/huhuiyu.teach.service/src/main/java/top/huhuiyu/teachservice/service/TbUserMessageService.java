@@ -66,4 +66,15 @@ public interface TbUserMessageService {
    */
   BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception;
 
+  /**
+   * 分页查询TbUserMessage基本信息
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 分页查询TbUserMessage信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageMessage> queryAllTitle(TbUserMessageModel model) throws Exception;
+
 }

@@ -69,6 +69,27 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
   }
 
   @Override
+  public BaseResult<TbUserMessageMessage> queryAllTitle(TbUserMessageModel model) throws Exception {
+    TbUserMessage tbUserMessage = model.getTbUserMessage();
+    if (model.getLoginAdmin() != null) {
+      tbUserMessage.setLoginAid(model.getLoginAdmin().getAid());
+    }
+    if (!StringUtils.isEmpty(tbUserMessage.getInfo())) {
+      tbUserMessage.setInfo(StringUtils.getLikeStr(tbUserMessage.getInfo()));
+    }
+    PageBean page = model.getPage();
+    PageHelper.startPage(page.getPageNumber(), page.getPageSize());
+    List<TbUserMessage> list = tbUserMessageDAO.queryAllTitle(tbUserMessage);
+    PageInfo<?> pageInfo = new PageInfo<>(list);
+    page.setPageInfo(pageInfo);
+    BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
+    message.setSuccessInfo("");
+    message.getResultData().setPage(page);
+    message.getResultData().setList(list);
+    return message;
+  }
+
+  @Override
   public BaseResult<TbUserMessageMessage> queryByKey(TbUserMessageModel model) throws Exception {
     BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
     message.setSuccessInfo("");

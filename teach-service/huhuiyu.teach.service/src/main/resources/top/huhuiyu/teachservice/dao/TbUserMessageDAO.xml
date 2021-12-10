@@ -18,7 +18,20 @@
     inner join tb_admin b on a.aid=b.aid
     inner join tb_user_info c on c.aid=b.aid
     <trim prefix="where" prefixOverrides="and">
-      <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info})</if>
+      <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info} or b.username like #{info})</if>
+      <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
+    </trim>
+    order by a.umid desc
+  </select>
+  
+  <select id="queryAllTitle" resultType="TbUserMessage" parameterType="TbUserMessage">
+    select a.umid,a.title,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
+     from tb_user_message a
+    inner join tb_admin b on a.aid=b.aid
+    inner join tb_user_info c on c.aid=b.aid
+    <trim prefix="where" prefixOverrides="and">
+      <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info} or b.username like #{info})</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
     </trim>
     order by a.umid desc

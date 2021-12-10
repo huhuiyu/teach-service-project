@@ -33,11 +33,19 @@ public class TbUserMessageController {
   private TbUserMessageReplyService tbUserMessageReplyService;
 
   @ApiOperation(value = "查询全部留言信息")
-  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.info", value = "留言标题或留言内容模糊查询", paramType = "query"), @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"),
-      @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.info", value = "留言标题或留言内容或者发帖用户名模糊查询", paramType = "query"),
+      @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAll")
   public BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception {
     return tbUserMessageService.queryAll(model);
+  }
+
+  @ApiOperation(value = "查询全部留言基本信息", notes = "不包括留言内容，不包含最新评论")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.info", value = "留言标题或留言内容或者发帖用户名模糊查询", paramType = "query"),
+      @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
+  @PostMapping("/queryAllBasic")
+  public BaseResult<TbUserMessageMessage> queryAllBasic(TbUserMessageModel model) throws Exception {
+    return tbUserMessageService.queryAllTitle(model);
   }
 
   @ApiOperation(value = "查询用户全部留言信息", notes = "需要用户登录")

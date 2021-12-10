@@ -25,6 +25,17 @@ public interface TbUserMessageDAO {
   List<TbUserMessage> queryAll(TbUserMessage tbUserMessage) throws Exception;
 
   /**
+   * 查询全部tb_user_message基本信息
+   *
+   * @param tbUserMessage 查询参数
+   * 
+   * @return tb_user_message的信息
+   * 
+   * @throws Exception 处理发生异常
+   */
+  List<TbUserMessage> queryAllTitle(TbUserMessage tbUserMessage) throws Exception;
+
+  /**
    * 按照主键查询tb_user_message
    *
    * @param tbUserMessage 主键信息
