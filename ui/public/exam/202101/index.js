@@ -182,3 +182,13 @@
     app.query();
   });
 })();
+
+(function () {
+  console.log(document.body.offsetWidth, document.body.offsetHeight);
+  let app = document.querySelector('#app input');
+
+  window.addEventListener('resize', function (e) {
+    console.log(document.documentElement.clientHeight, document.documentElement.clientWidth);
+    console.log('app大小', app.clientHeight, app.clientWidth);
+  });
+})();

@@ -91,6 +91,10 @@ public interface SystemConstants {
    */
   String ROLE_ADMIN = "admin";
   /**
+   * 应用管理用户
+   */
+  String ROLE_APP_ADMIN = "app-admin";
+  /**
    * 标准用户
    */
   String ROLE_USER = "user";
@@ -286,5 +290,15 @@ public interface SystemConstants {
    * 上传路径配置key
    */
   String UPLOAD_DIR_CONFIG_KEY = "upload_dir";
+
+  /**
+   * 启用
+   */
+  String ENABLE = "y";
+
+  /**
+   * 停用
+   */
+  String DISABLE = "n";
 
 }

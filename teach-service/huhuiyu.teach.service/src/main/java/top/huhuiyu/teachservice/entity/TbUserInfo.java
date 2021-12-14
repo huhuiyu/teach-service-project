@@ -14,7 +14,7 @@ import top.huhuiyu.teachservice.validate.TbAdminValidate;
  * 
  * @author 胡辉煜
  */
-@ApiModel(value = "TbUserInfo", description = "TbUserInfo")
+@ApiModel(value = "TbUserInfo", description = "用户附加信息")
 public class TbUserInfo extends BaseEntity {
 
   private static final long serialVersionUID = -726824365808130782L;

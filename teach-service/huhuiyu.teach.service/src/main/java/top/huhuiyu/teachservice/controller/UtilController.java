@@ -35,6 +35,27 @@ public class UtilController {
     return BaseResult.getSuccess("获取token信息成功");
   }
 
+  @ApiOperation(value = "应用管理员用户登陆", notes = "密码超过一定次数账号将会被冻结一段时间")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
+  @PostMapping("/appAdminLogin")
+  public BaseResult<UtilMessage> appAdminLogin(UtilModel model) throws Exception {
+    model.getTbAdmin().setRole(SystemConstants.ROLE_APP_ADMIN);
+    return utilService.adminLogin(model);
+  }
+
+  @ApiOperation(value = "应用管理员用户登出")
+  @PostMapping("/appAdminLogout")
+  public BaseResult<UtilMessage> appAdminLogout(UtilModel model) throws Exception {
+    return utilService.adminLogout(model);
+  }
+
+  @ApiOperation(value = "应用管理员用户信息获取")
+  @PostMapping("/getAppAdminLoginInfo")
+  public BaseResult<UtilMessage> getAppAdminLoginInfo(UtilModel model) throws Exception {
+    return utilService.getAdminLoginInfo(model);
+  }
+
   @ApiOperation(value = "管理员用户登陆", notes = "密码超过一定次数账号将会被冻结一段时间")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "用户名", paramType = "query", required = true),
       @ApiImplicitParam(name = "tbAdmin.password", value = "密码（需要md5加密）", paramType = "query", required = true) })
@@ -50,7 +71,7 @@ public class UtilController {
     return utilService.adminLogout(model);
   }
 
-  @ApiOperation(value = "获取登录管理员用户信息")
+  @ApiOperation(value = "管理员用户信息获取")
   @PostMapping("/getAdminLoginInfo")
   public BaseResult<UtilMessage> getAdminLoginInfo(UtilModel model) throws Exception {
     return utilService.getAdminLoginInfo(model);

@@ -29,6 +29,12 @@ public class TbUserMessage extends BaseEntity {
   @ApiModelProperty(value = "内容")
   @ApiParam(hidden = true)
   private java.lang.String info;
+  @ApiModelProperty(value = "是否被屏蔽")
+  @ApiParam(hidden = true)
+  private java.lang.String disable;
+  @ApiModelProperty(value = "点击量")
+  @ApiParam(hidden = true)
+  private java.lang.Integer hits;
   @ApiModelProperty(value = "最后修改时间")
   @ApiParam(hidden = true)
   private java.util.Date lastupdate;
@@ -41,7 +47,7 @@ public class TbUserMessage extends BaseEntity {
   @ApiModelProperty(hidden = true)
   @ApiParam(hidden = true)
   private Integer loginAid;
-  @ApiModelProperty(value = "最新评论")
+  @ApiModelProperty(value = "最新评论列表")
   @ApiParam(hidden = true)
   private List<TbUserMessageReply> topReplyList;
   @ApiModelProperty(value = "评论总数")
@@ -81,6 +87,22 @@ public class TbUserMessage extends BaseEntity {
 
   public void setInfo(java.lang.String info) {
     this.info = info;
+  }
+
+  public java.lang.String getDisable() {
+    return disable;
+  }
+
+  public void setDisable(java.lang.String disable) {
+    this.disable = disable;
+  }
+
+  public java.lang.Integer getHits() {
+    return hits;
+  }
+
+  public void setHits(java.lang.Integer hits) {
+    this.hits = hits;
   }
 
   public java.util.Date getLastupdate() {

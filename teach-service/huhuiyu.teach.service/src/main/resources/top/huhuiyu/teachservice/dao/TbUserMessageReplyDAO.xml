@@ -6,7 +6,7 @@
 <mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO">
     
   <select id="queryAll" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.lastupdate,
+    select a.umrid,a.umid,a.info,a.disable,a.lastupdate,
     b.title 'message.title',c.username 'message.user.username',c.nickname 'message.user.nickname',d.img 'message.user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_user_message b on a.umid=b.umid
@@ -15,27 +15,28 @@
     <trim prefix="where" prefixOverrides="and">
       <if test="info!=null and info!=''"> and a.info like #{info}</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
+      <if test="disable!=null and disable!=''"> and a.disable = #{disable}</if>
     </trim>
     order by a.umrid desc
   </select>
   
   <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.disable,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
     inner join tb_user_info c on c.aid=b.aid
-    where a.umid = #{umid}
+    where a.umid = #{umid} and a.disable = 'n'
     order by a.umrid
   </select>
   
    <select id="queryTopByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.disable,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
     inner join tb_user_info c on c.aid=b.aid
-    where a.umid = #{umid}
+    where a.umid = #{umid} and a.disable = 'n'
     order by a.umrid
     limit 3
   </select>
@@ -47,7 +48,7 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessageReply" resultType="TbUserMessageReply">
-    select umrid,umid,aid,info,lastupdate from tb_user_message_reply 
+    select umrid,umid,aid,info,a.disable,lastupdate from tb_user_message_reply 
     where umrid=#{umrid}
   </select>
   

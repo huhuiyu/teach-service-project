@@ -16,6 +16,7 @@ import top.huhuiyu.teachservice.model.TbUserMessageModel;
 import top.huhuiyu.teachservice.model.TbUserMessageReplyModel;
 import top.huhuiyu.teachservice.service.TbUserMessageReplyService;
 import top.huhuiyu.teachservice.service.TbUserMessageService;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * 用户留言的控制器
@@ -37,6 +38,7 @@ public class TbUserMessageController {
       @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAll")
   public BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception {
+    model.getTbUserMessage().setDisable(SystemConstants.DISABLE);
     return tbUserMessageService.queryAll(model);
   }
 
@@ -45,6 +47,7 @@ public class TbUserMessageController {
       @ApiImplicitParam(name = "page.pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "page.pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAllBasic")
   public BaseResult<TbUserMessageMessage> queryAllBasic(TbUserMessageModel model) throws Exception {
+    model.getTbUserMessage().setDisable(SystemConstants.DISABLE);
     return tbUserMessageService.queryAllTitle(model);
   }
 

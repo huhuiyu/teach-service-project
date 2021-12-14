@@ -24,6 +24,9 @@ public class Temp {
     String salt = "JX1XRO";
     String pwd = "admin-pwd";
     System.out.println(String.format("%s,%s,%s,%s", salt, pwd, Md5.md5(pwd), Md5.saltMd5(Md5.md5(pwd), salt)));
+    salt = "WF5QS7";
+    pwd = "admin";
+    System.out.println(String.format("%s,%s,%s,%s", salt, pwd, Md5.md5(pwd), Md5.saltMd5(Md5.md5(pwd), salt)));
   }
 
   public static void three() throws Exception {
@@ -51,10 +54,10 @@ public class Temp {
   public static void main(String[] args) throws Exception {
     // System.out.println(Md5.makeSalt());
     // Temp.one();
-    // Temp.two();
+    Temp.two();
     // Temp.three();
     // Temp.four();
-    Temp.five();
+    // Temp.five();
     // System.out.println(UUID.randomUUID().toString());
     // System.out.println(UUID.randomUUID().toString());
     // System.out.println(UUID.randomUUID().toString());

@@ -19,6 +19,7 @@ import top.huhuiyu.teachservice.entity.TbUserMessageReply;
 import top.huhuiyu.teachservice.message.TbUserMessageReplyMessage;
 import top.huhuiyu.teachservice.model.TbUserMessageReplyModel;
 import top.huhuiyu.teachservice.service.TbUserMessageReplyService;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * TbUserMessageReply的实现层
@@ -63,11 +64,14 @@ public class TbUserMessageReplyServiceImpl implements TbUserMessageReplyService 
       tbUserMessage.setLoginAid(model.getLoginAdmin().getAid());
     }
     tbUserMessage.setUmid(tbUserMessageReply.getUmid());
+    tbUserMessage.setDisable(SystemConstants.DISABLE);
     tbUserMessage = tbUserMessageDAO.queryByKey(tbUserMessage);
     if (tbUserMessage == null) {
       message.setFailInfo("留言信息不存在");
       return message;
     }
+    // 修改点击量
+    tbUserMessageDAO.updateHits(tbUserMessage);
     // 留言信息
     message.getResultData().setTbUserMessage(tbUserMessage);
     // 评论信息

@@ -79,4 +79,15 @@ public interface TbUserMessageDAO {
    */
   int delete(TbUserMessage tbUserMessage) throws Exception;
 
+  /**
+   * 修改tb_user_message的点击数
+   *
+   * @param tbUserMessage tbUserMessage信息
+   * 
+   * @return 修改tb_user_message的点击数的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int updateHits(TbUserMessage tbUserMessage) throws Exception;
+
 }
