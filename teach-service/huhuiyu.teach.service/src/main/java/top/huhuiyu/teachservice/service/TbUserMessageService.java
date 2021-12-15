@@ -99,4 +99,15 @@ public interface TbUserMessageService {
    */
   BaseResult<TbUserMessageMessage> examine(TbUserMessageModel model) throws Exception;
 
+  /**
+   * 屏蔽/启用TbUserMessage信息
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 屏蔽/启用TbUserMessage信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageMessage> disable(TbUserMessageModel model) throws Exception;
+
 }

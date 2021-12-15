@@ -172,4 +172,17 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
     }
     return message;
   }
+
+  @Override
+  public BaseResult<TbUserMessageMessage> disable(TbUserMessageModel model) throws Exception {
+    TbUserMessage tbUserMessage = model.getTbUserMessage();
+    BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
+    int result = tbUserMessageDAO.updateDisable(tbUserMessage);
+    if (result == 1) {
+      message.setSuccessInfo("留言屏蔽状态修改成功");
+    } else {
+      message.setFailInfo("留言屏蔽状态修改失败");
+    }
+    return message;
+  }
 }

@@ -117,4 +117,13 @@ insert into tb_actions(url,info,role) values('/email/message/queryAll','查询�
 /* 后台管理功能*/
 insert into tb_actions(url,info,role) values('/admin/querySystemLog','日志查询功能','admin');
 
+/* 应用管理功能 */
+insert into tb_actions(url,info,role) values('/userMessage/manage/queryAll','留言查询功能','app-admin');
+insert into tb_actions(url,info,role) values('/userMessage/manage/queryAllReply','留言评论查询功能','app-admin');
+insert into tb_actions(url,info,role) values('/userMessage/manage/disable','屏蔽留言功能','app-admin');
+insert into tb_actions(url,info,role) values('/userMessage/manage/enable','解除留言屏蔽功能','app-admin');
+insert into tb_actions(url,info,role) values('/userMessage/manage/disableReply','屏蔽评论功能','app-admin');
+insert into tb_actions(url,info,role) values('/userMessage/manage/enableReply','解除评论屏蔽功能','app-admin');
+
+
 select aid,url,info,role from tb_actions;

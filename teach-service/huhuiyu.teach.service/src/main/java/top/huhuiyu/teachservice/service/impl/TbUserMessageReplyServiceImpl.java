@@ -167,4 +167,17 @@ public class TbUserMessageReplyServiceImpl implements TbUserMessageReplyService 
     }
     return message;
   }
+
+  @Override
+  public BaseResult<TbUserMessageReplyMessage> disable(TbUserMessageReplyModel model) throws Exception {
+    BaseResult<TbUserMessageReplyMessage> message = new BaseResult<TbUserMessageReplyMessage>(new TbUserMessageReplyMessage());
+    TbUserMessageReply tbUserMessageReply = model.getTbUserMessageReply();
+    int result = tbUserMessageReplyDAO.updateDisable(tbUserMessageReply);
+    if (result == 1) {
+      message.setSuccessInfo("修改评论屏蔽状态成功");
+    } else {
+      message.setFailInfo("修改评论屏蔽状态失败");
+    }
+    return message;
+  }
 }
