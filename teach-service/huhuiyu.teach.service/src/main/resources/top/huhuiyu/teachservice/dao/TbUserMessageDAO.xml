@@ -11,8 +11,8 @@
     <collection property="topReplyList" ofType="TbUserMessageReply" column="umid" select="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO.queryTopByUmid" />
   </resultMap>
    
-  <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage" resultMap="messageReply">
-    select a.umid,a.title,a.info,a.disable,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+  <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage">
+    select a.umid,a.title,a.info,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -21,12 +21,28 @@
       <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info} or b.username like #{info})</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
       <if test="disable!=null and disable!=''"> and a.disable = #{disable}</if>
+      <if test="examine!=null and examine!=''"> and a.examine = #{examine}</if>
+    </trim>
+    order by a.umid desc
+  </select>
+  
+  <select id="queryAllTop" resultType="TbUserMessage" parameterType="TbUserMessage" resultMap="messageReply">
+    select a.umid,a.title,a.info,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
+     from tb_user_message a
+    inner join tb_admin b on a.aid=b.aid
+    inner join tb_user_info c on c.aid=b.aid
+    <trim prefix="where" prefixOverrides="and">
+      <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info} or b.username like #{info})</if>
+      <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
+      <if test="disable!=null and disable!=''"> and a.disable = #{disable}</if>
+      <if test="examine!=null and examine!=''"> and a.examine = #{examine}</if>
     </trim>
     order by a.umid desc
   </select>
   
   <select id="queryAllTitle" resultType="TbUserMessage" parameterType="TbUserMessage">
-    select a.umid,a.title,a.disable,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    select a.umid,a.title,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -35,6 +51,7 @@
       <if test="info!=null and info!=''"> and (a.info like #{info} or a.title like #{info} or b.username like #{info})</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
       <if test="disable!=null and disable!=''"> and a.disable = #{disable}</if>
+      <if test="examine!=null and examine!=''"> and a.examine = #{examine}</if>
     </trim>
     order by a.umid desc
   </select>
@@ -46,13 +63,14 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
-    select a.umid,a.title,a.info,a.disable,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umid,a.title,a.info,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
     inner join tb_user_info c on c.aid=b.aid
     where a.umid=#{umid}
     <if test="disable!=null and disable!=''"> and a.disable = #{disable}</if>
+    <if test="examine!=null and examine!=''"> and a.examine = #{examine}</if>
   </select>
   
   <insert id="add" parameterType="TbUserMessage">
@@ -67,6 +85,14 @@
   
   <update id="updateHits" parameterType="TbUserMessage">
     update tb_user_message set hits=hits + 1 where umid=#{umid}
+  </update>
+  
+  <update id="updateExamine" parameterType="TbUserMessage">
+    update tb_user_message set examine='y' where umid=#{umid}
+  </update>
+  
+  <update id="updateDisable" parameterType="TbUserMessage">
+    update tb_user_message set disable=#{disable} where umid=#{umid}
   </update>
   
   <delete id="delete" parameterType="TbUserMessage" >

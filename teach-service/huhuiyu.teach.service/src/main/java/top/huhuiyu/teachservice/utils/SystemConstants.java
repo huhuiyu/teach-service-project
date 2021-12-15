@@ -300,5 +300,10 @@ public interface SystemConstants {
    * 停用
    */
   String DISABLE = "n";
+  
+  /**
+   * 审核中
+   */
+  String EXAMINE = "e";
 
 }

@@ -77,4 +77,15 @@ public interface TbUserMessageReplyService {
    */
   BaseResult<TbUserMessageReplyMessage> queryUserMessageDetail(TbUserMessageReplyModel model) throws Exception;
 
+  /**
+   * 举报TbUserMessageReply信息
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 举报TbUserMessageReply信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageReplyMessage> examine(TbUserMessageReplyModel model) throws Exception;
+
 }

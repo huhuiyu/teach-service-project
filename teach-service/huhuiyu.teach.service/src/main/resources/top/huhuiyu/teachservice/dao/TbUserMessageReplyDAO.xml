@@ -6,7 +6,7 @@
 <mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO">
     
   <select id="queryAll" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.disable,a.lastupdate,
+    select a.umrid,a.umid,a.info,a.disable,a.examine,a.lastupdate,
     b.title 'message.title',c.username 'message.user.username',c.nickname 'message.user.nickname',d.img 'message.user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_user_message b on a.umid=b.umid
@@ -16,12 +16,13 @@
       <if test="info!=null and info!=''"> and a.info like #{info}</if>
       <if test="aid!=null and aid &gt; 0"> and a.aid = #{aid}</if>
       <if test="disable!=null and disable!=''"> and a.disable = #{disable}</if>
+      <if test="examine!=null and examine!=''"> and a.examine = #{examine}</if>
     </trim>
     order by a.umrid desc
   </select>
   
   <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.disable,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.disable,a.examine,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
@@ -31,7 +32,7 @@
   </select>
   
    <select id="queryTopByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.disable,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.disable,a.examine,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
@@ -48,7 +49,7 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessageReply" resultType="TbUserMessageReply">
-    select umrid,umid,aid,info,a.disable,lastupdate from tb_user_message_reply 
+    select umrid,umid,aid,info,a.disable,a.examine,lastupdate from tb_user_message_reply 
     where umrid=#{umrid}
   </select>
   
@@ -60,6 +61,14 @@
   <update id="update" parameterType="TbUserMessageReply">
     update tb_user_message_reply set info=#{info}
     where umrid=#{umrid} and aid=#{aid}
+  </update>
+  
+  <update id="updateExamine" parameterType="TbUserMessageReply">
+    update tb_user_message_reply set examine=#{examine} where umrid=#{umrid}
+  </update>
+  
+  <update id="updateDisable" parameterType="TbUserMessageReply">
+    update tb_user_message_reply set disable=#{disable} where umrid=#{umrid}
   </update>
   
   <delete id="delete" parameterType="TbUserMessageReply" >

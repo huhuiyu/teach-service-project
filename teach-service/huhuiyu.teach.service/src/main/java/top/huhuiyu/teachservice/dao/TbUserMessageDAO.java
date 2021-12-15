@@ -25,6 +25,17 @@ public interface TbUserMessageDAO {
   List<TbUserMessage> queryAll(TbUserMessage tbUserMessage) throws Exception;
 
   /**
+   * 查询全部tb_user_message带回帖
+   *
+   * @param tbUserMessage 查询参数
+   * 
+   * @return tb_user_message带回帖的信息
+   * 
+   * @throws Exception 处理发生异常
+   */
+  List<TbUserMessage> queryAllTop(TbUserMessage tbUserMessage) throws Exception;
+
+  /**
    * 查询全部tb_user_message基本信息
    *
    * @param tbUserMessage 查询参数
@@ -89,5 +100,27 @@ public interface TbUserMessageDAO {
    * @throws Exception 处理发生异常
    */
   int updateHits(TbUserMessage tbUserMessage) throws Exception;
+
+  /**
+   * 修改tb_user_message的举报状态
+   *
+   * @param tbUserMessage tbUserMessage信息
+   * 
+   * @return 修改tb_user_message的举报状态的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int updateExamine(TbUserMessage tbUserMessage) throws Exception;
+
+  /**
+   * 修改tb_user_message的屏蔽状态
+   *
+   * @param tbUserMessage tbUserMessage信息
+   * 
+   * @return 修改tb_user_message的屏蔽状态的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int updateDisable(TbUserMessage tbUserMessage) throws Exception;
 
 }

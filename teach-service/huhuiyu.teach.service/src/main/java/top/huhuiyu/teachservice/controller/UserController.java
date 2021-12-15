@@ -75,7 +75,8 @@ public class UserController {
 
   @ApiOperation(value = "通过邮箱找回(修改)密码")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbAdmin.username", value = "要找回密码的用户登录名", paramType = "query", required = true),
-      @ApiImplicitParam(name = "tbAdmin.password", value = "新密码（需要md5加密）", paramType = "query", required = true), @ApiImplicitParam(name = "tbAdmin.nickname", value = "邮箱验证码", paramType = "query") })
+      @ApiImplicitParam(name = "tbAdmin.password", value = "新密码（需要md5加密）", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbAdmin.nickname", value = "邮箱验证码", paramType = "query", required = true) })
   @PostMapping("/findPwd")
   public BaseResult<UtilMessage> findPwd(UtilModel model) throws Exception {
     model.getTbAdmin().setRole(SystemConstants.ROLE_USER);

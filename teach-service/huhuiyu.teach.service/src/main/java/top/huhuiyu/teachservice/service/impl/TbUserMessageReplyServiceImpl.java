@@ -153,4 +153,18 @@ public class TbUserMessageReplyServiceImpl implements TbUserMessageReplyService 
     }
     return message;
   }
+
+  @Override
+  public BaseResult<TbUserMessageReplyMessage> examine(TbUserMessageReplyModel model) throws Exception {
+    BaseResult<TbUserMessageReplyMessage> message = new BaseResult<TbUserMessageReplyMessage>(new TbUserMessageReplyMessage());
+    TbUserMessageReply tbUserMessageReply = model.getTbUserMessageReply();
+    tbUserMessageReply.setExamine(SystemConstants.ENABLE);
+    int result = tbUserMessageReplyDAO.updateExamine(tbUserMessageReply);
+    if (result == 1) {
+      message.setSuccessInfo("举报评论成功，等待管理员审核");
+    } else {
+      message.setFailInfo("举报评论失败");
+    }
+    return message;
+  }
 }

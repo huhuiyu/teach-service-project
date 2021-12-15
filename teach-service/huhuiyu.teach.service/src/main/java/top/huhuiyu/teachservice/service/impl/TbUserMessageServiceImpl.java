@@ -17,6 +17,7 @@ import top.huhuiyu.teachservice.entity.TbUserMessage;
 import top.huhuiyu.teachservice.message.TbUserMessageMessage;
 import top.huhuiyu.teachservice.model.TbUserMessageModel;
 import top.huhuiyu.teachservice.service.TbUserMessageService;
+import top.huhuiyu.teachservice.utils.SystemConstants;
 
 /**
  * TbUserMessage的实现层
@@ -28,8 +29,27 @@ import top.huhuiyu.teachservice.service.TbUserMessageService;
 public class TbUserMessageServiceImpl implements TbUserMessageService {
   @Autowired
   private TbUserMessageDAO tbUserMessageDAO;
-  // @Autowired
-  // private TbUserMessageReplyDAO tbUserMessageReplyDAO;
+
+  @Override
+  public BaseResult<TbUserMessageMessage> queryAllTop(TbUserMessageModel model) throws Exception {
+    TbUserMessage tbUserMessage = model.getTbUserMessage();
+    if (model.getLoginAdmin() != null) {
+      tbUserMessage.setLoginAid(model.getLoginAdmin().getAid());
+    }
+    if (!StringUtils.isEmpty(tbUserMessage.getInfo())) {
+      tbUserMessage.setInfo(StringUtils.getLikeStr(tbUserMessage.getInfo()));
+    }
+    PageBean page = model.getPage();
+    PageHelper.startPage(page.getPageNumber(), page.getPageSize());
+    List<TbUserMessage> list = tbUserMessageDAO.queryAllTop(tbUserMessage);
+    PageInfo<?> pageInfo = new PageInfo<>(list);
+    page.setPageInfo(pageInfo);
+    BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
+    message.setSuccessInfo("");
+    message.getResultData().setPage(page);
+    message.getResultData().setList(list);
+    return message;
+  }
 
   @Override
   public BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception {
@@ -37,9 +57,6 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
     if (model.getLoginAdmin() != null) {
       tbUserMessage.setLoginAid(model.getLoginAdmin().getAid());
     }
-    // if (!StringUtils.isEmpty(tbUserMessage.getTitle())) {
-    // tbUserMessage.setTitle(StringUtils.getLikeStr(tbUserMessage.getTitle()));
-    // }
     if (!StringUtils.isEmpty(tbUserMessage.getInfo())) {
       tbUserMessage.setInfo(StringUtils.getLikeStr(tbUserMessage.getInfo()));
     }
@@ -48,19 +65,6 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
     List<TbUserMessage> list = tbUserMessageDAO.queryAll(tbUserMessage);
     PageInfo<?> pageInfo = new PageInfo<>(list);
     page.setPageInfo(pageInfo);
-    // 添加前几比评论
-    // PageBean rpage = new PageBean();
-    // rpage.setPageSize(3);
-    // rpage.setPageNumber(1);
-    // TbUserMessageReply ump = new TbUserMessageReply();
-    // for (TbUserMessage um : list) {
-    // ump.setUmid(um.getUmid());
-    // if (model.getLoginAdmin() != null) {
-    // ump.setLoginAid(model.getLoginAdmin().getAid());
-    // }
-    // PageHelper.startPage(rpage.getPageNumber(), rpage.getPageSize());
-    // um.setTopReplyList(tbUserMessageReplyDAO.queryAllByUmid(ump));
-    // }
     BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
     message.setSuccessInfo("");
     message.getResultData().setPage(page);
@@ -151,6 +155,20 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
       message.setSuccessInfo("修改留言成功");
     } else {
       message.setFailInfo("修改留言失败");
+    }
+    return message;
+  }
+
+  @Override
+  public BaseResult<TbUserMessageMessage> examine(TbUserMessageModel model) throws Exception {
+    TbUserMessage tbUserMessage = model.getTbUserMessage();
+    tbUserMessage.setExamine(SystemConstants.ENABLE);
+    BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
+    int result = tbUserMessageDAO.updateExamine(tbUserMessage);
+    if (result == 1) {
+      message.setSuccessInfo("举报留言成功，等待管理员审核");
+    } else {
+      message.setFailInfo("举报留言失败");
     }
     return message;
   }

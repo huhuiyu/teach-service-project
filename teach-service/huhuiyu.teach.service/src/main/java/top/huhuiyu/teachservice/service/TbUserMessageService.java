@@ -77,4 +77,26 @@ public interface TbUserMessageService {
    */
   BaseResult<TbUserMessageMessage> queryAllTitle(TbUserMessageModel model) throws Exception;
 
+  /**
+   * 分页查询TbUserMessage信息，带最新回复
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 分页查询TbUserMessage信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageMessage> queryAllTop(TbUserMessageModel model) throws Exception;
+
+  /**
+   * 举报TbUserMessage信息
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 举报TbUserMessage信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageMessage> examine(TbUserMessageModel model) throws Exception;
+
 }

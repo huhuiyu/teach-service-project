@@ -79,4 +79,26 @@ public interface TbUserMessageReplyDAO {
    */
   int delete(TbUserMessageReply tbUserMessageReply) throws Exception;
 
+  /**
+   * 修改tb_user_message_reply的举报状态
+   *
+   * @param tbUserMessageReply tbUserMessageReply信息
+   * 
+   * @return 修改tb_user_message的举报状态的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int updateExamine(TbUserMessageReply tbUserMessageReply) throws Exception;
+
+  /**
+   * 修改tb_user_message_reply的屏蔽状态
+   *
+   * @param tbUserMessageReply tbUserMessageReply信息
+   * 
+   * @return 修改tb_user_message_reply的屏蔽状态的结果
+   * 
+   * @throws Exception 处理发生异常
+   */
+  int updateDisable(TbUserMessageReply tbUserMessageReply) throws Exception;
+
 }

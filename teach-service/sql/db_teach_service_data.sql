@@ -76,7 +76,7 @@ create table tb_user_message
   aid integer not null comment '外键，所属用户id',
   title varchar(50) not null comment '留言标题', 
   info varchar(2000) not null default '' comment '留言',
-  disable enum('y','n') default 'n' not null comment '是否屏蔽',
+  state enum(1,2,3) default 1 not null comment '状态码，1：正常，2：审核中，3：屏蔽',
   hits integer default 0 not null comment '点击量',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户留言信息表';
@@ -88,7 +88,7 @@ create table tb_user_message_reply
   umid integer not null comment '外键，所属留言id',
   aid integer not null comment '外键，回帖用户id',
   info varchar(2000) not null default '' comment '留言回帖信息',
-  disable enum('y','n') default 'n' not null comment '是否屏蔽',
+  state enum(1,2,3) default 1 not null comment '状态码，1：正常，2：审核中，3：屏蔽',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户留言回帖信息表';
 

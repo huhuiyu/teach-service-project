@@ -29,9 +29,12 @@ public class TbUserMessage extends BaseEntity {
   @ApiModelProperty(value = "内容")
   @ApiParam(hidden = true)
   private java.lang.String info;
-  @ApiModelProperty(value = "是否被屏蔽")
+  @ApiModelProperty(value = "是否被屏蔽，y：被屏蔽，n：正常")
   @ApiParam(hidden = true)
   private java.lang.String disable;
+  @ApiModelProperty(value = "是否被举报，y：被举报，n：正常")
+  @ApiParam(hidden = true)
+  private java.lang.String examine;
   @ApiModelProperty(value = "点击量")
   @ApiParam(hidden = true)
   private java.lang.Integer hits;
@@ -95,6 +98,14 @@ public class TbUserMessage extends BaseEntity {
 
   public void setDisable(java.lang.String disable) {
     this.disable = disable;
+  }
+
+  public java.lang.String getExamine() {
+    return examine;
+  }
+
+  public void setExamine(java.lang.String examine) {
+    this.examine = examine;
   }
 
   public java.lang.Integer getHits() {

@@ -39,7 +39,7 @@ public class TbUserMessageController {
   @PostMapping("/queryAll")
   public BaseResult<TbUserMessageMessage> queryAll(TbUserMessageModel model) throws Exception {
     model.getTbUserMessage().setDisable(SystemConstants.DISABLE);
-    return tbUserMessageService.queryAll(model);
+    return tbUserMessageService.queryAllTop(model);
   }
 
   @ApiOperation(value = "查询全部留言基本信息", notes = "不包括留言内容，不包含最新评论")
@@ -123,6 +123,20 @@ public class TbUserMessageController {
   @PostMapping("/deleteReply")
   public BaseResult<TbUserMessageReplyMessage> deleteReply(TbUserMessageReplyModel model) throws Exception {
     return tbUserMessageReplyService.delete(model);
+  }
+
+  @ApiOperation(value = "举报留言信息")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.umid", value = "要举报的留言编号", paramType = "query", required = true) })
+  @PostMapping("/examine")
+  public BaseResult<TbUserMessageMessage> examine(TbUserMessageModel model) throws Exception {
+    return tbUserMessageService.examine(model);
+  }
+
+  @ApiOperation(value = "举报留言评论信息")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要举报的评论编号", paramType = "query", required = true) })
+  @PostMapping("/examineReply")
+  public BaseResult<TbUserMessageReplyMessage> examineReply(TbUserMessageReplyModel model) throws Exception {
+    return tbUserMessageReplyService.examine(model);
   }
 
 }
