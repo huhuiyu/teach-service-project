@@ -78,9 +78,12 @@ create table tb_user_message
   info varchar(2000) not null default '' comment '留言',
   disable enum('y','n') default 'n' not null comment '是否屏蔽，y：被屏蔽，n：正常',
   examine enum('y','n') default 'n' not null comment '是否被举报，y：被举报，n：正常',
+  disable_reason varchar(500) default '' not null comment '屏蔽原因', 
   hits integer default 0 not null comment '点击量',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户留言信息表';
+
+select * from tb_user_message;
 
 /* 简易用户留言板回帖 */
 create table tb_user_message_reply
@@ -91,10 +94,24 @@ create table tb_user_message_reply
   info varchar(2000) not null default '' comment '留言回帖信息',
   disable enum('y','n') default 'n' not null comment '是否屏蔽，y：被屏蔽，n：正常',
   examine enum('y','n') default 'n' not null comment '是否被举报，y：被举报，n：正常',
+  disable_reason varchar(500) default '' not null comment '屏蔽原因',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户留言回帖信息表';
 
-alter table tb_user_message_reply add column 'disable' enum('y','n') default 'n' not null comment '是否屏蔽';
+select * from tb_user_message_reply;
+
+/* 简易用户留言板关联信息 */
+create table tb_user_message_relationship
+(
+  umrid integer auto_increment primary key comment '主键',
+  type varchar(50) not null comment '关联类型',
+  key01 varchar(50) not null comment '关联关系信息一',
+  key02 varchar(50) not null comment '关联关系信息二',
+  info varchar(500) default '' not null comment '关联关系信息',
+  lastupdate timestamp on update now() default now() not null comment '最后更新时间'
+)comment '简易用户留言板关联信息';
+
+select * from tb_user_message_relationship;
 
 /* 系统日志信息 */
 create table tb_log
@@ -179,5 +196,8 @@ create table tb_file
   fileinfo varchar(1000) not null default '' comment '文件信息',
   lastupdate timestamp on update now() default now() not null comment '最后更新时间'
 )comment '用户文件上传信息表';
+
+
+
 
 select * from tb_file;

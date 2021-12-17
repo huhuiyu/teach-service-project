@@ -162,8 +162,18 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
   @Override
   public BaseResult<TbUserMessageMessage> examine(TbUserMessageModel model) throws Exception {
     TbUserMessage tbUserMessage = model.getTbUserMessage();
+    tbUserMessage.setDisableReason(StringUtils.trim(tbUserMessage.getDisableReason()));
     tbUserMessage.setExamine(SystemConstants.ENABLE);
     BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
+    // 追加屏蔽原因
+    TbUserMessage check = tbUserMessageDAO.queryByKey(tbUserMessage);
+    if (check != null) {
+      tbUserMessage.setDisableReason(tbUserMessage.getDisableReason() + " " + check.getDisableReason());
+    }
+    if (tbUserMessage.getDisableReason().length() > SystemConstants.EXAMINE_LENGTH) {
+      tbUserMessage.setDisableReason(tbUserMessage.getDisableReason().substring(0, SystemConstants.EXAMINE_LENGTH));
+    }
+
     int result = tbUserMessageDAO.updateExamine(tbUserMessage);
     if (result == 1) {
       message.setSuccessInfo("举报留言成功，等待管理员审核");

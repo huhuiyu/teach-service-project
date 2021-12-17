@@ -6,7 +6,7 @@
 <mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageReplyDAO">
     
   <select id="queryAll" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.disable,a.examine,a.lastupdate,
+    select a.umrid,a.umid,a.info,a.disable,a.disable_reason,a.examine,a.lastupdate,
     b.title 'message.title',c.username 'message.user.username',c.nickname 'message.user.nickname',d.img 'message.user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_user_message b on a.umid=b.umid
@@ -22,7 +22,7 @@
   </select>
   
   <select id="queryAllByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.disable,a.examine,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.disable,a.disable_reason,a.examine,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
@@ -32,7 +32,7 @@
   </select>
   
    <select id="queryTopByUmid" resultType="TbUserMessageReply" parameterType="TbUserMessageReply">
-    select a.umrid,a.umid,a.info,a.disable,a.examine,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umrid,a.umid,a.info,a.disable,a.disable_reason,a.examine,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
     from tb_user_message_reply a
     inner join tb_admin b on a.aid=b.aid
@@ -49,7 +49,7 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessageReply" resultType="TbUserMessageReply">
-    select umrid,umid,aid,info,a.disable,a.examine,lastupdate from tb_user_message_reply 
+    select umrid,umid,aid,info,disable,disable_reason,examine,lastupdate from tb_user_message_reply 
     where umrid=#{umrid}
   </select>
   
@@ -64,7 +64,7 @@
   </update>
   
   <update id="updateExamine" parameterType="TbUserMessageReply">
-    update tb_user_message_reply set examine=#{examine} where umrid=#{umrid}
+    update tb_user_message_reply set examine=#{examine},disable_reason=#{disableReason} where umrid=#{umrid}
   </update>
   
   <update id="updateDisable" parameterType="TbUserMessageReply">

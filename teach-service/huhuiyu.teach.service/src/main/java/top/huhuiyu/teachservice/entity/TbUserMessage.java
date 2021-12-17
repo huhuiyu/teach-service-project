@@ -32,6 +32,9 @@ public class TbUserMessage extends BaseEntity {
   @ApiModelProperty(value = "是否被屏蔽，y：被屏蔽，n：正常")
   @ApiParam(hidden = true)
   private java.lang.String disable;
+  @ApiModelProperty(value = "举报（屏蔽）原因")
+  @ApiParam(hidden = true)
+  private java.lang.String disableReason;
   @ApiModelProperty(value = "是否被举报，y：被举报，n：正常")
   @ApiParam(hidden = true)
   private java.lang.String examine;
@@ -98,6 +101,14 @@ public class TbUserMessage extends BaseEntity {
 
   public void setDisable(java.lang.String disable) {
     this.disable = disable;
+  }
+
+  public java.lang.String getDisableReason() {
+    return disableReason;
+  }
+
+  public void setDisableReason(java.lang.String disableReason) {
+    this.disableReason = disableReason;
   }
 
   public java.lang.String getExamine() {

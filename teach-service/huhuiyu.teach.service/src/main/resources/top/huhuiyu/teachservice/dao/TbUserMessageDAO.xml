@@ -12,7 +12,7 @@
   </resultMap>
    
   <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage">
-    select a.umid,a.title,a.info,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    select a.umid,a.title,a.info,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -27,7 +27,7 @@
   </select>
   
   <select id="queryAllTop" resultType="TbUserMessage" parameterType="TbUserMessage" resultMap="messageReply">
-    select a.umid,a.title,a.info,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    select a.umid,a.title,a.info,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -42,7 +42,7 @@
   </select>
   
   <select id="queryAllTitle" resultType="TbUserMessage" parameterType="TbUserMessage">
-    select a.umid,a.title,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    select a.umid,a.title,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -63,7 +63,7 @@
   -->
 
   <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
-    select a.umid,a.title,a.info,a.disable,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine'
+    select a.umid,a.title,a.info,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -88,7 +88,7 @@
   </update>
   
   <update id="updateExamine" parameterType="TbUserMessage">
-    update tb_user_message set examine='y' where umid=#{umid}
+    update tb_user_message set examine=#{examine},disable_reason=#{disableReason} where umid=#{umid}
   </update>
   
   <update id="updateDisable" parameterType="TbUserMessage">

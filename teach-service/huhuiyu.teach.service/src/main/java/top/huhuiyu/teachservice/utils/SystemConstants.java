@@ -300,10 +300,14 @@ public interface SystemConstants {
    * 停用
    */
   String DISABLE = "n";
-  
+
   /**
    * 审核中
    */
   String EXAMINE = "e";
+  /**
+   * 举报原因长度
+   */
+  int EXAMINE_LENGTH = 450;
 
 }

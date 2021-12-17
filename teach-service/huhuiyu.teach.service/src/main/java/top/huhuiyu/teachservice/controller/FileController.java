@@ -40,7 +40,7 @@ public class FileController {
   }
 
   @AnnoNoToken
-  @ApiOperation(value = "下载文件", notes = "应答结果为文件，无法通过本界面测试，不需要token信息")
+  @ApiOperation(value = "下载文件", notes = "应答结果为文件，无法通过本界面测试，不需要token信息，不需要用户登录")
   @ApiImplicitParams({ @ApiImplicitParam(name = "tbFile.fid", value = "下载文件id", paramType = "query", required = true) })
   @GetMapping("/download")
   public void download(TbFileModel model, HttpServletResponse response) throws Exception {

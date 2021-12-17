@@ -126,14 +126,16 @@ public class TbUserMessageController {
   }
 
   @ApiOperation(value = "举报留言信息")
-  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.umid", value = "要举报的留言编号", paramType = "query", required = true) })
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.umid", value = "要举报的留言编号", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbUserMessage.disableReason", value = "举报原因", paramType = "query", required = true) })
   @PostMapping("/examine")
   public BaseResult<TbUserMessageMessage> examine(TbUserMessageModel model) throws Exception {
     return tbUserMessageService.examine(model);
   }
 
   @ApiOperation(value = "举报留言评论信息")
-  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要举报的评论编号", paramType = "query", required = true) })
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessageReply.umrid", value = "要举报的评论编号", paramType = "query", required = true),
+      @ApiImplicitParam(name = "tbUserMessageReply.disableReason", value = "举报原因", paramType = "query", required = true) })
   @PostMapping("/examineReply")
   public BaseResult<TbUserMessageReplyMessage> examineReply(TbUserMessageReplyModel model) throws Exception {
     return tbUserMessageReplyService.examine(model);

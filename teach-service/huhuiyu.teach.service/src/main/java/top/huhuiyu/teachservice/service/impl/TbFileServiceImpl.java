@@ -187,6 +187,7 @@ public class TbFileServiceImpl implements TbFileService {
       message.setFailInfo("添加数据失败！");
       return message;
     }
+    tbFile = tbFileDAO.queryByKey(tbFile);
     // 保存到磁盘
     TbConfig config = getConfig();
     File saveFile = new File(getSaveFileName(config, tbFile));
@@ -197,6 +198,7 @@ public class TbFileServiceImpl implements TbFileService {
     os.close();
     is.close();
     message.setSuccessInfo("文件上传成功");
+    message.getResultData().setTbFile(tbFile);
     return message;
   }
 

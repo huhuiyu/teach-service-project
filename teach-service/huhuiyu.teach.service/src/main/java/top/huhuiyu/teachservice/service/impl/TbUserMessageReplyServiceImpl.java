@@ -158,7 +158,16 @@ public class TbUserMessageReplyServiceImpl implements TbUserMessageReplyService 
   public BaseResult<TbUserMessageReplyMessage> examine(TbUserMessageReplyModel model) throws Exception {
     BaseResult<TbUserMessageReplyMessage> message = new BaseResult<TbUserMessageReplyMessage>(new TbUserMessageReplyMessage());
     TbUserMessageReply tbUserMessageReply = model.getTbUserMessageReply();
+    tbUserMessageReply.setDisableReason(StringUtils.trim(tbUserMessageReply.getDisableReason()));
     tbUserMessageReply.setExamine(SystemConstants.ENABLE);
+    // 追加屏蔽原因
+    TbUserMessageReply check = tbUserMessageReplyDAO.queryByKey(tbUserMessageReply);
+    if (check != null) {
+      tbUserMessageReply.setDisableReason(tbUserMessageReply.getDisableReason() + " " + check.getDisableReason());
+    }
+    if (tbUserMessageReply.getDisableReason().length() > SystemConstants.EXAMINE_LENGTH) {
+      tbUserMessageReply.setDisableReason(tbUserMessageReply.getDisableReason().substring(0, SystemConstants.EXAMINE_LENGTH));
+    }
     int result = tbUserMessageReplyDAO.updateExamine(tbUserMessageReply);
     if (result == 1) {
       message.setSuccessInfo("举报评论成功，等待管理员审核");
