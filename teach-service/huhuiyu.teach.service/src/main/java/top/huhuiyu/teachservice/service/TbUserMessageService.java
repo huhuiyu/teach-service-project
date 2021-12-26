@@ -110,4 +110,15 @@ public interface TbUserMessageService {
    */
   BaseResult<TbUserMessageMessage> disable(TbUserMessageModel model) throws Exception;
 
+  /**
+   * 赞/取消赞TbUserMessage信息
+   * 
+   * @param model 页面提交数据
+   * 
+   * @return 赞/取消赞TbUserMessage信息的结果
+   * 
+   * @throws Exception 处理发生错误
+   */
+  BaseResult<TbUserMessageMessage> support(TbUserMessageModel model) throws Exception;
+
 }

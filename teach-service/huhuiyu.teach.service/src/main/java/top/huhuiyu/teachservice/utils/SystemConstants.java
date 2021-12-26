@@ -310,4 +310,8 @@ public interface SystemConstants {
    */
   int EXAMINE_LENGTH = 450;
 
+  /**
+   * 关联关系类型（赞）
+   */
+  String RELATIONSHIP_TYPE_SUPPORT = "user_message_support";
 }

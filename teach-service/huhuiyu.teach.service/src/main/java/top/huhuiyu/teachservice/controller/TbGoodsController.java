@@ -9,7 +9,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
 import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.teachservice.message.TbGoodsMessage;
 import top.huhuiyu.teachservice.model.TbGoodsModel;
@@ -21,7 +20,7 @@ import top.huhuiyu.teachservice.service.TbGoodsService;
  * @author 胡辉煜
  */
 @Api(tags = { "考试用接口" })
-@ApiIgnore
+//@ApiIgnore
 @RestController
 @RequestMapping("/exam/goods")
 public class TbGoodsController {

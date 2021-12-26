@@ -13,7 +13,9 @@ import top.huhuiyu.api.spring.base.BaseResult;
 import top.huhuiyu.api.spring.base.PageBean;
 import top.huhuiyu.api.utils.StringUtils;
 import top.huhuiyu.teachservice.dao.TbUserMessageDAO;
+import top.huhuiyu.teachservice.dao.TbUserMessageRelationshipDAO;
 import top.huhuiyu.teachservice.entity.TbUserMessage;
+import top.huhuiyu.teachservice.entity.TbUserMessageRelationship;
 import top.huhuiyu.teachservice.message.TbUserMessageMessage;
 import top.huhuiyu.teachservice.model.TbUserMessageModel;
 import top.huhuiyu.teachservice.service.TbUserMessageService;
@@ -29,6 +31,8 @@ import top.huhuiyu.teachservice.utils.SystemConstants;
 public class TbUserMessageServiceImpl implements TbUserMessageService {
   @Autowired
   private TbUserMessageDAO tbUserMessageDAO;
+  @Autowired
+  private TbUserMessageRelationshipDAO tbUserMessageRelationshipDAO;
 
   @Override
   public BaseResult<TbUserMessageMessage> queryAllTop(TbUserMessageModel model) throws Exception {
@@ -193,6 +197,27 @@ public class TbUserMessageServiceImpl implements TbUserMessageService {
     } else {
       message.setFailInfo("留言屏蔽状态修改失败");
     }
+    return message;
+  }
+
+  @Override
+  public BaseResult<TbUserMessageMessage> support(TbUserMessageModel model) throws Exception {
+    TbUserMessage tbUserMessage = model.getTbUserMessage();
+    TbUserMessageRelationship tbUserMessageRelationship = new TbUserMessageRelationship();
+    tbUserMessageRelationship.setType(SystemConstants.RELATIONSHIP_TYPE_SUPPORT);
+    // key01为点赞用户，key02为点赞帖子
+    tbUserMessageRelationship.setKey01(model.getLoginAdmin().getAid() + "");
+    tbUserMessageRelationship.setKey02(tbUserMessage.getUmid() + "");
+    tbUserMessageRelationship.setInfo("");
+    TbUserMessageRelationship check = tbUserMessageRelationshipDAO.queryByTypeKey(tbUserMessageRelationship);
+    // 存在记录就是删除，表示取消点赞，不存在就是添加，表示点赞
+    if (check == null) {
+      tbUserMessageRelationshipDAO.add(tbUserMessageRelationship);
+    } else {
+      tbUserMessageRelationshipDAO.delete(check);
+    }
+    BaseResult<TbUserMessageMessage> message = new BaseResult<TbUserMessageMessage>(new TbUserMessageMessage());
+    message.setSuccessInfo("修改点赞状态成功");
     return message;
   }
 }

@@ -110,6 +110,8 @@ insert into tb_actions(url,info,role) values('/userMessage/addReply','发布评�
 insert into tb_actions(url,info,role) values('/userMessage/updateReply','修改评论功能','user');
 insert into tb_actions(url,info,role) values('/userMessage/deleteReply','删除评论功能','user');
 
+insert into tb_actions(url,info,role) values('/userMessage/support','赞/取消赞留言信息功能','user');
+
 /* 邮件留言功能权限 */
 insert into tb_actions(url,info,role) values('/email/message/reply','邮件留言回复功能','user');
 insert into tb_actions(url,info,role) values('/email/message/queryAll','查询邮件留言回复功能','user');

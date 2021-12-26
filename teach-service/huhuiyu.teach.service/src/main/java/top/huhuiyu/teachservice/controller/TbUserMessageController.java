@@ -141,4 +141,11 @@ public class TbUserMessageController {
     return tbUserMessageReplyService.examine(model);
   }
 
+  @ApiOperation(value = "赞/取消赞留言信息", notes = "需要用户登录，如果是赞过的就是取消，否则就是点赞")
+  @ApiImplicitParams({ @ApiImplicitParam(name = "tbUserMessage.umid", value = "要赞/取消赞的留言编号", paramType = "query", required = true) })
+  @PostMapping("/support")
+  public BaseResult<TbUserMessageMessage> support(TbUserMessageModel model) throws Exception {
+    return tbUserMessageService.support(model);
+  }
+
 }

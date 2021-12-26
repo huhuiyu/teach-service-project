@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.huhuiyu.teachservice.dao.TbUserMessageRelationshipDAO">
+    
+  <select id="queryAll" resultType="TbUserMessageRelationship">
+    select umrid,type,key01,key02,info,lastupdate from tb_user_message_relationship
+  </select>
+
+  <!--
+  <select id="queryAll_COUNT" resultType="int">
+    select count(*) from tb_user_message_relationship
+  </select>
+  -->
+
+  <select id="queryByKey" parameterType="TbUserMessageRelationship" resultType="TbUserMessageRelationship">
+    select umrid,type,key01,key02,info,lastupdate from tb_user_message_relationship 
+    where umrid=#{umrid}
+  </select>
+  
+  <select id="queryByTypeKey" parameterType="TbUserMessageRelationship" resultType="TbUserMessageRelationship">
+    select umrid,type,key01,key02,info,lastupdate from tb_user_message_relationship 
+    where type=#{type} and key01=#{key01} and key02=#{key02}
+  </select>
+  
+  <insert id="add" parameterType="TbUserMessageRelationship">
+    insert into tb_user_message_relationship(type,key01,key02,info)
+    values(#{type},#{key01},#{key02},#{info})
+  </insert>
+  
+  <update id="update" parameterType="TbUserMessageRelationship">
+    update tb_user_message_relationship set type=#{type},key01=#{key01},key02=#{key02},info=#{info}
+    where umrid=#{umrid}
+  </update>
+  
+  <delete id="delete" parameterType="TbUserMessageRelationship" >
+    delete from tb_user_message_relationship
+    where umrid=#{umrid}
+  </delete>
+  
+</mapper>
