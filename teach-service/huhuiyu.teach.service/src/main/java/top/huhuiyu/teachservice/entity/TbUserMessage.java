@@ -59,6 +59,12 @@ public class TbUserMessage extends BaseEntity {
   @ApiModelProperty(value = "评论总数")
   @ApiParam(hidden = true)
   private Integer replyCount;
+  @ApiModelProperty(value = "点赞总数")
+  @ApiParam(hidden = true)
+  private Integer praiseCount;
+  @ApiModelProperty(value = "当前用户是否已经点赞")
+  @ApiParam(hidden = true)
+  private boolean praise;
 
   public TbUserMessage() {
   }
@@ -173,6 +179,22 @@ public class TbUserMessage extends BaseEntity {
 
   public void setReplyCount(Integer replyCount) {
     this.replyCount = replyCount;
+  }
+
+  public Integer getPraiseCount() {
+    return praiseCount;
+  }
+
+  public void setPraiseCount(Integer praiseCount) {
+    this.praiseCount = praiseCount;
+  }
+
+  public boolean isPraise() {
+    return praise;
+  }
+
+  public void setPraise(boolean praise) {
+    this.praise = praise;
   }
 
 }

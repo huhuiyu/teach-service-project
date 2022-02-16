@@ -13,6 +13,8 @@
    
   <select id="queryAll" resultType="TbUserMessage" parameterType="TbUserMessage">
     select a.umid,a.title,a.info,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and type = 'user_message_support') 'praiseCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and key01=#{loginAid} and type = 'user_message_support') 'praise'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -28,6 +30,8 @@
   
   <select id="queryAllTop" resultType="TbUserMessage" parameterType="TbUserMessage" resultMap="messageReply">
     select a.umid,a.title,a.info,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and type = 'user_message_support') 'praiseCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and key01=#{loginAid} and type = 'user_message_support') 'praise'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -43,6 +47,8 @@
   
   <select id="queryAllTitle" resultType="TbUserMessage" parameterType="TbUserMessage">
     select a.umid,a.title,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine',(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and type = 'user_message_support') 'praiseCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and key01=#{loginAid} and type = 'user_message_support') 'praise'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
@@ -64,6 +70,9 @@
 
   <select id="queryByKey" parameterType="TbUserMessage" resultType="TbUserMessage">
     select a.umid,a.title,a.info,a.disable,a.disable_reason,a.examine,a.hits,a.lastupdate,a.aid=#{loginAid} 'mine'
+    ,(select count(*) from tb_user_message_reply where umid=a.umid) 'replyCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and type = 'user_message_support') 'praiseCount'
+    ,(select count(*) from tb_user_message_relationship where key02=a.umid and key01=#{loginAid} and type = 'user_message_support') 'praise'
     ,b.username 'user.username',b.nickname 'user.nickname',c.img 'user.userInfo.img'
      from tb_user_message a
     inner join tb_admin b on a.aid=b.aid
